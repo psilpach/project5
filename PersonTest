@@ -1,0 +1,72 @@
+/**
+ * Test class for the Person class
+ * @author ndanni4
+ * @version 4.10.2017
+ *
+ */
+public class PersonTest extends student.TestCase {
+
+    private Person kevin;
+    private Person pim;
+    private Person danni;
+
+
+    /**
+     * Runs before each test sets up people
+     */
+    public void setUp() {
+        kevin = new Person("sports", "ME", "north");
+        pim = new Person("swim", "CMDA", "south");
+        danni = new Person("softball", "BIT", "north");
+    }
+
+
+    /**
+     * Test to make sure the correct hobby is output
+     */
+    public void testGetHobby() {
+        assertEquals("sports", kevin.getHobby());
+        assertEquals("softball", danni.getHobby());
+    }
+
+
+    /**
+     * Test to make sure the correct major is output
+     */
+    public void testGetMajor() {
+        assertEquals("ME", kevin.getMajor());
+        assertEquals("BIT", danni.getMajor());
+    }
+    
+    /**
+     * Test to make sure the correct state is output
+     */
+    public void testGetState(){
+        assertEquals("north", kevin.getState());
+        assertEquals("south", pim.getState());
+    }
+
+    /**
+     * Test to make sure the correct string is output
+     */
+    public void testToString() {
+        assertEquals("sports, ME, north", kevin.toString());
+        assertEquals("softball, BIT, north", danni.toString());
+    }
+
+
+    /**
+     * Test to make sure only identical people
+     * Are considered equals
+     */
+    public void testEquals() {
+        Person kevin2 = new Person("sports", "ME", "north");
+        Person notEqual = null;
+        assertTrue(kevin.equals(kevin));
+        assertFalse(kevin.equals(danni));
+        assertFalse(kevin.equals(notEqual));
+        assertTrue(kevin.equals(kevin2));
+        assertFalse(kevin.equals(5));
+    }
+
+}
