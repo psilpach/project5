@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package prj5;
+
+/**
+ * Determines how the data will be sorted
+ * @author ndanni4
+ * @version 4.10.2017
+ *
+ */
+public enum SortTypeEnum {
+    GENRE, TITLE, ARTIST, OTHER;
+}
