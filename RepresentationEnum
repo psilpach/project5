@@ -1,0 +1,11 @@
+package prj5;
+
+/**
+ * Determines how the data will be represented
+ * @author ndanni4
+ * @version 4.10.2017
+ *
+ */
+public enum RepresentationEnum {
+    MAJOR, HOBBY, REGION, DEFAULT
+}
