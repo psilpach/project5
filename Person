@@ -1,0 +1,100 @@
+package prj5;
+
+/**
+ * Person class to create for hobby major and their state
+ * 
+ * @author ndanni4
+ * @version 4.10.2017
+ *
+ */
+public class Person {
+
+    private String hobby;
+    private String major;
+    private String state;
+
+
+    /**
+     * Person constructor
+     * 
+     * @param hobby
+     *            hobby of person
+     * @param major
+     *            major of person
+     * @param state
+     *            state lived in
+     */
+    public Person(String hobby, String major, String state) {
+        this.hobby = hobby;
+        this.major = major;
+        this.state = state;
+    }
+
+
+    /**
+     * Gets the hobby of person
+     * 
+     * @return hobby
+     */
+    public String getHobby() {
+        return hobby;
+    }
+
+
+    /**
+     * Gets the major of the person
+     * 
+     * @return major
+     */
+    public String getMajor() {
+        return major;
+    }
+
+
+    /**
+     * Gets the state where the person is from
+     * 
+     * @return state
+     */
+    public String getState() {
+        return state;
+    }
+
+
+    /**
+     * Strings together hobby, major, and state of the person
+     * 
+     * @return toString of person
+     */
+    public String toString() {
+        StringBuilder info = new StringBuilder();
+        info.append(getHobby() + "," + getMajor() + "," + getState() + ",");
+        return info.toString();
+    }
+
+
+    /**
+     * Two people are equal if same characteristics
+     * 
+     * @param obj
+     *            the person to compare to
+     * @return true if two objects are equal
+     */
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (obj == null) {
+            return false;
+        }
+
+        //Must be in the same class 
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Person other = (Person)obj;
+        return getHobby().equals(other.getHobby()) && getMajor().equals(other.getMajor()) 
+            && getState().equals(other.getState());
+    }
+}
