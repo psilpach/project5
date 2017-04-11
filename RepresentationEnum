@@ -7,5 +7,5 @@ package prj5;
  *
  */
 public enum RepresentationEnum {
-    MAJOR, HOBBY, REGION, DEFAULT
+    MAJOR, HOBBY, REGION, DEFAULT;
 }
