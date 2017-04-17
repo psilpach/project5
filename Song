@@ -16,7 +16,7 @@ public class Song {
     private String title;
     private String artist;
     private String genre;
-    private String date;
+    private int date;
 
     private int numHeardRead;
     private int numHeardArt;
@@ -54,22 +54,22 @@ public class Song {
 
     /**
      * 
-     * @param tit
+     * @param title
      *            title
-     * @param art
+     * @param artist
      *            artist
-     * @param dat
+     * @param date
      *            date
-     * @param gen
+     * @param genre
      *            genre
      */
-    public Song(String tit, String art, String dat, String gen) {
+    public Song(String title, String artist, int date, String genre) {
         likeArray = new ArrayList<Person>();
         heardArray = new ArrayList<Person>();
-        title = tit;
-        artist = art;
-        genre = gen;
-        date = dat;
+        title = title;
+        artist = artist;
+        genre = genre;
+        date = date;
 
         numHeardRead = 0;
         numHeardArt = 0;
@@ -97,6 +97,8 @@ public class Song {
         numLikeUs = 0;
         numLikeNon = 0;
     }
+
+
 
 
     /**
@@ -130,7 +132,7 @@ public class Song {
      * 
      * @return song's release date
      */
-    public String getDate() {
+    public int getDate() {
         return date;
     }
 
@@ -566,4 +568,6 @@ public class Song {
         sb.append("\n");
         return sb.toString();
     }
+
+
 }
