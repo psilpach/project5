@@ -4,9 +4,9 @@
 package prj5;
 
 import java.awt.Color;
-import java.awt.Shape;
 import CS2114.TextShape;
 import CS2114.Window;
+import CS2114.Shape;
 
 /**
  * Creates the glyph for the GUIWindow
@@ -135,3 +135,4 @@ public class GUISongGlyph {
                 (int) (song.getTotalHeard() / 100.0 * maxWidth),
                 availableHeight, clr);
     }
+}
