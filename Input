@@ -17,37 +17,40 @@ public class Input {
 
     private static SongList newSong;
 
-
-    public Input(String survey, String songList) throws FileNotFoundException {
-
-        newSong = readSongList(songList);
-        readSurvey(newSong, survey);
-        new GUIWindow(newSong);
-    }
-
-
     /**
-     * 
-     * @param fileName
-     * @return
+     * default constructor
+     * @param survey
+     * @param songList
      * @throws FileNotFoundException
      */
-    public SongList readSongList(String fileName) throws FileNotFoundException {
+    public Input(String survey, String songList) throws FileNotFoundException {
 
-        SongList out = new SongList();
-        File newFile = new File(fileName);
-        Scanner fileScanner = new Scanner(newFile);
+        SongList newSong = new SongList();
+        readSurvey(newSong, survey);
+        new GUIWindow(newSong);
+        
+    }
+
+    /**
+     * Method that reads the song file
+     *
+     * @param songFile
+     *            - song file
+     * @throws FileNotFoundException
+     */
+    @SuppressWarnings("unused")
+    private void readSongList(String songFile) throws FileNotFoundException {
+        Scanner fileScanner = new Scanner(new File(songFile));
         fileScanner.nextLine();
 
         while (fileScanner.hasNextLine()) {
-
-            String[] stringArray = fileScanner.nextLine().split(",");
-            out.add(new Song(stringArray[0], stringArray[1], stringArray[2],
-                stringArray[3]));
+            String currentLine = fileScanner.nextLine();
+            String[] splitLine = currentLine.split(",");
+            Song currentSong = new Song(splitLine[0], splitLine[3], Integer.valueOf(splitLine[2]) ,
+                    splitLine[1]);
+            newSong.add(newSong.getLength(), currentSong);
         }
-
         fileScanner.close();
-        return out;
     }
 
 
@@ -68,7 +71,7 @@ public class Input {
         while (file.hasNextLine()) {
 
             String[] arr = file.nextLine().split(",");
-            if (arr.length > 5/* && file.hasNextLine() */) {
+            if (arr.length > 5) {
                 newStringArray.add(arr);
             }
         }
@@ -158,4 +161,3 @@ public class Input {
         }
     }
 }
-
