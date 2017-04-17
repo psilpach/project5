@@ -1,0 +1,75 @@
+/**
+ * 
+ */
+import java.awt.Color;
+import CS2114.Shape;
+import CS2114.TextShape;
+import CS2114.Window;
+
+/**
+ * Creates the legend for the GUIWindow
+ * @author ndanni4
+ * @version 4.16.2017
+ */
+public class GUILegend {
+    /**
+     * Method that creates the legend for the Window
+     * 
+     * @param x
+     *            - x
+     * @param y
+     *            - y
+     * @param width
+     *            - width of legend
+     * @param height
+     *            - height of legend
+     * @param w
+     *            - w
+     * @param breakdown
+     *            - subdivision of category
+     */
+    public GUILegend(int x, int y, int width, int height, Window w,
+            RepresentationEnum[] breakdown) {
+
+        Shape s = new Shape(x, y, width, height);
+        s.setBackgroundColor(Color.white);
+        s.setForegroundColor(Color.black);
+
+        int topMargin = 10;
+
+        TextShape ts = new TextShape(x + topMargin, y + topMargin,
+                "Hobby Legend", Color.black);
+        ts.setBackgroundColor(Color.WHITE);
+        w.addShape(ts);
+
+        for (int i = 0; i < breakdown.length; i++) {
+            ts = new TextShape(x + topMargin, y + topMargin + ((i + 1) * 20),
+                    breakdown[i].nameInFile, GUIGlyph.colors[i]);
+            ts.setBackgroundColor(Color.WHITE);
+            w.addShape(ts);
+        }
+
+        ts = new TextShape(x + 50, y + topMargin + 100, "Song Title");
+        ts.setBackgroundColor(Color.WHITE);
+        ts.setForegroundColor(Color.BLACK);
+
+        w.addShape(ts);
+
+        w.addShape(new Shape(x + width / 2 - 2, y + topMargin + 100, 2, 60,
+                Color.BLACK));
+
+        ts = new TextShape(x + 30, y + topMargin + 120, "Heard");
+        ts.setBackgroundColor(Color.WHITE);
+        ts.setForegroundColor(Color.BLACK);
+        w.addShape(ts);
+
+        ts = new TextShape(x + 90, y + topMargin + 120, "Likes");
+        ts.setBackgroundColor(Color.WHITE);
+        ts.setForegroundColor(Color.BLACK);
+        w.addShape(ts);
+
+        w.addShape(s);
+
+    }
+
+}
