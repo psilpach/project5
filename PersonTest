@@ -1,5 +1,10 @@
+package prj5;
+
+import static org.junit.Assert.*;
+
 /**
  * Test class for the Person class
+ * 
  * @author ndanni4
  * @version 4.10.2017
  *
@@ -37,14 +42,16 @@ public class PersonTest extends student.TestCase {
         assertEquals("ME", kevin.getMajor());
         assertEquals("BIT", danni.getMajor());
     }
-    
+
+
     /**
      * Test to make sure the correct state is output
      */
-    public void testGetState(){
+    public void testGetState() {
         assertEquals("north", kevin.getState());
         assertEquals("south", pim.getState());
     }
+
 
     /**
      * Test to make sure the correct string is output
@@ -61,10 +68,14 @@ public class PersonTest extends student.TestCase {
      */
     public void testEquals() {
         Person kevin2 = new Person("sports", "ME", "north");
+        Person kevin3 = new Person("sports", "ME", "south");
+        Person kevin4 = new Person("sports", "HI", "north");
         Person notEqual = null;
         assertTrue(kevin.equals(kevin));
         assertFalse(kevin.equals(danni));
         assertFalse(kevin.equals(notEqual));
+        assertFalse(kevin.equals(kevin3));
+        assertFalse(kevin.equals(kevin4));
         assertTrue(kevin.equals(kevin2));
         assertFalse(kevin.equals(5));
     }
