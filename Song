@@ -16,7 +16,7 @@ public class Song {
     private String title;
     private String artist;
     private String genre;
-    private int date;
+    private String date;
 
     private int numHeardRead;
     private int numHeardArt;
@@ -63,13 +63,13 @@ public class Song {
      * @param genre
      *            genre
      */
-    public Song(String title, String artist, int date, String genre) {
+    public Song(String title1, String artist1, String date1, String genre1) {
         likeArray = new ArrayList<Person>();
         heardArray = new ArrayList<Person>();
-        title = title;
-        artist = artist;
-        genre = genre;
-        date = date;
+        title = title1;
+        artist = artist1;
+        genre = genre1;
+        date = date1;
 
         numHeardRead = 0;
         numHeardArt = 0;
@@ -132,7 +132,7 @@ public class Song {
      * 
      * @return song's release date
      */
-    public int getDate() {
+    public String getDate() {
         return date;
     }
 
