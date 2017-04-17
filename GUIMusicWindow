@@ -18,251 +18,426 @@ import CS2114.WindowSide;
  *
  */
 public class GUIMusicWindow {
-    private Window myWindow;
-    private SongList songs;
-    int startingPosition = 0;
-    RepresentationEnum breakdown;
+        private Window myWindow;
+        private SongList songs;
+        int startingPosition = 0;
+        RepresentationEnum[] breakdown;
 
+        /**
+         * Constructor for the MusicWindow
+         */
+        public GUIMusicWindow() {
+            myWindow = new Window();
+            myWindow.setSize(900, 500);
+            myWindow.setTitle("Music Preference Visualization");
 
-    /**
-     * Constructor for the MusicWindow
-     */
-    public GUIMusicWindow() {
-        myWindow = new Window();
-        myWindow.setSize(900, 500);
-        myWindow.setTitle("Music Preference Visualization");
+            addButton("<- Prev", "clickedPrev", WindowSide.NORTH);
+            addButton("Sort by Artist Name", "clickedSortArtist", WindowSide.NORTH);
+            addButton("Sort by Song Title", "clickedSortTitle", WindowSide.NORTH);
+            addButton("Sort by Release Year", "clickedSortRelease",
+                    WindowSide.NORTH);
+            addButton("Sort by Genre", "clickedSortGenre", WindowSide.NORTH);
+            addButton("Next ->", "clickedNext", WindowSide.NORTH);
 
-        addButton("<- Prev", "clickedPrev", WindowSide.NORTH);
-        addButton("Sort by Artist Name", "clickedSortArtist", WindowSide.NORTH);
-        addButton("Sort by Song Title", "clickedSortTitle", WindowSide.NORTH);
-        addButton("Sort by Release Year", "clickedSortRelease",
-            WindowSide.NORTH);
-        addButton("Sort by Genre", "clickedSortGenre", WindowSide.NORTH);
-        addButton("Next ->", "clickedNext", WindowSide.NORTH);
+            addButton("Represent Hobby", "clickedHobby", WindowSide.SOUTH);
+            addButton("Represent Major", "clickedMajor", WindowSide.SOUTH);
+            addButton("Represent Region", "clickedRegion", WindowSide.SOUTH);
+            addButton("Quit", "clickedQuit", WindowSide.SOUTH);
 
-        addButton("Represent Hobby", "clickedHobby", WindowSide.SOUTH);
-        addButton("Represent Major", "clickedMajor", WindowSide.SOUTH);
-        addButton("Represent Region", "clickedRegion", WindowSide.SOUTH);
-        addButton("Quit", "clickedQuit", WindowSide.SOUTH);
-
-        try {
-            songs = new SongList("MusicSurveyData.csv", "SongList.csv");
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        setBreakdown(RepresentationEnum.DEFAULT);
-
-    }
-
-
-    /**
-     * Setter method for breakdown that is the subdivision of the following
-     * categories - hobby, major, region
-     * 
-     * @param breakdown
-     */
-    public void setBreakdown(RepresentationEnum breakdown) {
-        this.breakdown = breakdown;
-        displaySongs();
-    }
-
-
-    /**
-     * Method that displays the song information on the window
-     */
-    public void displaySongs() {
-        myWindow.removeAllShapes();
-
-        int eachGlyphHeight = myWindow.getGraphPanelHeight() / 4;
-        int eachGlyphWidth = myWindow.getGraphPanelWidth() / 4; // leave space
-                                                                // for the
-                                                                // legend.
-
-        int padding = eachGlyphHeight / 5;
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++) {
-                int song = startingPosition + j + 3 * i;
-                if (song < songs.getSongs().getLength())
-                    new GUISongGlyph(padding + i * eachGlyphWidth, ((j + 1)
-                        * padding) + j * eachGlyphHeight, eachGlyphWidth,
-                        eachGlyphHeight, songs.getSongs().getEntry(song),
-                        breakdown, myWindow);
+            try {
+                songs = new SongList("MusicSurveyData.csv", "SongList.csv");
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
 
-        new GUILegend(eachGlyphWidth * 3 + 40, 4 * padding + eachGlyphHeight, 2
-            * eachGlyphHeight - 20, eachGlyphWidth - 20, myWindow, breakdown);
+            setBreakdown(RepresentationEnum[].interests());
 
-    }
-
-
-    /**
-     * Method that creates and adds all the buttons to the window
-     * 
-     * @param buttonTitle
-     *            - name of the button
-     * @param clickMethod
-     *            - what the button does
-     * @param side
-     *            - where the button is located
-     */
-    public void addButton(
-        String buttonTitle,
-        String clickMethod,
-        WindowSide side) {
-        Button b = new Button(buttonTitle);
-        b.onClick(this, clickMethod);
-        b.setTitle(buttonTitle);
-        myWindow.addButton(b, side);
-    }
-
-
-    /**
-     * Getter method for the window display
-     * 
-     * @return the window
-     */
-    public Window getWindow() {
-        return myWindow;
-    }
-
-
-    /**
-     * Button that returns to the previous page
-     * 
-     * @param in
-     *            - Clicked Previous button
-     */
-    public void clickedPrev(Button in) {
-        if (startingPosition > 9) {
-            startingPosition -= 9;
         }
-        displaySongs();
-    }
 
-
-    /**
-     * Button that sorts the information according to artist in alphabetical
-     * order
-     * 
-     * @param in
-     *            - Sort Artist button
-     */
-    public void clickedSortArtist(Button in) {
-        songs.sort("Artist");
-        startingPosition = 0;
-        displaySongs();
-
-    }
-
-
-    /**
-     * Button that sorts the information according to the song title in
-     * alphabetical order
-     * 
-     * @param in
-     *            - Sort Title button
-     */
-    public void clickedSortTitle(Button in) {
-        songs.sort("Title");
-        startingPosition = 0;
-        displaySongs();
-    }
-
-
-    /**
-     * Button that sorts the information according to the release date from
-     * oldest to newest
-     * 
-     * @param in
-     *            - Sort by Date button
-     */
-    public void clickedSortRelease(Button in) {
-        songs.sort("Release");
-        startingPosition = 0;
-        displaySongs();
-    }
-
-
-    /**
-     * Button that sorts the information according to the the genre of the song
-     * in alphabetical order
-     * 
-     * @param in
-     *            - Sort Genre button
-     */
-    public void clickedSortGenre(Button in) {
-        songs.sort("Genre");
-        startingPosition = 0;
-        displaySongs();
-    }
-
-
-    /**
-     * Button that goes to the next page of songs
-     * 
-     * @param in
-     *            - Next button
-     */
-    public void clickedNext(Button in) {
-        if (startingPosition < songs.getSongs().getLength() - 9) {
-            startingPosition += 9;
+        /**
+         * Setter method for breakdown that is the subdivision of the following
+         * categories - hobby, major, region
+         * 
+         * @param breakdown
+         */
+        public void setBreakdown(RepresentationEnum[] breakdown) {
+            this.breakdown = breakdown;
+            displaySongs();
         }
-        displaySongs();
+
+        /**
+         * Method that displays the song information on the window
+         */
+        public void displaySongs() {
+            myWindow.removeAllShapes();
+
+            int eachGlyphHeight = myWindow.getGraphPanelHeight() / 4;
+            int eachGlyphWidth = myWindow.getGraphPanelWidth() / 4; // leave space
+                                                                    // for the
+                                                                    // legend.
+            
+            
+            int padding = eachGlyphHeight / 5;
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++) {
+                    int song = startingPosition + j + 3 * i;
+                    if (song < songs.getLength())
+                        new GUISongGlyph(padding + i * eachGlyphWidth,
+                                ((j + 1) * padding) + j * eachGlyphHeight,
+                                eachGlyphWidth, eachGlyphHeight,
+                                songs.getEntry(song), breakdown,
+                                myWindow);
+                }
+
+            new GUILegend(eachGlyphWidth * 3 + 40, 4 * padding + eachGlyphHeight,
+                    2 * eachGlyphHeight - 20, eachGlyphWidth - 20, myWindow,
+                    breakdown);
+
+        }
+
+        /**
+         * Method that creates and adds all the buttons to the window
+         * 
+         * @param buttonTitle
+         *            - name of the button
+         * @param clickMethod
+         *            - what the button does
+         * @param side
+         *            - where the button is located
+         */
+        public void addButton(String buttonTitle, String clickMethod,
+                WindowSide side) {
+            Button b = new Button(buttonTitle);
+            b.onClick(this, clickMethod);
+            b.setTitle(buttonTitle);
+            myWindow.addButton(b, side);
+        }
+
+        /**
+         * Getter method for the window display
+         * 
+         * @return the window
+         */
+        public Window getWindow() {
+            return myWindow;
+        }
+
+        /**
+         * Button that returns to the previous page
+         * 
+         * @param in
+         *            - Clicked Previous button
+         */
+        public void clickedPrev(Button in) {
+            if (startingPosition > 9) {
+                startingPosition -= 9;
+            }
+            displaySongs();
+        }
+
+        /**
+         * Button that sorts the information according to artist in alphabetical
+         * order
+         * 
+         * @param in
+         *            - Sort Artist button
+         */
+        public void clickedSortArtist(Button in) {
+            songs.sort("Artist");
+            startingPosition = 0;
+            displaySongs();
+
+        }
+
+        /**
+         * Button that sorts the information according to the song title in
+         * alphabetical order
+         * 
+         * @param in
+         *            - Sort Title button
+         */
+        public void clickedSortTitle(Button in) {
+            songs.sort("Title");
+            startingPosition = 0;
+            displaySongs();
+        }
+
+        /**
+         * Button that sorts the information according to the release date from
+         * oldest to newest
+         * 
+         * @param in
+         *            - Sort by Date button
+         */
+        public void clickedSortRelease(Button in) {
+            songs.sort("Release");
+            startingPosition = 0;
+            displaySongs();
+        }
+
+        /**
+         * Button that sorts the information according to the the genre of the song
+         * in alphabetical order
+         * 
+         * @param in
+         *            - Sort Genre button
+         */
+        public void clickedSortGenre(Button in) {
+            songs.sort("Genre");
+            startingPosition = 0;
+            displaySongs();
+        }
+
+        /**
+         * Button that goes to the next page of songs
+         * 
+         * @param in
+         *            - Next button
+         */
+        public void clickedNext(Button in) {
+            if (startingPosition < songs.getLength() - 9) {
+                startingPosition += 9;
+            }
+            displaySongs();
+        }
+
+        /**
+         * Method that changes the glyphs according to the hobby
+         * 
+         * @param in
+         *            - Clicked Hobby button
+         */
+        public void clickedHobby(Button in) {
+            setBreakdown(RepresentationEnum.HOBBY);
+        }
+
+        /**
+         * Method that changes the glyphs according to the major
+         * 
+         * @param in
+         *            - Clicked Major button
+         */
+        public void clickedMajor(Button in) {
+            setBreakdown(RepresentationEnum.majors());
+        }
+
+        /**
+         * Method that changes the gylphs according to the region
+         * 
+         * @param in
+         *            - Clicked Region button
+         */
+        public void clickedRegion(Button in) {
+            setBreakdown(RepresentationEnum.regions());
+        }
+
+        /**
+         * Method that exits the window
+         * 
+         * @param in
+         *            - Quit Button
+         */
+        public void clickedQuit(Button in) {
+            System.exit(0);
+        }
+
+        /**
+         * Method that creates the window
+         * 
+         * @param args
+         */
+        public static void main(String[] args) {
+            new GUIMusicWindow();
+        }
     }
+//    private Window window;
+//    private int currentPage;
+//    private int index;
+//    private Button hobbyButton;
+//    private Button majorButton;
+//    private Button regionButton;
+//    private Button previousButton;
+//    private Button artistButton;
+//    private Button titleButton;
+//    private Button releaseYearButton;
+//    private Button genreButton;
+//    private Button nextButton;
+//    private Button quitButton;
+//    private GUILegend legend;
+//    private SortedLinkedList<Music> musicList;
+//    private Shape[] glyphs;
+//
+//
+//    public GUIMusicWindow() {
+//        window = new Window("Project 5");
+//
+//        quitButton = new Button("Quit");
+//        quitButton.onClick(this, "clickedQuit");
+//        window.addButton(quitButton, WindowSide.SOUTH);
+//
+//        artistButton = new Button("Sort By Artist");
+//        window.addButton(artistButton, WindowSide.NORTH);
+//        artistButton.onClick(this, "clickedArtist");
+//
+//        titleButton = new Button("Sort by Song Title");
+//        window.addButton(titleButton, WindowSide.NORTH);
+//        titleButton.onClick(this, "clickedTitle");
+//
+//        releaseYearButton = new Button("Sort by Release Year");
+//        window.addButton(releaseYearButton, WindowSide.NORTH);
+//        releaseYearButton.onClick(this, "clickedReleaseYear");
+//
+//        genreButton = new Button("Sort by Genre");
+//        window.addButton(genreButton, WindowSide.NORTH);
+//        genreButton.onClick(this, "clickedGenre");
+//
+//        hobbyButton = new Button("Represent Hobby");
+//        window.addButton(hobbyButton, WindowSide.SOUTH);
+//        hobbyButton.onClick(this, "clickedHobby");
+//
+//        majorButton = new Button("Represent Major");
+//        window.addButton(majorButton, WindowSide.SOUTH);
+//        majorButton.onClick(this, "clickedMajor");
+//
+//        regionButton = new Button("Represent Region");
+//        window.addButton(regionButton, WindowSide.SOUTH);
+//        regionButton.onClick(this, "clickedRegion");
+//
+//    }
+//
+//
+//    /**
+//     * Represents the data by student's categorized hobby. The legend also
+//     * changes to display a legend for hobbies.
+//     * 
+//     * @param button
+//     *            Button pressed to represent by hobby
+//     */
+//    public void clickedHobby() {
+//        this.represent("hobby");
+//        if (legend == null) {
+//            legend = new GUILegend();
+//        }
+//        legend.setText();
+//        update();
+//    }
+//
+//
+//    /**
+//     * Represents the data by student's categorized major. The legend also
+//     * changes to display a legend for majors.
+//     * 
+//     * @param button
+//     *            Button pressed to represent by major
+//     */
+//    public void clickedMajor() {
+//        // RepresentationEnum.MAJOR;
+//        this.represent("major");
+//        if (legend == null) {
+//            legend = new GUILegend();
+//        }
+//        legend.setText();
+//        update();
+//    }
+//
+//
+//    /**
+//     * Represents the data by student's categorized region. The legend also
+//     * changes to display a legend for regions.
+//     * 
+//     * @param button
+//     *            Button pressed to represent by region
+//     */
+//    public void clickedRegion() {
+//        this.represent("region");
+//        if (legend == null) {
+//            legend = new GUILegend();
+//        }
+//        legend.setText();
+//        update();
+//    }
+//
+//
+//    public void clickedPrevious() {
+//        currentPage--;
+//        if (currentPage != 1) {
+//
+//            index -= 9;
+//
+//        }
+//        else {
+//
+//            previousButton.disable();
+//            index = 0;
+//        }
+//        updateGlyph();
+//        nextButton.enable();
+//    }
+//
+//
+//    public void clickedArtist() {
+//        previousButton.disable();
+//        nextButton.enable();
+//    }
+//
+//
+//    public void clickedTitle() {
+//        previousButton.disable();
+//        nextButton.enable();
+//    }
+//
+//
+//    public void cickedReleaseYear() {
+//        previousButton.disable();
+//        nextButton.enable();
+//    }
+//
+//
+//    public void clickedGenre() {
+//        previousButton.disable();
+//        nextButton.enable();
+//    }
+//
+//
+//    public void clickedNext() {
+//        currentPage++;
+//        if (currentPage < totalPage) {
+//
+//            index += 9;
+//
+//        }
+//        else if (currentPage == totalPage) {
+//
+//            index = 9 * (currentPage - 1);
+//            nextButton.disable();
+//        }
+//        updateGlyph();
+//        previousButton.enable();
+//    }
+//
+//
+//    public void clickedQuit(Button button) {
+//        System.exit(0);
+//    }
+//
+//
+//    public void generateButtons() {
+//
+//    }
+//
+//
+//    public void generateGlyphs() {
+//
+//    }
+//
+//
+//    public void updateButtons() {
+//
+//    }
+//
+//
+//    public void updateLegend() {
+//
+//    }
 
-
-    /**
-     * Method that changes the glyphs according to the hobby
-     * 
-     * @param in
-     *            - Clicked Hobby button
-     */
-    public void clickedHobby(Button in) {
-        setBreakdown(RepresentationEnum.HOBBY);
-    }
-
-
-    /**
-     * Method that changes the glyphs according to the major
-     * 
-     * @param in
-     *            - Clicked Major button
-     */
-    public void clickedMajor(Button in) {
-        setBreakdown(RepresentationEnum.MAJOR);
-    }
-
-
-    /**
-     * Method that changes the gylphs according to the region
-     * 
-     * @param in
-     *            - Clicked Region button
-     */
-    public void clickedRegion(Button in) {
-        setBreakdown(RepresentationEnum.REGION);
-    }
-
-
-    /**
-     * Method that exits the window
-     * 
-     * @param in
-     *            - Quit Button
-     */
-    public void clickedQuit(Button in) {
-        System.exit(0);
-    }
-
-
-    /**
-     * Method that creates the window
-     * 
-     * @param args
-     */
-    public static void main(String[] args) {
-        new GUIMusicWindow();
-    }
-}
