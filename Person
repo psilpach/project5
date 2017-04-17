@@ -68,7 +68,7 @@ public class Person {
      */
     public String toString() {
         StringBuilder info = new StringBuilder();
-        info.append(getHobby() + "," + getMajor() + "," + getState() + ",");
+        info.append(getHobby() + ", " + getMajor() + ", " + getState());
         return info.toString();
     }
 
@@ -89,12 +89,12 @@ public class Person {
             return false;
         }
 
-        //Must be in the same class 
+        // Must be in the same class
         if (this.getClass() != obj.getClass()) {
             return false;
         }
         Person other = (Person)obj;
-        return getHobby().equals(other.getHobby()) && getMajor().equals(other.getMajor()) 
-            && getState().equals(other.getState());
+        return getHobby().equals(other.getHobby()) && getMajor().equals(other
+            .getMajor()) && getState().equals(other.getState());
     }
 }
