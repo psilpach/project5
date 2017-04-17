@@ -109,7 +109,7 @@ public class GUISongGlyph {
         int maxWidth,
         int availableHeight,
         Color clr) {
-        return new Shape(0, 0, (int)(song.getPercent(thisLine) / 100.0
+        return new Shape(0, 0, (int)(song.getTotalLikes() / 100.0
             * maxWidth), availableHeight, clr);
     }
 
