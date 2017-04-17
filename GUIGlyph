@@ -109,7 +109,7 @@ public class GUISongGylph {
         int maxWidth,
         int availableHeight,
         Color clr) {
-        return new Shape(0, 0, (int)(song.getLikedPercentage(thisLine) / 100.0
+        return new Shape(0, 0, (int)(song.getPercent(thisLine) / 100.0
             * maxWidth), availableHeight, clr);
     }
 
@@ -132,6 +132,6 @@ public class GUISongGylph {
     private Shape makeHeardBar(Song song, RepresentationEnum thisLine, int maxWidth,
             int availableHeight, Color clr) {
         return new Shape(0, 0,
-                (int) (song.getHeardPercentage(thisLine) / 100.0 * maxWidth),
+                (int) (song.getTotalHeard() / 100.0 * maxWidth),
                 availableHeight, clr);
     }
