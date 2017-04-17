@@ -43,9 +43,10 @@ public class GUILegend {
 
         for (int i = 0; i < breakdown.length; i++) {
             ts = new TextShape(x + topMargin, y + topMargin + ((i + 1) * 20),
-                    breakdown[i].nameInFile, GUISongGlyph.colors[i]);
+                    breakdown[i].name(), GUISongGlyph.colors[i]);
             ts.setBackgroundColor(Color.WHITE);
             w.addShape(ts);
+            
         }
 
         ts = new TextShape(x + 50, y + topMargin + 100, "Song Title");
