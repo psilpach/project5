@@ -21,7 +21,7 @@ public class GUISongGlyph {
 
 
     /**
-     * Method that creates the song gylphs
+     * Method that creates the song glyphs
      * 
      * @param x
      *            - x coordinate
