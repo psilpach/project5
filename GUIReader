@@ -15,7 +15,7 @@ import java.util.Scanner;
  *
  */
 public class GUIReader {
-    private LList<Song> songs;
+    private SongList songs;
 
     /**
      * Reader
@@ -29,7 +29,7 @@ public class GUIReader {
      */
     public GUIReader(String peopleName, String songName)
             throws FileNotFoundException {
-        songs = new LList<Song>();
+        songs = new SongList();
         readSurveyFiles(peopleName, songName);
     }
 
@@ -175,7 +175,7 @@ public class GUIReader {
      *
      * @return song list
      */
-    public LList<Song> getSongs() {
+    public SongList getSongs() {
         return songs;
     }
 
