@@ -83,7 +83,7 @@ public class GUIMusicWindow {
                 for (int j = 0; j < 3; j++) {
                     int song = startingPosition + j + 3 * i;
                     if (song < songs.getSongs().getLength())
-                        new GUISongGylph(padding + i * eachGlyphWidth,
+                        new GUISongGlyph(padding + i * eachGlyphWidth,
                                 ((j + 1) * padding) + j * eachGlyphHeight,
                                 eachGlyphWidth, eachGlyphHeight,
                                 songs.getSongs().getEntry(song), breakdown,
