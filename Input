@@ -27,7 +27,7 @@ public class Input {
 
         SongList newSong = new SongList();
         readSurvey(newSong, survey);
-        new GUIWindow(newSong);
+        new GUIMusicWindow(newSong);
         
     }
 
