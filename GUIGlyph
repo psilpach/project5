@@ -1,0 +1,137 @@
+/**
+ * 
+ */
+package prj5;
+
+import java.awt.Color;
+import java.awt.Shape;
+import CS2114.TextShape;
+import CS2114.Window;
+
+/**
+ * Creates the glyph for the GUIWindow
+ * 
+ * @author ndanni4
+ * @version 4.16.2017
+ *
+ */
+public class GUISongGylph {
+    public static final Color[] colors = new Color[] { Color.magenta,
+        Color.blue, Color.orange, Color.green };
+
+
+    /**
+     * Method that creates the song gylphs
+     * 
+     * @param x
+     *            - x coordinate
+     * @param y
+     *            - y coordinate
+     * @param width
+     *            - width of the glyph
+     * @param height
+     *            - height of the glyph
+     * @param song
+     *            - the song
+     * @param breakdown
+     *            - subdivisions of the category (hobby, major, region)
+     * @param addTo
+     *            - window that the method adds to
+     */
+    public GUISongGylph(
+        int x,
+        int y,
+        int width,
+        int height,
+        Song song,
+        RepresentationEnum[] breakdown,
+        Window addTo) {
+
+        int availableSpace = height / 6;
+        int middle = width / 2;
+
+        String artist = "by :" + song.getArtist();
+        String title = song.getTitle();
+
+        System.out.println(title);
+
+        TextShape titleShape = new TextShape(x, y, song.getTitle());
+
+        titleShape.setX(Math.max(0, x + middle - titleShape.getWidth() / 2));
+        System.out.println(x + middle - titleShape.getWidth() / 2);
+        TextShape artistShape = new TextShape(x, y + availableSpace, artist);
+        artistShape.setX(Math.max(0, x + middle - artistShape.getWidth() / 2));
+
+        titleShape.setBackgroundColor(Color.WHITE);
+        artistShape.setBackgroundColor(Color.WHITE);
+
+        addTo.addShape(titleShape);
+        addTo.addShape(artistShape);
+        y += 10;
+        addTo.addShape(new Shape(x + middle - 2, y + availableSpace * 2, 4,
+            availableSpace * 4, Color.BLACK));
+
+        for (int i = 0; i < breakdown.length; i++) {
+            Shape target = makeLikedBar(song, breakdown[i], middle,
+                availableSpace, colors[i]);
+            target.setX(x + middle);
+            target.setY(y + (2 + i) * availableSpace);
+            addTo.addShape(target);
+
+            Shape heard = makeHeardBar(song, breakdown[i], middle,
+                availableSpace, colors[i]);
+            heard.setX(x + middle - heard.getWidth());
+            heard.setY(y + (2 + i) * availableSpace);
+            addTo.addShape(heard);
+        }
+
+    }
+
+
+    /**
+     * Creates the liked bar
+     * 
+     * @param song
+     *            - the song
+     * @param thisLine
+     *            - represents the subdivisions of the main categories
+     * @param maxWidth
+     *            - width
+     * @param availableHeight
+     *            -
+     * @param clr
+     *            - color of the glyph
+     * @return - glyph according to the people liked
+     */
+    private Shape makeLikedBar(
+        Song song,
+        RepresentationEnum thisLine,
+        int maxWidth,
+        int availableHeight,
+        Color clr) {
+        return new Shape(0, 0, (int)(song.getLikedPercentage(thisLine) / 100.0
+            * maxWidth), availableHeight, clr);
+    }
+
+
+    /**
+     * Creates the heard bar
+     * 
+     * @param song
+     *            - the song
+     * @param thisLine
+     *            - represents the subdivisions of the main categories
+     * @param maxWidth
+     *            - width
+     * @param availableHeight
+     *            - height
+     * @param clr
+     *            - color of the glyph
+     * @return - glyph according to the people heard
+     */
+    private Shape makeHeardBar(Song song, RepresentationEnum thisLine, int maxWidth,
+            int availableHeight, Color clr) {
+        return new Shape(0, 0,
+                (int) (song.getHeardPercentage(thisLine) / 100.0 * maxWidth),
+                availableHeight, clr);
+    }
