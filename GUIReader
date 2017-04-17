@@ -1,0 +1,182 @@
+/**
+ *
+ */
+package prj5;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+
+/**
+ * Reader for the GUI Class
+ * @author ndanni4
+ * @version 4.17.2017
+ *
+ */
+public class GUIReader {
+    private LList<Song> songs;
+
+    /**
+     * Reader
+     *
+     * @param fileNamePeople
+     *            - file
+     * @param fileNameSongs
+     *            - file
+     * @throws FileNotFoundException
+     *             - ex
+     */
+    public GUIReader(String peopleName, String songName)
+            throws FileNotFoundException {
+        songs = new LList<Song>();
+        readSurveyFiles(peopleName, songName);
+    }
+
+    /**
+     * Method that reads the song file
+     *
+     * @param songFile
+     *            - song file
+     * @throws FileNotFoundException
+     */
+    private void readSongFile(String songFile) throws FileNotFoundException {
+        Scanner fileScanner = new Scanner(new File(songFile));
+        fileScanner.nextLine();
+
+        while (fileScanner.hasNextLine()) {
+            String currentLine = fileScanner.nextLine();
+            String[] splitLine = currentLine.split(",");
+            Song currentSong = new Song(splitLine[0], splitLine[3],
+                    splitLine[1], Integer.valueOf(splitLine[2]));
+            songs.add(songs.getLength(), currentSong);
+        }
+        fileScanner.close();
+    }
+
+    /**
+     * Method that reads the category such as hobby, major, or region
+     *
+     * @param response
+     *            - array of categories
+     * @param index
+     * @return - the category
+     */
+    private RepresentationEnum readCategory(String[] response, int index) {
+        String cat = response[index].trim();
+        if (cat.isEmpty())
+            return null;
+
+        return RepresentationEnum.readEnum(cat);
+    }
+
+    /**
+     * Method that reads the amount of people that said yes/no based on a
+     * specific category
+     *
+     * @param peopleFile
+     *            - file that contains yes/no responses
+     * @throws FileNotFoundException
+     */
+    private void readPeopleFile(String peopleFile)
+            throws FileNotFoundException {
+        Scanner peopleScanner = new Scanner(new File(peopleFile));
+        peopleScanner.nextLine();
+
+        while (peopleScanner.hasNextLine()) {
+            String next = peopleScanner.nextLine();
+          //  System.out.println(next);
+            String[] responses = next.split(",");
+
+            if(responses.length < 5){
+                continue;
+            }
+
+            RepresentationEnum[] categories = new RepresentationEnum[3]; // each person has
+                                                             // 3 categories.
+
+            boolean shouldSkip = false;
+            for (int i = 2; i <= 4; i++) { // the categories are from column 2
+                                           // to 4.
+                categories[i - 2] = readCategory(responses, i); // put this
+                                                                // category in
+                                                                // our set.
+                if (categories[i - 2] == null)
+                    shouldSkip = true;
+            }
+            if (shouldSkip){ // if there is a null category, skip this record.
+                continue;
+            }
+
+            /*
+             * now, categories is a set of the attributes of the person whose
+             * preferences we are examining on this row.
+             */
+
+            for (int i = 0; i < songs.getLength(); i++) {
+                int thisSongHeardPosition = 5 + (2 * i); // the first song is in
+                                                         // position 5, and
+                                                         // there are 2 entries
+                                                         // for each song.
+                int thisSongLikedPosition = thisSongHeardPosition + 1;
+
+
+
+                String thisSongHeard = "";
+                if(thisSongHeardPosition < responses.length)
+                    thisSongHeard = responses[thisSongHeardPosition].trim();
+
+                String thisSongLiked = "";
+                if(thisSongLikedPosition < responses.length)
+                    thisSongLiked = responses[thisSongLikedPosition].trim();
+
+                boolean thisSongWasHeard = thisSongHeard.contains("Y");
+                boolean thisSongWasLiked = thisSongLiked.contains("Y");
+
+
+                if (!thisSongHeard.isEmpty()) { // if they responded to this
+                                                // question,
+                    songs.getEntry(i).markAllHeard(categories,
+                            thisSongWasHeard);
+                }
+                if (!thisSongLiked.isEmpty()) {
+                    songs.getEntry(i).markAllLiked(categories,
+                            thisSongWasLiked);
+                }
+            }
+        }
+        peopleScanner.close();
+    }
+
+    /**
+     * Method that reads all the song responses
+     *
+     * @param peopleFileName
+     *            - file that contains responses
+     * @param songFileName
+     *            - file that contains responses
+     * @throws FileNotFoundException
+     */
+    public void readSurveyFiles(String peopleFileName, String songFileName)
+            throws FileNotFoundException {
+        readSongFile(songFileName);
+        readPeopleFile(peopleFileName);
+    }
+
+    /**
+     * Method that uses toString() in order to print our results
+     */
+    public void displayReadSongs() {
+        System.out.println(songs.toString());
+    }
+
+    /**
+     * Get songs
+     *
+     * @return song list
+     */
+    public LList<Song> getSongs() {
+        return songs;
+    }
+
+}
