@@ -6,10 +6,10 @@ import java.util.NoSuchElementException;
 import list.ListInterface;
 
 /**
- * @author Daniel Medina, dmedina
- *         Shuaicheng Zhang, zshuai8
- *         James Jee, jamesj95
- * @version 2016/4/10
+ * @author Pim Silpacharn
+ * @author Kevin Benson
+ * @author Danni Nicholls
+ * 
  */
 public class SongList implements ListInterface<Song> {
     private int size;
@@ -39,7 +39,7 @@ public class SongList implements ListInterface<Song> {
     /**
      * 
      * @param p
-     *            person we want to add
+     *            person added
      */
     public void addPerson(Person p) {
         numPeople++;
@@ -48,7 +48,7 @@ public class SongList implements ListInterface<Song> {
     /**
      * 
      * @param index
-     *            index we're at
+     *            index 
      * @return percent
      */
     public int[] getPercentLike(int index) {
@@ -58,7 +58,7 @@ public class SongList implements ListInterface<Song> {
     /**
      * 
      * @param index
-     *            index we're at
+     *            index 
      * @return percent
      */
     public int[] getPercentHeard(int index) {
@@ -83,6 +83,7 @@ public class SongList implements ListInterface<Song> {
 
         while (swapped) {
             SongNode temp = head.next();
+            
             swapped = false;
             while (temp != null && temp.getSong() != null
                     && temp.next().getSong() != null) {
@@ -299,7 +300,7 @@ public class SongList implements ListInterface<Song> {
      */
     @Override
     public Object[] toArray() {
-        // will not use this method
+        //unused method
         return null;
     }
 
@@ -310,7 +311,7 @@ public class SongList implements ListInterface<Song> {
      */
     @Override
     public Song remove(int index) {
-        // will not use this method
+        //unused method
         return null;
     }
 
@@ -399,13 +400,13 @@ public class SongList implements ListInterface<Song> {
      * @version 4/17/17
      */
     public class SongIterator implements Iterator<Song> {
-        private SongNode curNode;
+        private SongNode currentNode;
 
         /**
          * 
          */
         public SongIterator() {
-            curNode = head;
+            currentNode = head;
         }
 
         /**
@@ -413,7 +414,7 @@ public class SongList implements ListInterface<Song> {
          */
         @Override
         public boolean hasNext() {
-            return curNode.next().getSong() != null;
+            return currentNode.next().getSong() != null;
         }
 
         /**
@@ -425,11 +426,11 @@ public class SongList implements ListInterface<Song> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            System.out.println(curNode.getSong());
-            curNode = curNode.next();
-            System.out.println(curNode.getSong());
+            System.out.println(currentNode.getSong());
+            currentNode = currentNode.next();
+            System.out.println(currentNode.getSong());
             System.out.println("\n\n\n");
-            return curNode.getSong();
+            return currentNode.getSong();
         }
     }
 
