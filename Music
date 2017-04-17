@@ -1,0 +1,182 @@
+package prj5;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+/**
+ * 
+ * @author psilpach
+ * @version 4/10/17
+ * @author dnicholls4
+ * @author kbenson8
+ */
+public class Music implements Iterable<Person> {
+    // fields
+    private String songTitle;
+    private String songArtist;
+    private int songYear;
+    private String songGenre;
+
+    private int heard1;
+    private int heard2;
+    private int heard3;
+    private int heard4;
+    private int likes1;
+    private int likes2;
+    private int likes3;
+    private int likes4;
+
+
+    /**
+     * default constructor
+     * 
+     * @param songTitle
+     *            title of song
+     * @param songArtist
+     *            artist of song
+     * @param songYear
+     *            year of song release
+     * @param songGenre
+     *            genre of song
+     */
+    public Music(
+        String songTitle,
+        String songArtist,
+        int songYear,
+        String songGenre) {
+        this.songTitle = songTitle;
+        this.songArtist = songArtist;
+        this.songYear = songYear;
+        this.songGenre = songGenre;
+
+    }
+
+
+    /**
+     * gets title of song
+     * 
+     * @return title of song
+     */
+    public String getTitle() {
+        return songTitle;
+
+    }
+
+
+    /**
+     * gets artist of song
+     * 
+     * @return artist of song
+     */
+    public String getArtist() {
+        return songArtist;
+
+    }
+
+
+    /**
+     * gets the year the song was released
+     * 
+     * @return year song was released
+     */
+    public int getYear() {
+        return songYear;
+    }
+
+
+    /**
+     * gets the genre of the song
+     * 
+     * @return genre of song
+     */
+    public String getGenre() {
+        return songGenre;
+    }
+
+
+    /**
+     * checks if this is equal to the requested object
+     * 
+     * @param obj
+     *            to be compared
+     * @return true if obj is same class as this and has
+     *         same artist, title, genre, and release year.
+     *         false otherwise
+     */
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() == obj.getClass()) {
+            Music song = (Music)obj;
+            if (this.songTitle.equals(song.songTitle) && this.songArtist.equals(
+                song.songArtist) && this.songGenre.equals(song.songGenre)
+                && this.songYear == song.songYear) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    @Override
+    public Iterator<Person> iterator() {
+        return new MusicIterator<Person>();
+    }
+
+
+    /**
+     * @author Pim Silpacharn
+     * @version 4/5/17
+     * @param <T>
+     *            generic type
+     */
+    private class MusicIterator<T> implements Iterator<T> {
+        private int index;
+        @SuppressWarnings("unused")
+        private boolean nextCalled;
+
+
+        /**
+         * default constructor
+         */
+        public MusicIterator() {
+            index = 0;
+            nextCalled = false;
+        }
+
+
+        @Override
+        public boolean hasNext() {
+            return index < getLength();
+        }
+
+
+        private int getLength() {
+            // TODO Auto-generated method stub
+            return 0;
+        }
+
+
+        @Override
+        public T next() {
+            if (this.hasNext()) {
+                nextCalled = true;
+                @SuppressWarnings("unchecked")
+                T data = (T)getEntry(index);
+                index++;
+                return data;
+            }
+            else {
+                throw new NoSuchElementException();
+            }
+        }
+
+
+        private T getEntry(int index2) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+    }
+
+}
