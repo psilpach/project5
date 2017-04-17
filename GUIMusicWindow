@@ -13,6 +13,7 @@ import CS2114.Window;
 import CS2114.WindowSide;
 
 /**
+ * Display window for music
  * @author ndanni4
  * @version 4.15.2017
  *
