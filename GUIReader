@@ -48,7 +48,7 @@ public class GUIReader {
             String currentLine = fileScanner.nextLine();
             String[] splitLine = currentLine.split(",");
             Song currentSong = new Song(splitLine[0], splitLine[3],
-                    splitLine[1], Integer.valueOf(splitLine[2]));
+                Integer.valueOf(splitLine[2]), splitLine[1]);
             songs.add(songs.getLength(), currentSong);
         }
         fileScanner.close();
