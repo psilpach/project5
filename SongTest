@@ -13,7 +13,7 @@ public class SongTest extends student.TestCase {
 
 
     /**
-     * set up a new song and 5 people(so that we can
+     * set up a new song and 3 people(so that we can
      * store their like or heard)into the song
      */
     public void setUp() {
@@ -28,7 +28,6 @@ public class SongTest extends student.TestCase {
             RegionEnum.USOTHER, likedTest, heardTest);
         person3 = new Person(HobbyEnum.ART, MajorEnum.OTHER, RegionEnum.OTHER,
             likedTest, heardTest);
-        // person4 = new Person("a", "b", "c");
     }
 
 
@@ -94,7 +93,6 @@ public class SongTest extends student.TestCase {
         song.addHeard(person1, true);
         song.addHeard(person2, true);
         song.addHeard(person3, true);
-        // song.addHeard(person4, true);
 
         assertEquals(song.getNumHeard()[0], 1);
         assertEquals(song.getNumHeard()[1], 1);
