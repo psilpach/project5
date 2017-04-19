@@ -45,8 +45,6 @@ public class GUIMusicWindow {
         addButton("Represent Region", "clickedRegion", WindowSide.SOUTH);
         addButton("Quit", "clickedQuit", WindowSide.SOUTH);
 
-        makeLegend();
-
         setBreakdown(RepresentationEnum.HOBBY);
 
     }
