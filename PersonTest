@@ -1,6 +1,6 @@
 package prj5;
 
-import static org.junit.Assert.*;
+// import static org.junit.Assert.*;
 
 /**
  * Test class for the Person class
@@ -11,23 +11,26 @@ import static org.junit.Assert.*;
  */
 public class PersonTest extends student.TestCase {
 
-    private Person kevin;
+    private Person person1;
     private String[] likedTest = { "yes", "yes", "no", "no" };
     private String[] heardTest = { "yes", "yes", "no", "no" };
-    private Person pim;
-    private Person danni;
+    private Person person2;
+    private Person person3;
+    private Person person4;
 
 
     /**
      * Runs before each test sets up people
      */
     public void setUp() {
-        kevin = new Person(HobbyEnum.ART, MajorEnum.COMPSCI,
+        person1 = new Person(HobbyEnum.ART, MajorEnum.COMPSCI,
             RegionEnum.NORTHEAST, likedTest, heardTest);
-        pim = new Person(HobbyEnum.MUSIC, MajorEnum.MATH, RegionEnum.NORTHEAST,
-            likedTest, heardTest);
-        danni = new Person(HobbyEnum.SPORTS, MajorEnum.OTHER,
-            RegionEnum.NORTHEAST, likedTest, heardTest);
+        person2 = new Person(HobbyEnum.MUSIC, MajorEnum.MATH,
+            RegionEnum.SOUTHEAST, likedTest, heardTest);
+        person3 = new Person(HobbyEnum.SPORTS, MajorEnum.ENGINEERING,
+            RegionEnum.USOTHER, likedTest, heardTest);
+        person4 = new Person(HobbyEnum.READING, MajorEnum.OTHER,
+            RegionEnum.OTHER, likedTest, heardTest);
     }
 
 
@@ -35,8 +38,10 @@ public class PersonTest extends student.TestCase {
      * Test to make sure the correct hobby is output
      */
     public void testGetHobby() {
-        assertEquals("ART", kevin.getHobby().toString());
-        assertEquals("SPORTS", danni.getHobby().toString());
+        assertEquals(HobbyEnum.ART, person1.getHobby());
+        assertEquals(HobbyEnum.MUSIC, person2.getHobby());
+        assertEquals(HobbyEnum.SPORTS, person3.getHobby());
+        assertEquals(HobbyEnum.READING, person4.getHobby());
     }
 
 
@@ -44,8 +49,10 @@ public class PersonTest extends student.TestCase {
      * Test to make sure the correct major is output
      */
     public void testGetMajor() {
-        assertEquals("COMPSCI", kevin.getMajor().toString());
-        assertEquals("OTHER", danni.getMajor().toString());
+        assertEquals(MajorEnum.COMPSCI, person1.getMajor());
+        assertEquals(MajorEnum.MATH, person2.getMajor());
+        assertEquals(MajorEnum.ENGINEERING, person3.getMajor());
+        assertEquals(MajorEnum.OTHER, person4.getMajor());
     }
 
 
@@ -53,8 +60,10 @@ public class PersonTest extends student.TestCase {
      * Test to make sure the correct state is output
      */
     public void testGetState() {
-        assertEquals("NORTHEAST", kevin.getState().toString());
-        assertEquals("NORTHEAST", pim.getState().toString());
+        assertEquals(RegionEnum.NORTHEAST, person1.getState());
+        assertEquals(RegionEnum.SOUTHEAST, person2.getState());
+        assertEquals(RegionEnum.USOTHER, person3.getState());
+        assertEquals(RegionEnum.OTHER, person4.getState());
     }
 
 
@@ -63,7 +72,7 @@ public class PersonTest extends student.TestCase {
      */
     public void testToString() {
         assertEquals("[Major: Computer Science, Hobby: art, Region: Northeast]",
-            kevin.toString());
+            person1.toString());
     }
 
 
@@ -79,13 +88,13 @@ public class PersonTest extends student.TestCase {
         Person kevin4 = new Person(HobbyEnum.ART, MajorEnum.OTHER,
             RegionEnum.NORTHEAST, likedTest, heardTest);
         Person notEqual = null;
-        assertTrue(kevin.equals(kevin));
-        assertFalse(kevin.equals(danni));
-        assertFalse(kevin.equals(notEqual));
-        assertFalse(kevin.equals(kevin3));
-        assertFalse(kevin.equals(kevin4));
-        assertTrue(kevin.equals(kevin2));
-        assertFalse(kevin.equals(5));
+        assertTrue(person1.equals(person1));
+        assertFalse(person1.equals(person2));
+        assertFalse(person1.equals(notEqual));
+        assertFalse(person1.equals(kevin3));
+        assertFalse(person1.equals(kevin4));
+        assertTrue(person1.equals(kevin2));
+        assertFalse(person1.equals(5));
     }
 
 }
