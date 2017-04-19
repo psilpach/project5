@@ -1,0 +1,11 @@
+package prj5;
+
+/**
+ * Region enum
+ * @author ndanni4
+ * @version 4.18.2017
+ *
+ */
+public enum RegionEnum {
+    SOUTHEAST, NORTHEAST, USOTHER, OTHER;
+}
