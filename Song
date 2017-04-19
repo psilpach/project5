@@ -1,573 +1,100 @@
 package prj5;
 
-import java.util.ArrayList;
+// import static org.junit.Assert.*;
 
 /**
+ * Test class for the Person class
  * 
- * @author Pim Silpacharn pims617
- * @author Danni Nicholls ndanni4
- * @author Kevin Benson kbenson8
- * @version 4/16/17
+ * @author ndanni4
+ * @version 4.10.2017
  *
  */
-public class Song {
+public class PersonTest extends student.TestCase {
 
-    private String title;
-    private String artist;
-    private String genre;
-    private String year;
-
-    private int numHeardRead;
-    private int numHeardArt;
-    private int numHeardSports;
-    private int numHeardMusic;
-
-    private int numHeardComp;
-    private int numHeardEng;
-    private int numHeardMath;
-    private int numHeardOther;
-
-    private int numLikeSouth;
-    private int numLikeNorth;
-    private int numLikeUs;
-    private int numLikeNon;
-
-    private int numLikeRead;
-    private int numLikeArt;
-    private int numLikeSports;
-    private int numLikeMusic;
-
-    private int numLikeComp;
-    private int numLikeEng;
-    private int numLikeMath;
-    private int numLikeOther;
-
-    private int numHeardSouth;
-    private int numHeardNorth;
-    private int numHeardUs;
-    private int numHeardNon;
-
-    private ArrayList<Person> likeArray;
-    private ArrayList<Person> heardArray;
+    private Person person1;
+    private String[] likedTest = { "yes", "yes", "no", "no" };
+    private String[] heardTest = { "yes", "yes", "no", "no" };
+    private Person person2;
+    private Person person3;
+    private Person person4;
 
 
     /**
-     * 
-     * @param songList
-     * @param title
-     *            title
-     * @param artist
-     *            artist
-     * @param year
-     *            year
-     * @param genre
-     *            genre
+     * Runs before each test sets up people
      */
-    public Song(String title1, String artist1, String genre1, String year1) {
-
-        likeArray = new ArrayList<Person>();
-        heardArray = new ArrayList<Person>();
-        title = title1;
-        artist = artist1;
-        genre = genre1;
-        year = year1;
-
-        numHeardRead = 0;
-        numHeardArt = 0;
-        numHeardSports = 0;
-        numHeardMusic = 0;
-        numHeardComp = 0;
-        numHeardEng = 0;
-        numHeardMath = 0;
-        numHeardOther = 0;
-        numHeardSouth = 0;
-        numHeardNorth = 0;
-        numHeardUs = 0;
-        numHeardNon = 0;
-
-        numLikeRead = 0;
-        numLikeArt = 0;
-        numLikeSports = 0;
-        numLikeMusic = 0;
-        numLikeComp = 0;
-        numLikeEng = 0;
-        numLikeMath = 0;
-        numLikeOther = 0;
-        numLikeSouth = 0;
-        numLikeNorth = 0;
-        numLikeUs = 0;
-        numLikeNon = 0;
+    public void setUp() {
+        person1 = new Person(HobbyEnum.ART, MajorEnum.COMPSCI,
+            RegionEnum.NORTHEAST, likedTest, heardTest);
+        person2 = new Person(HobbyEnum.MUSIC, MajorEnum.MATH,
+            RegionEnum.SOUTHEAST, likedTest, heardTest);
+        person3 = new Person(HobbyEnum.SPORTS, MajorEnum.ENGINEERING,
+            RegionEnum.USOTHER, likedTest, heardTest);
+        person4 = new Person(HobbyEnum.READING, MajorEnum.OTHER,
+            RegionEnum.OTHER, likedTest, heardTest);
     }
 
 
     /**
-     * 
-     * @return song's title
+     * Test to make sure the correct hobby is output
      */
-    public String getTitle() {
-        return title;
+    public void testGetHobby() {
+        assertEquals(HobbyEnum.ART, person1.getHobby());
+        assertEquals(HobbyEnum.MUSIC, person2.getHobby());
+        assertEquals(HobbyEnum.SPORTS, person3.getHobby());
+        assertEquals(HobbyEnum.READING, person4.getHobby());
     }
 
 
     /**
-     * 
-     * @return song's artist
+     * Test to make sure the correct major is output
      */
-    public String getArtist() {
-        return artist;
+    public void testGetMajor() {
+        assertEquals(MajorEnum.COMPSCI, person1.getMajor());
+        assertEquals(MajorEnum.MATH, person2.getMajor());
+        assertEquals(MajorEnum.ENGINEERING, person3.getMajor());
+        assertEquals(MajorEnum.OTHER, person4.getMajor());
     }
 
 
     /**
-     * 
-     * @return song's genre
+     * Test to make sure the correct state is output
      */
-    public String getGenre() {
-        return genre;
+    public void testGetState() {
+        assertEquals(RegionEnum.NORTHEAST, person1.getState());
+        assertEquals(RegionEnum.SOUTHEAST, person2.getState());
+        assertEquals(RegionEnum.USOTHER, person3.getState());
+        assertEquals(RegionEnum.OTHER, person4.getState());
     }
 
 
     /**
-     * 
-     * @return song's release date
+     * Test to make sure the correct string is output
      */
-    public String getYear() {
-        return year;
+    public void testToString() {
+        assertEquals("[Major: Computer Science, Hobby: art, Region: Northeast]",
+            person1.toString());
     }
 
 
     /**
-     * 
-     * @param p
-     *            person that has heard the song
-     * @param add
-     *            true if person has heard it, false if not
+     * Test to make sure only identical people
+     * Are considered equals
      */
-    public void addHeard(Person p, boolean add) {
-        if (add) {
-            heardArray.add(p);
-        }
-        HobbyEnum hob = p.getHobby();
-        MajorEnum maj = p.getMajor();
-        RegionEnum reg = p.getState();
-        if (hob == HobbyEnum.READING) {
-            numHeardRead++;
-        }
-        else if (hob == HobbyEnum.ART) {
-            numHeardArt++;
-        }
-        else if (hob == HobbyEnum.SPORTS) {
-            numHeardSports++;
-        }
-        else if (hob == HobbyEnum.MUSIC) {
-            numHeardMusic++;
-        }
-        if (maj == MajorEnum.COMPSCI) {
-            numHeardComp++;
-        }
-        else if (maj == MajorEnum.ENGINEERING) {
-            numHeardEng++;
-        }
-        else if (maj == MajorEnum.MATH) {
-            numHeardMath++;
-        }
-        else if (maj == MajorEnum.OTHER) {
-            numHeardOther++;
-        }
-        if (reg == RegionEnum.SOUTHEAST) {
-            numHeardSouth++;
-        }
-        else if (reg == RegionEnum.NORTHEAST) {
-            numHeardNorth++;
-        }
-        else if (reg == RegionEnum.USOTHER) {
-            numHeardUs++;
-        }
-        else if (reg == RegionEnum.OTHER) {
-            numHeardNon++;
-        }
-    }
-
-
-    /**
-     * 
-     * @param p
-     *            person that likes the song
-     * @param add
-     *            true if person likes it, false if not
-     * 
-     */
-    public void addLike(Person p, boolean add) {
-        if (add) {
-            likeArray.add(p);
-        }
-        HobbyEnum hob = p.getHobby(); // how to recognize the type from an enum
-        MajorEnum maj = p.getMajor();
-        RegionEnum reg = p.getState();
-        if (hob == HobbyEnum.READING) {
-            numLikeRead++;
-        }
-        else if (hob == HobbyEnum.ART) {
-            numLikeArt++;
-        }
-        else if (hob == HobbyEnum.SPORTS) {
-            numLikeSports++;
-        }
-        else if (hob == HobbyEnum.MUSIC) {
-            numLikeMusic++;
-        }
-        if (maj == MajorEnum.COMPSCI) {
-            numLikeComp++;
-        }
-        else if (maj == MajorEnum.ENGINEERING) {
-            numLikeEng++;
-        }
-        else if (maj == MajorEnum.MATH) {
-            numLikeMath++;
-        }
-        else if (maj == MajorEnum.OTHER) {
-            numLikeOther++;
-        }
-        if (reg == RegionEnum.SOUTHEAST) {
-            numLikeSouth++;
-        }
-        else if (reg == RegionEnum.NORTHEAST) {
-            numLikeNorth++;
-        }
-        else if (reg == RegionEnum.USOTHER) {
-            numLikeUs++;
-        }
-        else if (reg == RegionEnum.OTHER) {
-            numLikeNon++;
-        }
-    }
-
-
-    /**
-     * 
-     * @return ArrayList of people who like the song
-     */
-    public ArrayList<Person> getLike() {
-        return likeArray;
-    }
-
-
-    /**
-     * 
-     * @return ArrayList of people who have heard the song
-     */
-    public ArrayList<Person> getHeard() {
-        return heardArray;
-    }
-
-
-    /**
-     * 
-     * @return int array of number of people who heard the song
-     */
-    public int[] getNumHeard() {
-        int[] out = new int[12];
-        for (int i = 0; i < 12; i++) {
-            out[i] = 0;
-        }
-        for (int i = 0; i < heardArray.size(); i++) {
-            if (heardArray.get(i).getHobby() == HobbyEnum.READING) { // use
-                // .contains or
-                // .equals?
-                out[0]++;
-            }
-            else if (heardArray.get(i).getHobby() == HobbyEnum.ART) {
-                out[1]++;
-            }
-            else if (heardArray.get(i).getHobby() == HobbyEnum.SPORTS) {
-                out[2]++;
-            }
-            else if (heardArray.get(i).getHobby() == HobbyEnum.MUSIC) {
-                out[3]++;
-            }
-            if (heardArray.get(i).getMajor() == MajorEnum.COMPSCI) {
-                out[4]++;
-            }
-            else if (heardArray.get(i).getMajor() == MajorEnum.ENGINEERING) {
-                out[5]++;
-            }
-            else if (heardArray.get(i).getMajor() == MajorEnum.MATH) {
-                out[6]++;
-            }
-            else if (heardArray.get(i).getMajor() == MajorEnum.OTHER) {
-                out[7]++;
-            }
-            if (heardArray.get(i).getState() == RegionEnum.SOUTHEAST) {
-                out[8]++;
-            }
-            else if (heardArray.get(i).getState() == RegionEnum.NORTHEAST) {
-                out[9]++;
-            }
-            else if (heardArray.get(i).getState() == RegionEnum.USOTHER) {
-                out[10]++;
-            }
-            else if (heardArray.get(i).getState() == RegionEnum.OTHER) {
-                out[11]++;
-            }
-        }
-        return out;
-    }
-
-
-    /**
-     * 
-     * @return int array of number of people who like the song
-     */
-    public int[] getNumLike() {
-        int[] out = new int[12];
-        for (int i = 0; i < 12; i++) {
-            out[i] = 0;
-        }
-        for (int i = 0; i < likeArray.size(); i++) {
-            if (likeArray.get(i).getHobby() == HobbyEnum.READING) {
-                out[0]++;
-            }
-            else if (likeArray.get(i).getHobby() == HobbyEnum.ART) {
-                out[1]++;
-            }
-            else if (likeArray.get(i).getHobby() == HobbyEnum.SPORTS) {
-                out[2]++;
-            }
-            else if (likeArray.get(i).getHobby() == HobbyEnum.MUSIC) {
-                out[3]++;
-            }
-            if (likeArray.get(i).getMajor() == MajorEnum.COMPSCI) {
-                out[4]++;
-            }
-            else if (likeArray.get(i).getMajor() == MajorEnum.ENGINEERING) {
-                out[5]++;
-            }
-            else if (likeArray.get(i).getMajor() == MajorEnum.MATH) {
-                out[6]++;
-            }
-            else if (likeArray.get(i).getMajor() == MajorEnum.OTHER) {
-                out[7]++;
-            }
-            if (likeArray.get(i).getState() == RegionEnum.SOUTHEAST) {
-                out[8]++;
-            }
-            else if (likeArray.get(i).getState() == RegionEnum.NORTHEAST) {
-                out[9]++;
-            }
-            else if (likeArray.get(i).getState() == RegionEnum.USOTHER) {
-                out[10]++;
-            }
-            else if (likeArray.get(i).getState() == RegionEnum.OTHER) {
-                out[11]++;
-            }
-        }
-        return out;
-    }
-
-
-    /**
-     * 
-     * @return int people who heard it
-     */
-    public int getTotalHeard() {
-        return heardArray.size();
-    }
-
-
-    /**
-     * 
-     * @return int people who like it
-     */
-    public int getTotalLikes() {
-        return likeArray.size();
-    }
-
-
-    /**
-     * 
-     * @param like
-     *            true if like, false if heard
-     * @return array of numbers of people who like/heard
-     *         the song
-     */
-    public int[] getPercent(boolean like) {
-        int[] out;
-        if (like) {
-            out = getNumLike();
-            if (numLikeRead != 0) {
-                out[0] = (int)(out[0] * 1.0 / numLikeRead * 100);
-            }
-            else {
-                out[0] = 0;
-            }
-            if (numLikeArt != 0) {
-                out[1] = (int)(out[1] * 1.0 / numLikeArt * 100);
-            }
-            else {
-                out[1] = 0;
-            }
-            if (numLikeSports != 0) {
-                out[2] = (int)(out[2] * 1.0 / numLikeSports * 100);
-            }
-            else {
-                out[2] = 0;
-            }
-            if (numLikeMusic != 0) {
-                out[3] = (int)(out[3] * 1.0 / numLikeMusic * 100);
-            }
-            else {
-                out[3] = 0;
-            }
-            if (numLikeComp != 0) {
-                out[4] = (int)(out[4] * 1.0 / numLikeComp * 100);
-            }
-            else {
-                out[4] = 0;
-            }
-            if (numLikeEng != 0) {
-                out[5] = (int)(out[5] * 1.0 / numLikeEng * 100);
-            }
-            else {
-                out[5] = 0;
-            }
-            if (numLikeMath != 0) {
-                out[6] = (int)(out[6] * 1.0 / numLikeMath * 100);
-            }
-            else {
-                out[6] = 0;
-            }
-            if (numLikeOther != 0) {
-                out[7] = (int)(out[7] * 1.0 / numLikeOther * 100);
-            }
-            else {
-                out[7] = 0;
-            }
-            if (numLikeSouth != 0) {
-                out[8] = (int)(out[8] * 1.0 / numLikeSouth * 100);
-            }
-            else {
-                out[8] = 0;
-            }
-            if (numLikeNorth != 0) {
-                out[9] = (int)(out[9] * 1.0 / numLikeNorth * 100);
-            }
-            else {
-                out[9] = 0;
-            }
-            if (numLikeUs != 0) {
-                out[10] = (int)(out[10] * 1.0 / numLikeUs * 100);
-            }
-            else {
-                out[10] = 0;
-            }
-            if (numLikeNon != 0) {
-                out[11] = (int)(out[11] * 1.0 / numLikeNon * 100);
-            }
-            else {
-                out[11] = 0;
-            }
-        }
-        else {
-            out = getNumHeard();
-            if (numHeardRead != 0) {
-                out[0] = (int)(out[0] * 1.0 / numHeardRead * 100);
-            }
-            else {
-                out[0] = 0;
-            }
-            if (numHeardArt != 0) {
-                out[1] = (int)(out[1] * 1.0 / numHeardArt * 100);
-            }
-            else {
-                out[1] = 0;
-            }
-            if (numHeardSports != 0) {
-                out[2] = (int)(out[2] * 1.0 / numHeardSports * 100);
-            }
-            else {
-                out[2] = 0;
-            }
-            if (numHeardMusic != 0) {
-                out[3] = (int)(out[3] * 1.0 / numHeardMusic * 100);
-            }
-            else {
-                out[3] = 0;
-            }
-            if (numHeardComp != 0) {
-                out[4] = (int)(out[4] * 1.0 / numHeardComp * 100);
-            }
-            else {
-                out[4] = 0;
-            }
-            if (numHeardEng != 0) {
-                out[5] = (int)(out[5] * 1.0 / numHeardEng * 100);
-            }
-            else {
-                out[5] = 0;
-            }
-            if (numHeardMath != 0) {
-                out[6] = (int)(out[6] * 1.0 / numHeardMath * 100);
-            }
-            else {
-                out[6] = 0;
-            }
-            if (numHeardOther != 0) {
-                out[7] = (int)(out[7] * 1.0 / numHeardOther * 100);
-            }
-            else {
-                out[7] = 0;
-            }
-            if (numHeardSouth != 0) {
-                out[8] = (int)(out[8] * 1.0 / numHeardSouth * 100);
-            }
-            else {
-                out[8] = 0;
-            }
-            if (numHeardNorth != 0) {
-                out[9] = (int)(out[9] * 1.0 / numHeardNorth * 100);
-            }
-            else {
-                out[9] = 0;
-            }
-            if (numHeardUs != 0) {
-                out[10] = (int)(out[10] * 1.0 / numHeardUs * 100);
-            }
-            else {
-                out[10] = 0;
-            }
-            if (numHeardNon != 0) {
-                out[11] = (int)(out[11] * 1.0 / numHeardNon * 100);
-            }
-            else {
-                out[11] = 0;
-            }
-        }
-
-        return out;
-    }
-
-
-    /**
-     * @return String representation of the song
-     */
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Title: ");
-        sb.append(title);
-        sb.append(", Artist: ");
-        sb.append(artist);
-        sb.append(", Genre: ");
-        sb.append(genre);
-        sb.append(", Release: ");
-        sb.append(year);
-        sb.append("\nHeard: ");
-        sb.append(heardArray.size());
-        sb.append(heardArray);
-        sb.append("\nLike: ");
-        sb.append(likeArray.size());
-        sb.append(likeArray);
-        sb.append("\n");
-        return sb.toString();
+    public void testEquals() {
+        Person kevin2 = new Person(HobbyEnum.ART, MajorEnum.COMPSCI,
+            RegionEnum.NORTHEAST, likedTest, heardTest);
+        Person kevin3 = new Person(HobbyEnum.ART, MajorEnum.COMPSCI,
+            RegionEnum.SOUTHEAST, likedTest, heardTest);
+        Person kevin4 = new Person(HobbyEnum.ART, MajorEnum.OTHER,
+            RegionEnum.NORTHEAST, likedTest, heardTest);
+        Person notEqual = null;
+        assertTrue(person1.equals(person1));
+        assertFalse(person1.equals(person2));
+        assertFalse(person1.equals(notEqual));
+        assertFalse(person1.equals(kevin3));
+        assertFalse(person1.equals(kevin4));
+        assertTrue(person1.equals(kevin2));
+        assertFalse(person1.equals(5));
     }
 
 }
