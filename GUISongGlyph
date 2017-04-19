@@ -67,7 +67,7 @@ public class GUISongGlyph {
 
         addTo.addShape(titleShape);
         addTo.addShape(artistShape);
-        y += 10;
+        y += 5;
         addTo.addShape(new Shape(x + middle - 2, y + availableSpace * 2, 4,
             availableSpace * 4, Color.BLACK));
 
