@@ -1,6 +1,180 @@
-/**
- * 
- */
+/// **
+// *
+// */
+// package prj5;
+//
+// import java.awt.Color;
+// import CS2114.TextShape;
+// import CS2114.Window;
+// import CS2114.Shape;
+//
+/// **
+// * Creates the glyph for the GUIWindow
+// *
+// * @author ndanni4
+// * @version 4.16.2017
+// *
+// */
+// public class GUISongGlyph {
+// public static final Color[] colors = new Color[] { Color.magenta,
+// Color.blue, Color.orange, Color.green };
+//
+//
+// /**
+// * Method that creates the song glyphs
+// *
+// * @param x
+// * - x coordinate
+// * @param y
+// * - y coordinate
+// * @param width
+// * - width of the glyph
+// * @param height
+// * - height of the glyph
+// * @param song
+// * - the song
+// * @param breakdown
+// * - subdivisions of the category (hobby, major, region)
+// * @param addTo
+// * - window that the method adds to
+// */
+// public GUISongGlyph(
+// int x,
+// int y,
+// Song song,
+// int width,
+// int height,
+// RepresentationEnum breakdown,
+// Window addTo) {
+//
+// int availableSpace = height / 6;
+// int middle = width / 2;
+//
+// String artist = "by :" + song.getArtist();
+// String title = song.getTitle();
+//
+// System.out.println(title);
+//
+// TextShape titleShape = new TextShape(x, y, title);
+//
+// titleShape.setX(Math.max(0, x + middle - titleShape.getWidth() / 2));
+// System.out.println(x + middle - titleShape.getWidth() / 2);
+// TextShape artistShape = new TextShape(x, y + availableSpace, artist);
+// artistShape.setX(Math.max(0, x + middle - artistShape.getWidth() / 2));
+//
+// titleShape.setBackgroundColor(Color.WHITE);
+// artistShape.setBackgroundColor(Color.WHITE);
+//
+// addTo.addShape(titleShape);
+// addTo.addShape(artistShape);
+// y += 10;
+// addTo.addShape(new Shape(x + middle - 2, y + availableSpace * 2, 4,
+// availableSpace * 4, Color.BLACK));
+//
+// for (int i = 0; i < 3; i++) {
+//// if (breakdown == (RepresentationEnum.REGION)) {
+//// Shape target = makeLikedBar(song, middle, availableSpace,
+//// colors[i]);
+//// target.setX(x + middle);
+//// target.setY(y + (2 + i) * availableSpace);
+//// addTo.addShape(target);
+////
+//// Shape heard = makeHeardBar(song, middle, availableSpace,
+//// colors[i]);
+//// heard.setX(x + middle - heard.getWidth());
+//// heard.setY(y + (2 + i) * availableSpace);
+//// addTo.addShape(heard);
+//// }
+//// else if (breakdown == (RepresentationEnum.HOBBY)) {
+////// Shape target = makeLikedBar(song, middle, availableSpace,
+////// colors[i]);
+////// target.setX(x + middle);
+////// target.setY(y + (2 + i) * availableSpace);
+////// addTo.addShape(target);
+////
+// Shape likedBar = new Shape(x + middle, y + (2 + i)
+// * availableSpace, middle, availableSpace, colors[i]);
+// addTo.addShape(likedBar);
+//
+//
+//
+//
+// Shape heard = makeHeardBar(song, middle, availableSpace,
+// colors[i]);
+// heard.setX(x + middle - heard.getWidth());
+// heard.setY(y + (2 + i) * availableSpace);
+// addTo.addShape(heard);
+//// }
+//// else if (breakdown == (RepresentationEnum.MAJOR)) {
+//// Shape target = makeLikedBar(song, middle, availableSpace,
+//// colors[i]);
+//// target.setX(x + middle);
+//// target.setY(y + (2 + i) * availableSpace);
+//// addTo.addShape(target);
+////
+//// Shape heard = makeHeardBar(song, middle, availableSpace,
+//// colors[i]);
+//// heard.setX(x + middle - heard.getWidth());
+//// heard.setY(y + (2 + i) * availableSpace);
+//// addTo.addShape(heard);
+//// }
+// }
+//
+// }
+//
+//
+//// /**
+//// * Creates the liked bar
+//// *
+//// * @param song
+//// * - the song
+//// * @param thisLine
+//// * - represents the subdivisions of the main categories
+//// * @param maxWidth
+//// * - width
+//// * @param availableHeight
+//// * -
+//// * @param clr
+//// * - color of the glyph
+//// * @return - glyph according to the people liked
+//// */
+//// private Shape makeLikedBar(
+//// Song song,
+//// // RepresentationEnum thisLine,
+//// int maxWidth,
+//// int availableHeight,
+//// Color clr) {
+//// return new Shape(0, 0, (int)(song.getTotalLikes() / maxWidth * 100),
+//// availableHeight, clr);
+//// }
+//
+//
+// /**
+// * Creates the heard bar
+// *
+// * @param song
+// * - the song
+// * @param thisLine
+// * - represents the subdivisions of the main categories
+// * @param maxWidth
+// * - width
+// * @param availableHeight
+// * - height
+// * @param clr
+// * - color of the glyph
+// * @return - glyph according to the people heard
+// */
+// private Shape makeHeardBar(
+// Song song,
+// // RepresentationEnum thisLine,
+// int maxWidth,
+// int availableHeight,
+// Color clr) {
+// return new Shape(0, 0, (int)(song.getTotalHeard() / maxWidth * 100),
+// availableHeight, clr);
+// }
+// }
+
 package prj5;
 
 import java.awt.Color;
@@ -10,167 +184,126 @@ import CS2114.Shape;
 
 /**
  * Creates the glyph for the GUIWindow
- * 
+ *
  * @author ndanni4
  * @version 4.16.2017
  *
  */
 public class GUISongGlyph {
-    public static final Color[] colors = new Color[] { Color.magenta,
-        Color.blue, Color.orange, Color.green };
+
+    private Window window;
+    private int yPos;
+    private int xPos;
+    private Song song;
 
 
     /**
-     * Method that creates the song glyphs
-     * 
-     * @param x
-     *            - x coordinate
-     * @param y
-     *            - y coordinate
-     * @param width
-     *            - width of the glyph
-     * @param height
-     *            - height of the glyph
+     * Creates a new glyph.
+     *
+     * @param window
+     *            The window that the glyphs are displayed on
+     * @param xPosition
+     *            The x coordinate reference point for the glyph
+     * @param yPosition
+     *            The y coordinate reference point for the glyph
      * @param song
-     *            - the song
-     * @param breakdown
-     *            - subdivisions of the category (hobby, major, region)
-     * @param addTo
-     *            - window that the method adds to
+     *            The song that the glyph is being made out of
+     * @param sort
+     *            The method the glyphs are being sorted
      */
     public GUISongGlyph(
-        int x,
-        int y,
+        Window window,
+        int xPosition,
+        int yPosition,
         Song song,
-        int width,
-        int height,
-        RepresentationEnum breakdown,
-        Window addTo) {
+        String sort) {
 
-        int availableSpace = height / 6;
-        int middle = width / 2;
+        this.window = window;
+        this.yPos = yPosition;
+        this.xPos = xPosition;
+        this.song = song;
+        int sortHeight = 0;
 
-        String artist = "by :" + song.getArtist();
-        String title = song.getTitle();
-
-        System.out.println(title);
-
-        TextShape titleShape = new TextShape(x, y, title);
-
-        titleShape.setX(Math.max(0, x + middle - titleShape.getWidth() / 2));
-        System.out.println(x + middle - titleShape.getWidth() / 2);
-        TextShape artistShape = new TextShape(x, y + availableSpace, artist);
-        artistShape.setX(Math.max(0, x + middle - artistShape.getWidth() / 2));
-
-        titleShape.setBackgroundColor(Color.WHITE);
-        artistShape.setBackgroundColor(Color.WHITE);
-
-        addTo.addShape(titleShape);
-        addTo.addShape(artistShape);
-        y += 10;
-        addTo.addShape(new Shape(x + middle - 2, y + availableSpace * 2, 4,
-            availableSpace * 4, Color.BLACK));
-
-        for (int i = 0; i < 3; i++) {
-//            if (breakdown == (RepresentationEnum.REGION)) {
-//                Shape target = makeLikedBar(song, middle, availableSpace,
-//                    colors[i]);
-//                target.setX(x + middle);
-//                target.setY(y + (2 + i) * availableSpace);
-//                addTo.addShape(target);
-//
-//                Shape heard = makeHeardBar(song, middle, availableSpace,
-//                    colors[i]);
-//                heard.setX(x + middle - heard.getWidth());
-//                heard.setY(y + (2 + i) * availableSpace);
-//                addTo.addShape(heard);
-//            }
-//            else if (breakdown == (RepresentationEnum.HOBBY)) {
-////                Shape target = makeLikedBar(song, middle, availableSpace,
-////                    colors[i]);
-////                target.setX(x + middle);
-////                target.setY(y + (2 + i) * availableSpace);
-////                addTo.addShape(target);
-//
-                Shape likedBar = new Shape(x + middle, y + (2 + i)
-                    * availableSpace, middle, availableSpace, colors[i]);
-                addTo.addShape(likedBar);
-                
-
-
-
-                Shape heard = makeHeardBar(song, middle, availableSpace,
-                    colors[i]);
-                heard.setX(x + middle - heard.getWidth());
-                heard.setY(y + (2 + i) * availableSpace);
-                addTo.addShape(heard);
-//            }
-//            else if (breakdown == (RepresentationEnum.MAJOR)) {
-//                Shape target = makeLikedBar(song, middle, availableSpace,
-//                    colors[i]);
-//                target.setX(x + middle);
-//                target.setY(y + (2 + i) * availableSpace);
-//                addTo.addShape(target);
-//
-//                Shape heard = makeHeardBar(song, middle, availableSpace,
-//                    colors[i]);
-//                heard.setX(x + middle - heard.getWidth());
-//                heard.setY(y + (2 + i) * availableSpace);
-//                addTo.addShape(heard);
-//            }
-        }
-
+        TextShape songTitle = new TextShape(xPos, yPos, song.getTitle());
+        songTitle.setX(xPos - (songTitle.getWidth() / 2));
+        songTitle.setY(yPos);
+        yPos = yPos + songTitle.getHeight();
+        window.addShape(songTitle);
+        sortHeight = pickSort(sort);
+        yPos = yPos + sortHeight + 5;
+        Shape divider = new Shape(xPos, yPos, 5, 60, Color.BLACK);
+        songTitle.setBackgroundColor(Color.WHITE);
+        window.addShape(divider);
+        Shape firstBarHeard = new Shape(xPos - (song.getNumHeard()[0]), yPos,
+            song.getNumHeard()[0], 15, Color.MAGENTA);
+        window.addShape(firstBarHeard);
+        Shape firstBarLiked = new Shape(xPos + 5, yPos, song.getNumLike()[0],
+            15, Color.MAGENTA);
+        window.addShape(firstBarLiked);
+        yPos = yPos + 15;
+        Shape secondBarHeard = new Shape(xPos - (song.getNumHeard()[1]), yPos,
+            song.getNumHeard()[1], 15, Color.BLUE);
+        window.addShape(secondBarHeard);
+        Shape secondBarLiked = new Shape(xPos + 5, yPos, song.getNumLike()[1],
+            15, Color.BLUE);
+        window.addShape(secondBarLiked);
+        yPos = yPos + 15;
+        Shape thirdBarHeard = new Shape(xPos - song.getNumHeard()[2], yPos, song
+            .getNumHeard()[2], 15, Color.ORANGE);
+        window.addShape(thirdBarHeard);
+        Shape thirdBarLiked = new Shape(xPos + 5, yPos, song.getNumLike()[2],
+            15, Color.ORANGE);
+        window.addShape(thirdBarLiked);
+        yPos = yPos + 15;
+        Shape fourthBarHeard = new Shape(xPos - song.getNumHeard()[3], yPos,
+            song.getNumHeard()[3], 15, Color.GREEN);
+        window.addShape(fourthBarHeard);
+        Shape fourthBarLiked = new Shape(xPos + 5, yPos, song.getNumLike()[3],
+            15, Color.GREEN);
+        window.addShape(fourthBarLiked);
     }
 
 
-//    /**
-//     * Creates the liked bar
-//     * 
-//     * @param song
-//     *            - the song
-//     * @param thisLine
-//     *            - represents the subdivisions of the main categories
-//     * @param maxWidth
-//     *            - width
-//     * @param availableHeight
-//     *            -
-//     * @param clr
-//     *            - color of the glyph
-//     * @return - glyph according to the people liked
-//     */
-//    private Shape makeLikedBar(
-//        Song song,
-//        // RepresentationEnum thisLine,
-//        int maxWidth,
-//        int availableHeight,
-//        Color clr) {
-//        return new Shape(0, 0, (int)(song.getTotalLikes() / maxWidth * 100),
-//            availableHeight, clr);
-//    }
-
-
     /**
-     * Creates the heard bar
-     * 
-     * @param song
-     *            - the song
-     * @param thisLine
-     *            - represents the subdivisions of the main categories
-     * @param maxWidth
-     *            - width
-     * @param availableHeight
-     *            - height
-     * @param clr
-     *            - color of the glyph
-     * @return - glyph according to the people heard
+     * Helper method displays the part of the song that the songs are being
+     * sorted by
+     *
+     * @param sort
+     *            The part of the song that the songs are being sorted by
+     * @return The height of the added TextShape
      */
-    private Shape makeHeardBar(
-        Song song,
-        // RepresentationEnum thisLine,
-        int maxWidth,
-        int availableHeight,
-        Color clr) {
-        return new Shape(0, 0, (int)(song.getTotalHeard() / maxWidth * 100),
-            availableHeight, clr);
+    private int pickSort(String sort) {
+
+        if (sort.equals("G")) {
+
+            TextShape songGenre = new TextShape(xPos, yPos, "By: " + song
+                .getArtist());
+            songGenre.setX(xPos - (songGenre.getWidth() / 2));
+            songGenre.setY(yPos);
+            window.addShape(songGenre);
+            songGenre.setBackgroundColor(Color.WHITE);
+            return songGenre.getHeight();
+        }
+        else if (sort.equals("Y")) {
+
+            TextShape songYear = new TextShape(xPos, yPos, "By: " + song
+                .getArtist());
+            songYear.setX(xPos - (songYear.getWidth() / 2));
+            songYear.setY(yPos);
+            window.addShape(songYear);
+            songYear.setBackgroundColor(Color.WHITE);
+            return songYear.getHeight();
+        }
+
+        else {
+
+            TextShape songArtist = new TextShape(xPos, yPos, "By: " + song
+                .getArtist());
+            songArtist.setX(xPos - (songArtist.getWidth() / 2));
+            songArtist.setY(yPos);
+            window.addShape(songArtist);
+            songArtist.setBackgroundColor(Color.WHITE);
+            return songArtist.getHeight();
+        }
     }
 }
