@@ -14,6 +14,7 @@ import CS2114.WindowSide;
 
 /**
  * Display window for music
+ * 
  * @author ndanni4
  * @version 4.15.2017
  *
@@ -31,7 +32,7 @@ public class GUIMusicWindow {
     public GUIMusicWindow(SongList songs) {
         myWindow = new Window();
         myWindow.setSize(900, 500);
-        myWindow.setTitle("Music Preference Visualization");
+        myWindow.setTitle("Project 5");
 
         addButton("<- Prev", "clickedPrev", WindowSide.NORTH);
         addButton("Sort by Artist Name", "clickedSortArtist", WindowSide.NORTH);
@@ -45,13 +46,6 @@ public class GUIMusicWindow {
         addButton("Represent Major", "clickedMajor", WindowSide.SOUTH);
         addButton("Represent Region", "clickedRegion", WindowSide.SOUTH);
         addButton("Quit", "clickedQuit", WindowSide.SOUTH);
-
-//        try {
-//            songs = new SongList("MusicSurveyData.csv", "SongList.csv");
-//        }
-//        catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
 
         setBreakdown(RepresentationEnum.DEFAULT);
 
@@ -77,9 +71,7 @@ public class GUIMusicWindow {
         myWindow.removeAllShapes();
 
         int eachGlyphHeight = myWindow.getGraphPanelHeight() / 4;
-        int eachGlyphWidth = myWindow.getGraphPanelWidth() / 4; // leave space
-                                                                // for the
-                                                                // legend.
+        int eachGlyphWidth = myWindow.getGraphPanelWidth() / 4;
 
         int padding = eachGlyphHeight / 5;
         for (int i = 0; i < 3; i++)
@@ -244,6 +236,11 @@ public class GUIMusicWindow {
      */
     public void clickedRegion(Button in) {
         setBreakdown(RepresentationEnum.REGION);
+        // Possibly how to do the region
+// for (int i = 0; i < songList.getLength(); i++) {
+//
+// songList.getEntry(i).representRegion();
+// }
     }
 
 
