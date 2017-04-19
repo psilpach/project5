@@ -35,42 +35,6 @@ public class GUILegend {
         Shape s = new Shape(x, y, width, height);
         s.setBackgroundColor(Color.white);
         s.setForegroundColor(Color.black);
-
-//        int topMargin = 10;
-
-//        TextShape ts = new TextShape(x + topMargin, y + topMargin,
-//                breakdown + " Legend", Color.black);
-//        ts.setBackgroundColor(Color.WHITE);
-//        w.addShape(ts);
-//
-//        for (int i = 0; i < breakdown.length; i++) {
-//            ts = new TextShape(x + topMargin, y + topMargin + ((i + 1) * 20),
-//                    breakdown[i].name(), GUISongGlyph.colors[i]);
-//            ts.setBackgroundColor(Color.WHITE);
-//            w.addShape(ts);
-//            
-//        }
-//
-//        ts = new TextShape(x + 50, y + topMargin + 100, "Song Title");
-//        ts.setBackgroundColor(Color.WHITE);
-//        ts.setForegroundColor(Color.BLACK);
-//
-//        w.addShape(ts);
-//
-//        w.addShape(new Shape(x + width / 2 - 2, y + topMargin + 100, 2, 60,
-//                Color.BLACK));
-//
-//        ts = new TextShape(x + 30, y + topMargin + 120, "Heard");
-//        ts.setBackgroundColor(Color.WHITE);
-//        ts.setForegroundColor(Color.BLACK);
-//        w.addShape(ts);
-//
-//        ts = new TextShape(x + 90, y + topMargin + 120, "Likes");
-//        ts.setBackgroundColor(Color.WHITE);
-//        ts.setForegroundColor(Color.BLACK);
-//        w.addShape(ts);
-//
-//        w.addShape(s);
         
         if (breakdown.equals(RepresentationEnum.HOBBY)) {
 
@@ -100,8 +64,8 @@ public class GUILegend {
 
             TextShape legendText = new TextShape(x + 30, y + 5, "Major Legend");
             TextShape firstText = new TextShape(x + 60, y + 30, "Comp Sci");
-            TextShape secondText = new TextShape(x + 60, y + 60, "Math");
-            TextShape thirdText = new TextShape(x + 60, y + 90, "Enge Other");
+            TextShape secondText = new TextShape(x + 60, y + 60, "Other Eng");
+            TextShape thirdText = new TextShape(x + 60, y + 90, "Math/CMDA");
             TextShape fourthText = new TextShape(x + 60, y + 120, "Other");
 
             legendText.setBackgroundColor(Color.WHITE);
@@ -127,7 +91,7 @@ public class GUILegend {
             TextShape firstText = new TextShape(x + 60, y + 30, "Northeast");
             TextShape secondText = new TextShape(x + 60, y + 60, "Southeast");
             TextShape thirdText = new TextShape(x + 60, y + 90, "US Other");
-            TextShape fourthText = new TextShape(x + 60, y + 120, "Other");
+            TextShape fourthText = new TextShape(x + 60, y + 120, "Outside US");
 
             legendText.setBackgroundColor(Color.WHITE);
             firstText.setBackgroundColor(Color.WHITE);
