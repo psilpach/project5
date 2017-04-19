@@ -45,20 +45,8 @@ public class GUIMusicWindow {
         addButton("Represent Region", "clickedRegion", WindowSide.SOUTH);
         addButton("Quit", "clickedQuit", WindowSide.SOUTH);
 
-        setBreakdown(RepresentationEnum.HOBBY);
+        makeLegend(RepresentationEnum.HOBBY);
 
-    }
-
-
-    /**
-     * Setter method for breakdown that is the subdivision of the following
-     * categories - hobby, major, region
-     * 
-     * @param breakdown
-     */
-    public void setBreakdown(RepresentationEnum breakdown) {
-        this.breakdown = breakdown;
-        displaySongs();
     }
 
 
@@ -80,8 +68,6 @@ public class GUIMusicWindow {
                         * padding) + j * eachGlyphHeight, songs.getEntry(song),
                         eachGlyphWidth, eachGlyphHeight, breakdown, myWindow);
             }
-
-        makeLegend();
 
     }
 
@@ -209,7 +195,9 @@ public class GUIMusicWindow {
      *            - Clicked Hobby button
      */
     public void clickedHobby(Button in) {
-        setBreakdown(RepresentationEnum.HOBBY);
+
+        makeLegend(RepresentationEnum.HOBBY);
+        displaySongs();
     }
 
 
@@ -220,7 +208,9 @@ public class GUIMusicWindow {
      *            - Clicked Major button
      */
     public void clickedMajor(Button in) {
-        setBreakdown(RepresentationEnum.MAJOR);
+
+        makeLegend(RepresentationEnum.MAJOR);
+        displaySongs();
     }
 
 
@@ -231,7 +221,9 @@ public class GUIMusicWindow {
      *            - Clicked Region button
      */
     public void clickedRegion(Button in) {
-        setBreakdown(RepresentationEnum.REGION);
+
+        makeLegend(RepresentationEnum.REGION);
+        displaySongs();
         // Possibly how to do the region
 // for (int i = 0; i < songList.getLength(); i++) {
 //
@@ -254,7 +246,7 @@ public class GUIMusicWindow {
     /**
      * Creates the legend for the window
      */
-    public void makeLegend() {
+    public void makeLegend(RepresentationEnum breakdown) {
         int x = (myWindow.getGraphPanelWidth() / 2) + 340;
         int y = (myWindow.getGraphPanelHeight() / 2) + 70;
         Shape legend = new Shape(x, y, 150, 250, Color.WHITE);
