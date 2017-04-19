@@ -1,6 +1,3 @@
-/**
- * 
- */
 package prj5;
 
 import java.awt.Color;
@@ -14,13 +11,15 @@ import CS2114.WindowSide;
  * Display window for music
  * 
  * @author ndanni4
+ * @author kbenson8
+ * @author pims617
  * @version 4.15.2017
  *
  */
 public class GUIMusicWindow {
     private Window myWindow;
     private SongList songs;
-    int startingPosition = 0;
+    private int startingPosition = 0;
     RepresentationEnum breakdown;
 
 
@@ -28,6 +27,8 @@ public class GUIMusicWindow {
      * Constructor for the MusicWindow
      */
     public GUIMusicWindow(SongList songs) {
+        this.songs = songs;
+
         myWindow = new Window();
         myWindow.setSize(900, 500);
         myWindow.setTitle("Project 5");
@@ -45,21 +46,18 @@ public class GUIMusicWindow {
         addButton("Represent Region", "clickedRegion", WindowSide.SOUTH);
         addButton("Quit", "clickedQuit", WindowSide.SOUTH);
 
-        makeLegend(RepresentationEnum.HOBBY);
-        
-        int eachGlyphHeight = myWindow.getGraphPanelHeight() / 4;
-        int eachGlyphWidth = myWindow.getGraphPanelWidth() / 4;
+    }
 
-        int padding = eachGlyphHeight / 5;
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++) {
-                int song = startingPosition + j + 3 * i;
-                if (song < songs.getLength())
-                    new GUISongGlyph(myWindow, padding + i * eachGlyphWidth, ((j + 1)
-                      * padding) + j * eachGlyphHeight, songs.getEntry(song), "G"  );
-            }
 
-    
+    /**
+     * Setter method for breakdown that is the subdivision of the following
+     * categories - hobby, major, region
+     * 
+     * @param breakdown
+     */
+    public void setBreakdown(RepresentationEnum breakdown) {
+        this.breakdown = breakdown;
+        displaySongs();
     }
 
 
@@ -70,17 +68,22 @@ public class GUIMusicWindow {
         myWindow.removeAllShapes();
 
         int eachGlyphHeight = myWindow.getGraphPanelHeight() / 4;
-        int eachGlyphWidth = myWindow.getGraphPanelWidth() / 4;
+        int eachGlyphWidth = myWindow.getGraphPanelWidth() / 8;
 
         int padding = eachGlyphHeight / 5;
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 int song = startingPosition + j + 3 * i;
-//                if (song < songs.getLength())
-//                    new GUISongGlyph(padding + i * eachGlyphWidth, ((j + 1)
-//                        * padding) + j * eachGlyphHeight, songs.getEntry(song),
-//                        eachGlyphWidth, eachGlyphHeight, breakdown, myWindow);
+                if (0 <= song && song < songs.getLength()) {
+                    new GUISongGlyph(padding + i * (2 * eachGlyphWidth), ((j
+                        + 1) * padding) + j * eachGlyphHeight, songs.getEntry(
+                            song), eachGlyphHeight, eachGlyphWidth, breakdown,
+                        myWindow);
+                }
             }
+        }
+
+        makeLegend();
 
     }
 
@@ -127,7 +130,7 @@ public class GUIMusicWindow {
             return;
         }
 
-        if (startingPosition > 9) {
+        if (startingPosition >= 9) {
             startingPosition -= 9;
         }
         displaySongs();
@@ -208,9 +211,7 @@ public class GUIMusicWindow {
      *            - Clicked Hobby button
      */
     public void clickedHobby(Button in) {
-
-        makeLegend(RepresentationEnum.HOBBY);
-        displaySongs();
+        setBreakdown(RepresentationEnum.HOBBY);
     }
 
 
@@ -221,9 +222,7 @@ public class GUIMusicWindow {
      *            - Clicked Major button
      */
     public void clickedMajor(Button in) {
-
-        makeLegend(RepresentationEnum.MAJOR);
-        displaySongs();
+        setBreakdown(RepresentationEnum.MAJOR);
     }
 
 
@@ -234,14 +233,7 @@ public class GUIMusicWindow {
      *            - Clicked Region button
      */
     public void clickedRegion(Button in) {
-
-        makeLegend(RepresentationEnum.REGION);
-        displaySongs();
-        // Possibly how to do the region
-// for (int i = 0; i < songList.getLength(); i++) {
-//
-// songList.getEntry(i).representRegion();
-// }
+        setBreakdown(RepresentationEnum.REGION);
     }
 
 
@@ -259,18 +251,19 @@ public class GUIMusicWindow {
     /**
      * Creates the legend for the window
      */
-    public void makeLegend(RepresentationEnum breakdown) {
-        int x = (myWindow.getGraphPanelWidth() / 2) + 250;
-        int y = (myWindow.getGraphPanelHeight() / 2) + 20;
-        Shape legend = new Shape(x + 20, y, 130, 150, Color.WHITE);
+    public void makeLegend() {
+        int x = (myWindow.getGraphPanelWidth() / 2) + 340;
+        int y = (myWindow.getGraphPanelHeight() / 2) + 70;
+        Shape legend = new Shape(x, y, 150, 250, Color.WHITE);
         legend.setForegroundColor(Color.BLACK);
 
         if (breakdown == RepresentationEnum.HOBBY) {
-            TextShape legendText = new TextShape(x + 40, y + 5, "Hobby Legend");
-            TextShape firstText = new TextShape(x + 40, y + 20, "Read");
-            TextShape secondText = new TextShape(x + 40, y + 35, "Art");
-            TextShape thirdText = new TextShape(x + 40, y + 50, "Sports");
-            TextShape fourthText = new TextShape(x + 40, y + 65, "Music");
+
+            TextShape legendText = new TextShape(x + 30, y + 5, "Hobby Legend");
+            TextShape firstText = new TextShape(x + 60, y + 30, "Read");
+            TextShape secondText = new TextShape(x + 60, y + 60, "Art");
+            TextShape thirdText = new TextShape(x + 60, y + 90, "Sports");
+            TextShape fourthText = new TextShape(x + 60, y + 120, "Music");
 
             legendText.setBackgroundColor(Color.WHITE);
             firstText.setBackgroundColor(Color.WHITE);
@@ -290,11 +283,11 @@ public class GUIMusicWindow {
         }
         else if (breakdown == RepresentationEnum.MAJOR) {
 
-            TextShape legendText = new TextShape(x + 40, y + 5, "Major Legend");
-            TextShape firstText = new TextShape(x + 40, y + 20, "Comp Sci");
-            TextShape secondText = new TextShape(x + 40, y + 35, "Other Eng");
-            TextShape thirdText = new TextShape(x + 40, y + 50, "Math/CMDA");
-            TextShape fourthText = new TextShape(x + 40, y + 65, "Other");
+            TextShape legendText = new TextShape(x + 30, y + 5, "Major Legend");
+            TextShape firstText = new TextShape(x + 60, y + 30, "Comp Sci");
+            TextShape secondText = new TextShape(x + 60, y + 60, "Other Eng");
+            TextShape thirdText = new TextShape(x + 60, y + 90, "Math/CMDA");
+            TextShape fourthText = new TextShape(x + 60, y + 120, "Other");
 
             legendText.setBackgroundColor(Color.WHITE);
             firstText.setBackgroundColor(Color.WHITE);
@@ -314,12 +307,12 @@ public class GUIMusicWindow {
         }
         else if (breakdown == RepresentationEnum.REGION) {
 
-            TextShape legendText = new TextShape(x + 40, y + 5,
+            TextShape legendText = new TextShape(x + 30, y + 5,
                 "Region Legend");
-            TextShape firstText = new TextShape(x + 40, y + 20, "Northeast");
-            TextShape secondText = new TextShape(x + 40, y + 35, "Southeast");
-            TextShape thirdText = new TextShape(x + 40, y + 50, "US Other");
-            TextShape fourthText = new TextShape(x + 40, y + 65, "Outside US");
+            TextShape firstText = new TextShape(x + 60, y + 30, "Northeast");
+            TextShape secondText = new TextShape(x + 60, y + 60, "Southeast");
+            TextShape thirdText = new TextShape(x + 60, y + 90, "US Other");
+            TextShape fourthText = new TextShape(x + 60, y + 120, "Outside US");
 
             legendText.setBackgroundColor(Color.WHITE);
             firstText.setBackgroundColor(Color.WHITE);
@@ -337,14 +330,14 @@ public class GUIMusicWindow {
             myWindow.addShape(thirdText);
             myWindow.addShape(fourthText);
         }
-        else {
-            throw new IllegalStateException();
-        }
+// else {
+// throw new IllegalStateException();
+// }
 
-        TextShape songTitle = new TextShape(x + 45, y + 95, "Song Title");
-        TextShape heardText = new TextShape(x + 30, y + 110, "Heard");
-        TextShape likedText = new TextShape(x + 100, y + 110, "Liked");
-        Shape legendDivider = new Shape(x + 80, y + 110, 5, 40, Color.BLACK);
+        TextShape songTitle = new TextShape(x + 45, y + 140, "Song Title");
+        TextShape heardText = new TextShape(x + 20, y + 180, "Heard");
+        TextShape likedText = new TextShape(x + 100, y + 180, "Liked");
+        Shape legendDivider = new Shape(x + 80, y + 160, 5, 60, Color.BLACK);
 
         songTitle.setBackgroundColor(Color.WHITE);
         heardText.setBackgroundColor(Color.WHITE);
