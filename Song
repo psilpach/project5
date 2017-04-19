@@ -64,10 +64,6 @@ public class Song {
      *            genre
      */
     public Song(String title1, String artist1, String genre1, String year1) {
-// title = songData[0];
-// artist = songData[1];
-// date = songData[2];
-// genre = songData[3];
 
         likeArray = new ArrayList<Person>();
         heardArray = new ArrayList<Person>();
@@ -298,7 +294,7 @@ public class Song {
             else if (heardArray.get(i).getMajor() == MajorEnum.MATH) {
                 out[6]++;
             }
-            else if (heardArray.get(i).getMajor() == MajorEnum.COMPSCI) {
+            else if (heardArray.get(i).getMajor() == MajorEnum.OTHER) {
                 out[7]++;
             }
             if (heardArray.get(i).getState() == RegionEnum.SOUTHEAST) {
