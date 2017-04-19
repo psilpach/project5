@@ -16,9 +16,12 @@ import java.util.Scanner;
 public class Input {
 
     private static SongList newSong;
+    // private static SongList songList;
+
 
     /**
      * default constructor
+     * 
      * @param survey
      * @param songList
      * @throws FileNotFoundException
@@ -28,8 +31,9 @@ public class Input {
         SongList newSong = new SongList();
         readSurvey(newSong, survey);
         new GUIMusicWindow(newSong);
-        
+        // songList = new LinkedList();
     }
+
 
     /**
      * Method that reads the song file
@@ -46,12 +50,30 @@ public class Input {
         while (fileScanner.hasNextLine()) {
             String currentLine = fileScanner.nextLine();
             String[] splitLine = currentLine.split(",");
-            Song currentSong = new Song(splitLine[0], splitLine[3], splitLine[2],
-                    splitLine[1]);
+            Song currentSong = new Song(splitLine[0], splitLine[1],
+                splitLine[2], splitLine[3]);
             newSong.add(newSong.getLength(), currentSong);
         }
         fileScanner.close();
     }
+
+// try {
+// @SuppressWarnings("resource")
+// Scanner survey = new Scanner(new File(songFile));
+// survey.nextLine(); // skips the first line because it looks like that
+// contains headers which we don't want
+// while (survey.hasNextLine()) {
+// // Stores each line in a String variable to be analyzed
+// String line = survey.nextLine();
+// if (line.split(",").length >= 5) {
+// newSong.add(new Person(line.split(","), songList));
+// }
+// }
+// }
+// catch (FileNotFoundException e) {
+// e.printStackTrace();
+// System.exit(0);
+// }
 
 
     /**
@@ -126,7 +148,7 @@ public class Input {
             System.out.println("Song Title: " + newSong.get(i).getTitle());
             System.out.println("Song Artist: " + newSong.get(i).getArtist());
             System.out.println("Song Genre: " + newSong.get(i).getGenre());
-            System.out.println("Song Year: " + newSong.get(i).getDate());
+            System.out.println("Song Year: " + newSong.get(i).getYear());
             System.out.println("Heard");
             System.out.println("reading:" + songHeard[0] + " art:"
                 + songHeard[1] + " sports:" + songHeard[2] + " music:"
@@ -148,7 +170,7 @@ public class Input {
             System.out.println("Song Title: " + newSong.get(i).getTitle());
             System.out.println("Song Artist: " + newSong.get(i).getArtist());
             System.out.println("Song Genre: " + newSong.get(i).getGenre());
-            System.out.println("Song Year: " + newSong.get(i).getDate());
+            System.out.println("Song Year: " + newSong.get(i).getYear());
             System.out.println("Heard");
             System.out.println("reading:" + songHeard[0] + " art:"
                 + songHeard[1] + " sports:" + songHeard[2] + " music:"
