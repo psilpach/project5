@@ -76,37 +76,10 @@ public class GUISongGlyph {
                 middle, availableSpace, colors[i]);
             addTo.addShape(likedBar);
 
-            Shape heard = makeHeardBar(song, middle, availableSpace, colors[i]);
-            heard.setX(x + middle - heard.getWidth());
-            heard.setY(y + (2 + i) * availableSpace);
-            addTo.addShape(heard);
+            Shape heardBar = new Shape(middle - x, y + (2 + i) * availableSpace,
+                middle, availableSpace, colors[i]);
+            addTo.addShape(heardBar);
         }
 
-    }
-
-
-    /**
-     * Creates the heard bar
-     * 
-     * @param song
-     *            - the song
-     * @param thisLine
-     *            - represents the subdivisions of the main categories
-     * @param maxWidth
-     *            - width
-     * @param availableHeight
-     *            - height
-     * @param clr
-     *            - color of the glyph
-     * @return - glyph according to the people heard
-     */
-    private Shape makeHeardBar(
-        Song song,
-        // RepresentationEnum thisLine,
-        int maxWidth,
-        int availableHeight,
-        Color clr) {
-        return new Shape(0, 0, (int)(song.getTotalHeard() / maxWidth * 100),
-            availableHeight, clr);
     }
 }
