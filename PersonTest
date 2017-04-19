@@ -12,6 +12,8 @@ import static org.junit.Assert.*;
 public class PersonTest extends student.TestCase {
 
     private Person kevin;
+    private String[] likedTest = { "yes", "yes", "no", "no" };
+    private String[] heardTest = { "yes", "yes", "no", "no" };
     private Person pim;
     private Person danni;
 
@@ -20,9 +22,12 @@ public class PersonTest extends student.TestCase {
      * Runs before each test sets up people
      */
     public void setUp() {
-        kevin = new Person("sports", "ME", "north");
-        pim = new Person("swim", "CMDA", "south");
-        danni = new Person("softball", "BIT", "north");
+        kevin = new Person(HobbyEnum.ART, MajorEnum.COMPSCI,
+            RegionEnum.NORTHEAST, likedTest, heardTest);
+        pim = new Person(HobbyEnum.MUSIC, MajorEnum.MATH, RegionEnum.NORTHEAST,
+            likedTest, heardTest);
+        danni = new Person(HobbyEnum.SPORTS, MajorEnum.OTHER,
+            RegionEnum.NORTHEAST, likedTest, heardTest);
     }
 
 
@@ -30,8 +35,8 @@ public class PersonTest extends student.TestCase {
      * Test to make sure the correct hobby is output
      */
     public void testGetHobby() {
-        assertEquals("sports", kevin.getHobby());
-        assertEquals("softball", danni.getHobby());
+        assertEquals("ART", kevin.getHobby().toString());
+        assertEquals("SPORTS", danni.getHobby().toString());
     }
 
 
@@ -39,8 +44,8 @@ public class PersonTest extends student.TestCase {
      * Test to make sure the correct major is output
      */
     public void testGetMajor() {
-        assertEquals("ME", kevin.getMajor());
-        assertEquals("BIT", danni.getMajor());
+        assertEquals("COMPSCI", kevin.getMajor().toString());
+        assertEquals("OTHER", danni.getMajor().toString());
     }
 
 
@@ -48,8 +53,8 @@ public class PersonTest extends student.TestCase {
      * Test to make sure the correct state is output
      */
     public void testGetState() {
-        assertEquals("north", kevin.getState());
-        assertEquals("south", pim.getState());
+        assertEquals("NORTHEAST", kevin.getState().toString());
+        assertEquals("NORTHEAST", pim.getState().toString());
     }
 
 
@@ -57,8 +62,8 @@ public class PersonTest extends student.TestCase {
      * Test to make sure the correct string is output
      */
     public void testToString() {
-        assertEquals("sports, ME, north", kevin.toString());
-        assertEquals("softball, BIT, north", danni.toString());
+        assertEquals("[Major: Computer Science, Hobby: art, Region: Northeast]",
+            kevin.toString());
     }
 
 
@@ -67,9 +72,12 @@ public class PersonTest extends student.TestCase {
      * Are considered equals
      */
     public void testEquals() {
-        Person kevin2 = new Person("sports", "ME", "north");
-        Person kevin3 = new Person("sports", "ME", "south");
-        Person kevin4 = new Person("sports", "HI", "north");
+        Person kevin2 = new Person(HobbyEnum.ART, MajorEnum.COMPSCI,
+            RegionEnum.NORTHEAST, likedTest, heardTest);
+        Person kevin3 = new Person(HobbyEnum.ART, MajorEnum.COMPSCI,
+            RegionEnum.SOUTHEAST, likedTest, heardTest);
+        Person kevin4 = new Person(HobbyEnum.ART, MajorEnum.OTHER,
+            RegionEnum.NORTHEAST, likedTest, heardTest);
         Person notEqual = null;
         assertTrue(kevin.equals(kevin));
         assertFalse(kevin.equals(danni));
