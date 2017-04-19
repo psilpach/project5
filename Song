@@ -2,7 +2,6 @@ package prj5;
 
 import java.util.ArrayList;
 
-
 /**
  * 
  * @author Pim Silpacharn pims617
@@ -16,7 +15,7 @@ public class Song {
     private String title;
     private String artist;
     private String genre;
-    private String date;
+    private String year;
 
     private int numHeardRead;
     private int numHeardArt;
@@ -54,22 +53,28 @@ public class Song {
 
     /**
      * 
+     * @param songList
      * @param title
      *            title
      * @param artist
      *            artist
-     * @param date
-     *            date
+     * @param year
+     *            year
      * @param genre
      *            genre
      */
-    public Song(String title1, String artist1, String date1, String genre1) {
+    public Song(String title1, String artist1, String genre1, String year1) {
+// title = songData[0];
+// artist = songData[1];
+// date = songData[2];
+// genre = songData[3];
+
         likeArray = new ArrayList<Person>();
         heardArray = new ArrayList<Person>();
         title = title1;
         artist = artist1;
         genre = genre1;
-        date = date1;
+        year = year1;
 
         numHeardRead = 0;
         numHeardArt = 0;
@@ -97,8 +102,6 @@ public class Song {
         numLikeUs = 0;
         numLikeNon = 0;
     }
-
-
 
 
     /**
@@ -132,8 +135,8 @@ public class Song {
      * 
      * @return song's release date
      */
-    public String getDate() {
-        return date;
+    public String getYear() {
+        return year;
     }
 
 
@@ -558,7 +561,7 @@ public class Song {
         sb.append(", Genre: ");
         sb.append(genre);
         sb.append(", Release: ");
-        sb.append(date);
+        sb.append(year);
         sb.append("\nHeard: ");
         sb.append(heardArray.size());
         sb.append(heardArray);
@@ -568,6 +571,5 @@ public class Song {
         sb.append("\n");
         return sb.toString();
     }
-
 
 }
