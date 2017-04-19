@@ -332,10 +332,8 @@ public class SongList implements ListInterface<Song> {
 
 
     /**
-     * @author Daniel Medina, dmedina
-     *         Shuaicheng Zhang, zshuai8
-     *         James Jee, jamesj95
-     * @version 2016/4/10
+     * @author ndanni4
+     * @version 4.19.2017
      */
     class SongNode {
         private Song song;
