@@ -2,190 +2,242 @@ package prj5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * 
- * @author psilpach
- * @version 4/10/17
- * @author dnicholls4
- * @author kbenson8
- */
-
 public class Input {
-
-    private static SongList newSong;
-    // private static SongList songList;
-
-
     /**
-     * default constructor
+     * Creates a new ListReader() that reads from a given file
      * 
-     * @param survey
-     * @param songList
-     * @throws FileNotFoundException
-     */
-    public Input(String survey, String songList) throws FileNotFoundException {
-
-        SongList newSong = new SongList();
-        readSurvey(newSong, survey);
-        new GUIMusicWindow(newSong);
-        // songList = new LinkedList();
-    }
-
-
-    /**
-     * Method that reads the song file
-     *
+     * @param personFile
+     *            The name of the file with person data
      * @param songFile
-     *            - song file
-     * @throws FileNotFoundException
+     *            The name of the file with song data
      */
-    @SuppressWarnings("unused")
-    private void readSongList(String songFile) throws FileNotFoundException {
-        Scanner fileScanner = new Scanner(new File(songFile));
-        fileScanner.nextLine();
+    public Input(String personFile, String songFile) {
 
-        while (fileScanner.hasNextLine()) {
-            String currentLine = fileScanner.nextLine();
-            String[] splitLine = currentLine.split(",");
-            Song currentSong = new Song(splitLine[0], splitLine[1],
-                splitLine[2], splitLine[3]);
-            newSong.add(newSong.getLength(), currentSong);
-        }
-        fileScanner.close();
+        SongList musicList = readDataFiles(personFile, songFile);
+        new GUIMusicWindow(musicList);
     }
 
-// try {
-// @SuppressWarnings("resource")
-// Scanner survey = new Scanner(new File(songFile));
-// survey.nextLine(); // skips the first line because it looks like that
-// contains headers which we don't want
-// while (survey.hasNextLine()) {
-// // Stores each line in a String variable to be analyzed
-// String line = survey.nextLine();
-// if (line.split(",").length >= 5) {
-// newSong.add(new Person(line.split(","), songList));
-// }
-// }
-// }
-// catch (FileNotFoundException e) {
-// e.printStackTrace();
-// System.exit(0);
-// }
-
-
     /**
+     * Reads the data from two
      * 
-     * @param newSongList
-     * @param fileName
-     * @throws FileNotFoundException
+     * @param personFile
+     *            The name of the file with person data
+     * @param songFile
+     *            The name of the file with song data
+     * @return the read file as a DataList
      */
-    public void readSurvey(SongList newSongList, String fileName)
-        throws FileNotFoundException {
+    public SongList readDataFiles(String personFile, String songFile) {
 
-        ArrayList<String[]> newStringArray = new ArrayList<String[]>();
-        File fl = new File(fileName);
-        Scanner file = new Scanner(fl);
-        file.nextLine();
+        SongList dataFile = new SongList();
 
-        while (file.hasNextLine()) {
+        // scans person file
+        readPeople(personFile, dataFile);
 
-            String[] arr = file.nextLine().split(",");
-            if (arr.length > 5) {
-                newStringArray.add(arr);
-            }
-        }
-        file.close();
+        // scans song file
+        readSongs(songFile, dataFile);
 
-        for (int i = 0; i < newStringArray.size(); i++) {
-
-            String[] currentEntry = newStringArray.get(i);
-            Person newPerson = new Person(currentEntry[2], currentEntry[3],
-                currentEntry[4]);
-            newSongList.addPerson(newPerson);
-
-            for (int j = 5; j < currentEntry.length; j++) {
-
-                if (currentEntry[j].equals("Yes") && j % 2 == 1) {
-
-                    newSongList.get((j - 5) / 2).addHeard(newPerson, true);
-                }
-                else if (currentEntry[j].equals("No") && j % 2 == 1) {
-
-                    newSongList.get((j - 5) / 2).addHeard(newPerson, false);
-                }
-                else if (currentEntry[j].equals("Yes") && j % 2 == 0) {
-
-                    newSongList.get((j - 5) / 2).addLike(newPerson, true);
-                }
-                else if (currentEntry[j].equals("No") && j % 2 == 0) {
-
-                    newSongList.get((j - 5) / 2).addLike(newPerson, false);
-                }
-            }
-        }
+        return dataFile;
     }
 
+    /**
+     * Reads the people in the file with the Person data
+     * 
+     * @param personFile
+     *            The name of the file with the Person data
+     * @param dataFile
+     *            The DataList where the Songs are being added
+     */
+    private void readPeople(String personFile, SongList dataFile) {
+
+        Scanner fileScan = null;
+        try {
+
+            fileScan = new Scanner(new File(personFile));
+        }
+        catch (FileNotFoundException exception) {
+
+            System.out.println(exception.getMessage());
+            System.exit(0);
+        }
+
+        fileScan.nextLine(); // advances past the first line
+
+        while (fileScan.hasNextLine()) {
+            String personLine = fileScan.nextLine();
+            String[] personData = personLine.split(" *, *",100);
+            if (personData.length > 2 && !personData[4].equals("")) {
+
+                MajorEnum major = findMajor(personData[2]);
+                RegionEnum region = findRegion(personData[3]);
+                HobbyEnum hobby = findHobby(personData[4]);
+                int numSongs = (personData.length - 5) / 2;
+                String[] heard = new String[numSongs];
+                String[] liked = new String[numSongs];
+                int index = 0;
+
+                for (int i = 5; i < personData.length - 1; i += 2) {
+
+                    heard[index] = personData[i];
+                    liked[index] = personData[i + 1];
+                    index++;
+                }
+                dataFile.addPerson(
+                        new Person(hobby, major, region, heard, liked));
+            }
+        }
+
+        fileScan.close();
+    }
 
     /**
+     * Reads the Songs in the file with all the Song data
      * 
-     * @param args
-     * @throws FileNotFoundException
+     * @param songFile
+     *            The name of the file with the Song data
+     * @param dataFile
+     *            The DataList where the Songs are being added
      */
-    public static void main(String[] args) throws FileNotFoundException {
+    private void readSongs(String songFile, SongList dataFile) {
 
+        Scanner fileScan = null;
+        try {
+
+            fileScan = new Scanner(new File(songFile));
+        }
+        catch (FileNotFoundException exception) {
+
+            System.out.println(exception.getMessage());
+            System.exit(0);
+        }
+
+        fileScan.nextLine();
+        int index = 0;
+
+        while (fileScan.hasNextLine()) {
+            String songLine = fileScan.nextLine();
+            String[] songData = songLine.split(" *, *",100);
+            String title = songData[0];
+            String artist = songData[1];
+            String year = songData[2];
+            String genre = songData[3];
+
+            dataFile.add(new Song(genre, artist, title, year));
+            index++;
+        }
+
+        fileScan.close();
+    }
+
+    /**
+     * Method finds the corresponding enum of the input String for the Person's
+     * major
+     * 
+     * @param major
+     *            The String with the Person's major
+     * @return the corresponding enum of the String
+     */
+    private MajorEnum findMajor(String major) {
+        MajorEnum majorEnum = null;
+        switch (major) {
+
+        case "Computer Science":
+            majorEnum = MajorEnum.COMPSCI;
+            break;
+
+        case "Math or CMDA":
+            majorEnum = MajorEnum.MATH;
+            break;
+
+        case "Other Engineering":
+            majorEnum = MajorEnum.ENGINEERING;
+            break;
+
+        default:
+            majorEnum = MajorEnum.OTHER;
+            break;
+        }
+        return majorEnum;
+    }
+
+    /**
+     * Method finds the corresponding enum of the input String for the Person's
+     * region
+     * 
+     * @param region
+     *            The String with the Person's region
+     * @return the corresponding enum of the String
+     */
+    private RegionEnum findRegion(String region) {
+
+        RegionEnum regionEnum = null;
+        switch (region) {
+
+        case "Southeast":
+            regionEnum = RegionEnum.SOUTHEAST;
+            break;
+
+        case "Northeast":
+            regionEnum = RegionEnum.NORTHEAST;
+            break;
+
+        case "United States (other than Southeast or Northwest)":
+            regionEnum = RegionEnum.USOTHER;
+            break;
+
+        default:
+            regionEnum = RegionEnum.OTHER;
+            break;
+        }
+        return regionEnum;
+    }
+
+    /**
+     * Method finds the corresponding enum of the input String for the Person's
+     * hobby
+     * 
+     * @param hobby
+     *            The String with the Person's hobby
+     * @return the corresponding enum of the String
+     */
+    private HobbyEnum findHobby(String hobby) {
+
+        HobbyEnum hobbyEnum = null;
+        switch (hobby) {
+
+        case "sports":
+            hobbyEnum = HobbyEnum.SPORTS;
+            break;
+
+        case "music":
+            hobbyEnum = HobbyEnum.MUSIC;
+            break;
+
+        case "reading":
+            hobbyEnum = HobbyEnum.READING;
+            break;
+
+        default:
+            hobbyEnum = HobbyEnum.ART;
+            break;
+        }
+        return hobbyEnum;
+    }
+    
+    /**
+     * main() method runs the program
+     * @param args    the supplied command-line arguments
+     *                as an array of String objects
+     */
+    public static void main(String[] args) {
+        
         if (args.length == 2) {
-            String arg0 = args[0];
-            String arg1 = args[1];
-            new Input(arg0, arg1);
-            newSong.sort("Genre");
-            // represent hobbies
-            for (int i = 0; i < newSong.getLength(); i++) {
-                int[] songHeard = newSong.getPercentHeard(i);
-                int[] songLiked = newSong.getPercentLike(i);
-
-                System.out.println("Song Title: " + newSong.get(i).getTitle());
-                System.out.println("Song Artist: " + newSong.get(i)
-                    .getArtist());
-                System.out.println("Song Genre: " + newSong.get(i).getGenre());
-                System.out.println("Song Year: " + newSong.get(i).getYear());
-                System.out.println("Heard");
-                System.out.println("reading:" + songHeard[0] + " art:"
-                    + songHeard[1] + " sports:" + songHeard[2] + " music:"
-                    + songHeard[3]);
-                System.out.println("Likes");
-                System.out.println("reading:" + songLiked[0] + " art:"
-                    + songLiked[1] + " sports:" + songLiked[2] + " music:"
-                    + songLiked[3]);
-                System.out.println();
-            }
-
-            newSong.sort("Title");
-
-            // represent hobbies
-            for (int i = 0; i < newSong.getLength(); i++) {
-                int[] songHeard = newSong.getPercentHeard(i);
-                int[] songLiked = newSong.getPercentLike(i);
-
-                System.out.println("Song Title: " + newSong.get(i).getTitle());
-                System.out.println("Song Artist: " + newSong.get(i)
-                    .getArtist());
-                System.out.println("Song Genre: " + newSong.get(i).getGenre());
-                System.out.println("Song Year: " + newSong.get(i).getYear());
-                System.out.println("Heard");
-                System.out.println("reading:" + songHeard[0] + " art:"
-                    + songHeard[1] + " sports:" + songHeard[2] + " music:"
-                    + songHeard[3]);
-                System.out.println("Likes");
-                System.out.println("reading:" + songLiked[0] + " art:"
-                    + songLiked[1] + " sports:" + songLiked[2] + " music:"
-                    + songLiked[3]);
-                System.out.println("");
-            }
+            
+            new Input(args[0], args[1]);
         }
-        else {           
+        else {
+            
             new Input("MusicSurveyData2017S.csv", "SongList2017S.csv");
         }
     }
