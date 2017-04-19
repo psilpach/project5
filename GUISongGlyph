@@ -44,7 +44,7 @@ public class GUISongGlyph {
         int width,
         int height,
         Song song,
-        RepresentationEnum[] breakdown,
+        RepresentationEnum breakdown,
         Window addTo) {
 
         int availableSpace = height / 6;
@@ -70,19 +70,49 @@ public class GUISongGlyph {
         y += 10;
         addTo.addShape(new Shape(x + middle - 2, y + availableSpace * 2, 4,
             availableSpace * 4, Color.BLACK));
+        
+       
 
-        for (int i = 0; i < breakdown.length; i++) {
-            Shape target = makeLikedBar(song, breakdown[i], middle,
-                availableSpace, colors[i]);
-            target.setX(x + middle);
-            target.setY(y + (2 + i) * availableSpace);
-            addTo.addShape(target);
+        for (int i = 0; i < 4; i++) {
+            if (breakdown == (RepresentationEnum.REGION)){
+                Shape target = makeLikedBar(song, RepresentationEnum.REGION, middle,
+                    availableSpace, colors[i]);
+                target.setX(x + middle);
+                target.setY(y + (2 + i) * availableSpace);
+                addTo.addShape(target);
 
-            Shape heard = makeHeardBar(song, breakdown[i], middle,
-                availableSpace, colors[i]);
-            heard.setX(x + middle - heard.getWidth());
-            heard.setY(y + (2 + i) * availableSpace);
-            addTo.addShape(heard);
+                Shape heard = makeHeardBar(song, RepresentationEnum.REGION, middle,
+                    availableSpace, colors[i]);
+                heard.setX(x + middle - heard.getWidth());
+                heard.setY(y + (2 + i) * availableSpace);
+                addTo.addShape(heard);
+            }
+            else if (breakdown == (RepresentationEnum.HOBBY)){
+                    Shape target = makeLikedBar(song, RepresentationEnum.HOBBY, middle,
+                        availableSpace, colors[i]);
+                    target.setX(x + middle);
+                    target.setY(y + (2 + i) * availableSpace);
+                    addTo.addShape(target);
+
+                    Shape heard = makeHeardBar(song, RepresentationEnum.HOBBY, middle,
+                        availableSpace, colors[i]);
+                    heard.setX(x + middle - heard.getWidth());
+                    heard.setY(y + (2 + i) * availableSpace);
+                    addTo.addShape(heard);
+                }
+            else  if (breakdown == (RepresentationEnum.MAJOR)){
+                Shape target = makeLikedBar(song, RepresentationEnum.MAJOR, middle,
+                    availableSpace, colors[i]);
+                target.setX(x + middle);
+                target.setY(y + (2 + i) * availableSpace);
+                addTo.addShape(target);
+
+                Shape heard = makeHeardBar(song, RepresentationEnum.MAJOR, middle,
+                    availableSpace, colors[i]);
+                heard.setX(x + middle - heard.getWidth());
+                heard.setY(y + (2 + i) * availableSpace);
+                addTo.addShape(heard);
+            }
         }
 
     }
