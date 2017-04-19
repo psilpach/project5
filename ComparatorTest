@@ -6,8 +6,8 @@ import student.TestCase;
  * This test class tests all four comparator classes to 
  * ensure that they return the correct values for the 
  * compare() methods.
- * @author Phillip Hrinko
- * @version 2016.11.13
+ * @author Pim Silpacharn
+ * @version 4/19/17
  */
 public class CompareTest extends TestCase {
 
