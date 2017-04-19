@@ -9,9 +9,11 @@ package prj5;
  */
 public class Person {
 
-    private String hobby;
-    private String major;
-    private String state;
+    private MajorEnum major;
+    private HobbyEnum hobby;
+    private RegionEnum region;
+    private String[] heard;
+    private String[] liked;
 
 
     /**
@@ -23,11 +25,44 @@ public class Person {
      *            major of person
      * @param state
      *            state lived in
+     *            * @param heard
+     *            The array of whether or not the Person has heard certain songs
+     * @param liked
+     *            The array of whether or not the Person has liked certain songs
      */
-    public Person(String hobby, String major, String state) {
+    public Person(
+        HobbyEnum hobby,
+        MajorEnum major,
+        RegionEnum region,
+        String[] heard,
+        String[] liked) {
         this.hobby = hobby;
         this.major = major;
-        this.state = state;
+        this.region = region;
+        this.heard = heard;
+        this.liked = liked;
+    }
+
+
+    /**
+     * Method returns the heard responses from the person
+     * 
+     * @return the heard responses from the person
+     */
+    public String[] getHeard() {
+
+        return heard;
+    }
+
+
+    /**
+     * Method returns the liked responses from the person
+     * 
+     * @return the liked responses from the person
+     */
+    public String[] getLiked() {
+
+        return liked;
     }
 
 
@@ -36,7 +71,7 @@ public class Person {
      * 
      * @return hobby
      */
-    public String getHobby() {
+    public HobbyEnum getHobby() {
         return hobby;
     }
 
@@ -46,7 +81,7 @@ public class Person {
      * 
      * @return major
      */
-    public String getMajor() {
+    public MajorEnum getMajor() {
         return major;
     }
 
@@ -56,8 +91,8 @@ public class Person {
      * 
      * @return state
      */
-    public String getState() {
-        return state;
+    public RegionEnum getState() {
+        return region;
     }
 
 
@@ -67,9 +102,68 @@ public class Person {
      * @return toString of person
      */
     public String toString() {
-        StringBuilder info = new StringBuilder();
-        info.append(getHobby() + ", " + getMajor() + ", " + getState());
-        return info.toString();
+        StringBuilder personString = new StringBuilder("[Major: ");
+        switch (this.getMajor()) {
+
+            case COMPSCI:
+                personString.append("Computer Science");
+                break;
+
+            case MATH:
+                personString.append("Math or CMDA");
+                break;
+
+            case ENGINEERING:
+                personString.append("Other Engineering");
+                break;
+
+            default:
+                personString.append("Other");
+                break;
+        }
+        personString.append(", Hobby: ");
+
+        switch (this.getHobby()) {
+
+            case READING:
+                personString.append("reading");
+                break;
+
+            case SPORTS:
+                personString.append("sports");
+                break;
+
+            case MUSIC:
+                personString.append("music");
+                break;
+
+            default:
+                personString.append("art");
+                break;
+        }
+        personString.append(", Region: ");
+
+        switch (this.getState()) {
+
+            case NORTHEAST:
+                personString.append("Northeast");
+                break;
+
+            case SOUTHEAST:
+                personString.append("Southeast");
+                break;
+
+            case USOTHER:
+                personString.append("United States (other than Southeast or "
+                    + "Northwest)");
+                break;
+
+            default:
+                personString.append("Outside of United States");
+                break;
+        }
+        personString.append("]");
+        return personString.toString();
     }
 
 
