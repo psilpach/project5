@@ -47,7 +47,7 @@ public class GUIMusicWindow {
 
         makeLegend();
 
-        setBreakdown(RepresentationEnum.DEFAULT);
+        setBreakdown(RepresentationEnum.HOBBY);
 
     }
 
@@ -79,9 +79,8 @@ public class GUIMusicWindow {
                 int song = startingPosition + j + 3 * i;
                 if (song < songs.getLength())
                     new GUISongGlyph(padding + i * eachGlyphWidth, ((j + 1)
-                        * padding) + j * eachGlyphHeight, eachGlyphWidth,
-                        eachGlyphHeight, songs.getEntry(song), breakdown,
-                        myWindow);
+                        * padding) + j * eachGlyphHeight, songs.getEntry(song),
+                        eachGlyphWidth, eachGlyphHeight, breakdown, myWindow);
             }
 
         makeLegend();
@@ -264,7 +263,6 @@ public class GUIMusicWindow {
         legend.setForegroundColor(Color.BLACK);
 
         if (breakdown == RepresentationEnum.HOBBY) {
-
             TextShape legendText = new TextShape(x + 30, y + 5, "Hobby Legend");
             TextShape firstText = new TextShape(x + 60, y + 30, "Read");
             TextShape secondText = new TextShape(x + 60, y + 60, "Art");
@@ -336,9 +334,9 @@ public class GUIMusicWindow {
             myWindow.addShape(thirdText);
             myWindow.addShape(fourthText);
         }
-// else {
-// throw new IllegalStateException();
-// }
+        else {
+            throw new IllegalStateException();
+        }
 
         TextShape songTitle = new TextShape(x + 45, y + 140, "Song Title");
         TextShape heardText = new TextShape(x + 20, y + 180, "Heard");
