@@ -1,5 +1,13 @@
 package prj5;
 
+/**
+ * tests Song
+ * 
+ * @author kbenson8
+ * @author ndanni4
+ * @author pims617
+ * @version Apr 19, 2017
+ */
 public class SongTest extends student.TestCase {
 
     private Song song;
