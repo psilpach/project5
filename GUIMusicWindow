@@ -47,6 +47,8 @@ public class GUIMusicWindow {
         addButton("Represent Region", "clickedRegion", WindowSide.SOUTH);
         addButton("Quit", "clickedQuit", WindowSide.SOUTH);
 
+        makeLegend();
+
         setBreakdown(RepresentationEnum.DEFAULT);
 
     }
@@ -84,8 +86,7 @@ public class GUIMusicWindow {
                         myWindow);
             }
 
-        new GUILegend(eachGlyphWidth * 3 + 40, 4 * padding + eachGlyphHeight, 2
-            * eachGlyphHeight - 20, eachGlyphWidth - 20, myWindow, breakdown);
+        makeLegend();
 
     }
 
@@ -252,5 +253,110 @@ public class GUIMusicWindow {
      */
     public void clickedQuit(Button in) {
         System.exit(0);
+    }
+
+
+    /**
+     * Creates the legend for the window
+     */
+    public void makeLegend() {
+        int x = (myWindow.getGraphPanelWidth() / 2) + 340;
+        int y = (myWindow.getGraphPanelHeight() / 2) + 70;
+        Shape legend = new Shape(x, y, 150, 250, Color.WHITE);
+        legend.setForegroundColor(Color.BLACK);
+
+        if (breakdown.equals(RepresentationEnum.HOBBY)) {
+
+            TextShape legendText = new TextShape(x + 30, y + 5, "Hobby Legend");
+            TextShape firstText = new TextShape(x + 60, y + 30, "Read");
+            TextShape secondText = new TextShape(x + 60, y + 60, "Art");
+            TextShape thirdText = new TextShape(x + 60, y + 90, "Sports");
+            TextShape fourthText = new TextShape(x + 60, y + 120, "Music");
+
+            legendText.setBackgroundColor(Color.WHITE);
+            firstText.setBackgroundColor(Color.WHITE);
+            firstText.setForegroundColor(Color.MAGENTA);
+            secondText.setBackgroundColor(Color.WHITE);
+            secondText.setForegroundColor(Color.BLUE);
+            thirdText.setBackgroundColor(Color.WHITE);
+            thirdText.setForegroundColor(Color.ORANGE);
+            fourthText.setBackgroundColor(Color.WHITE);
+            fourthText.setForegroundColor(Color.GREEN);
+
+            myWindow.addShape(legendText);
+            myWindow.addShape(firstText);
+            myWindow.addShape(secondText);
+            myWindow.addShape(thirdText);
+            myWindow.addShape(fourthText);
+        }
+        else if (breakdown.equals(RepresentationEnum.MAJOR)) {
+
+            TextShape legendText = new TextShape(x + 30, y + 5, "Major Legend");
+            TextShape firstText = new TextShape(x + 60, y + 30, "Comp Sci");
+            TextShape secondText = new TextShape(x + 60, y + 60, "Other Eng");
+            TextShape thirdText = new TextShape(x + 60, y + 90, "Math/CMDA");
+            TextShape fourthText = new TextShape(x + 60, y + 120, "Other");
+
+            legendText.setBackgroundColor(Color.WHITE);
+            firstText.setBackgroundColor(Color.WHITE);
+            firstText.setForegroundColor(Color.MAGENTA);
+            secondText.setBackgroundColor(Color.WHITE);
+            secondText.setForegroundColor(Color.BLUE);
+            thirdText.setBackgroundColor(Color.WHITE);
+            thirdText.setForegroundColor(Color.ORANGE);
+            fourthText.setBackgroundColor(Color.WHITE);
+            fourthText.setForegroundColor(Color.GREEN);
+
+            myWindow.addShape(legendText);
+            myWindow.addShape(firstText);
+            myWindow.addShape(secondText);
+            myWindow.addShape(thirdText);
+            myWindow.addShape(fourthText);
+        }
+        else if (breakdown.equals(RepresentationEnum.REGION)) {
+
+            TextShape legendText = new TextShape(x + 30, y + 5,
+                "Region Legend");
+            TextShape firstText = new TextShape(x + 60, y + 30, "Northeast");
+            TextShape secondText = new TextShape(x + 60, y + 60, "Southeast");
+            TextShape thirdText = new TextShape(x + 60, y + 90, "US Other");
+            TextShape fourthText = new TextShape(x + 60, y + 120, "Outside US");
+
+            legendText.setBackgroundColor(Color.WHITE);
+            firstText.setBackgroundColor(Color.WHITE);
+            firstText.setForegroundColor(Color.MAGENTA);
+            secondText.setBackgroundColor(Color.WHITE);
+            secondText.setForegroundColor(Color.BLUE);
+            thirdText.setBackgroundColor(Color.WHITE);
+            thirdText.setForegroundColor(Color.ORANGE);
+            fourthText.setBackgroundColor(Color.WHITE);
+            fourthText.setForegroundColor(Color.GREEN);
+
+            myWindow.addShape(legendText);
+            myWindow.addShape(firstText);
+            myWindow.addShape(secondText);
+            myWindow.addShape(thirdText);
+            myWindow.addShape(fourthText);
+        }
+        else {
+            throw new IllegalStateException();
+        }
+
+        TextShape songTitle = new TextShape(x + 45, y + 140, "Song Title");
+        TextShape heardText = new TextShape(x + 20, y + 180, "Heard");
+        TextShape likedText = new TextShape(x + 100, y + 180, "Liked");
+        Shape legendDivider = new Shape(x + 80, y + 160, 5, 60, Color.BLACK);
+
+        songTitle.setBackgroundColor(Color.WHITE);
+        heardText.setBackgroundColor(Color.WHITE);
+        likedText.setBackgroundColor(Color.WHITE);
+
+        myWindow.addShape(songTitle);
+        myWindow.addShape(heardText);
+        myWindow.addShape(legendDivider);
+        myWindow.addShape(likedText);
+        myWindow.addShape(legend);
+        myWindow.moveToBack(legend);
+
     }
 }
