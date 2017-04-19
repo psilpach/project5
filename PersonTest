@@ -6,6 +6,7 @@ package prj5;
  * Test class for the Person class
  * 
  * @author ndanni4
+ * @author kbenson8
  * @version 4.10.2017
  *
  */
@@ -76,8 +77,8 @@ public class PersonTest extends student.TestCase {
         assertEquals("[Major: Math or CMDA, Hobby: music, Region: Southeast]",
             person2.toString());
         assertEquals(
-            "[Major: Other Engineering, Hobby: sports, Region: United States (other than Southeast or Northwest)]",
-            person3.toString());
+            "[Major: Other Engineering, Hobby: sports, Region: United States "
+                + "(other than Southeast or Northwest)]", person3.toString());
         assertEquals(
             "[Major: Other, Hobby: reading, Region: Outside of United States]",
             person4.toString());
