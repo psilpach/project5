@@ -249,15 +249,15 @@ public class GUIMusicWindow {
     public void makeLegend(RepresentationEnum breakdown) {
         int x = (myWindow.getGraphPanelWidth() / 2) + 250;
         int y = (myWindow.getGraphPanelHeight() / 2) + 20;
-        Shape legend = new Shape(x + 20, y, 130, 200, Color.WHITE);
+        Shape legend = new Shape(x + 20, y, 130, 150, Color.WHITE);
         legend.setForegroundColor(Color.BLACK);
 
         if (breakdown == RepresentationEnum.HOBBY) {
             TextShape legendText = new TextShape(x + 40, y + 5, "Hobby Legend");
-            TextShape firstText = new TextShape(x + 40, y + 30, "Read");
-            TextShape secondText = new TextShape(x + 40, y + 50, "Art");
-            TextShape thirdText = new TextShape(x + 40, y + 70, "Sports");
-            TextShape fourthText = new TextShape(x + 40, y + 90, "Music");
+            TextShape firstText = new TextShape(x + 40, y + 20, "Read");
+            TextShape secondText = new TextShape(x + 40, y + 35, "Art");
+            TextShape thirdText = new TextShape(x + 40, y + 50, "Sports");
+            TextShape fourthText = new TextShape(x + 40, y + 65, "Music");
 
             legendText.setBackgroundColor(Color.WHITE);
             firstText.setBackgroundColor(Color.WHITE);
@@ -277,11 +277,11 @@ public class GUIMusicWindow {
         }
         else if (breakdown == RepresentationEnum.MAJOR) {
 
-            TextShape legendText = new TextShape(x + 30, y + 5, "Major Legend");
-            TextShape firstText = new TextShape(x + 60, y + 30, "Comp Sci");
-            TextShape secondText = new TextShape(x + 60, y + 60, "Other Eng");
-            TextShape thirdText = new TextShape(x + 60, y + 90, "Math/CMDA");
-            TextShape fourthText = new TextShape(x + 60, y + 120, "Other");
+            TextShape legendText = new TextShape(x + 40, y + 5, "Major Legend");
+            TextShape firstText = new TextShape(x + 40, y + 20, "Comp Sci");
+            TextShape secondText = new TextShape(x + 40, y + 35, "Other Eng");
+            TextShape thirdText = new TextShape(x + 40, y + 50, "Math/CMDA");
+            TextShape fourthText = new TextShape(x + 40, y + 65, "Other");
 
             legendText.setBackgroundColor(Color.WHITE);
             firstText.setBackgroundColor(Color.WHITE);
@@ -301,12 +301,12 @@ public class GUIMusicWindow {
         }
         else if (breakdown == RepresentationEnum.REGION) {
 
-            TextShape legendText = new TextShape(x + 30, y + 5,
+            TextShape legendText = new TextShape(x + 40, y + 5,
                 "Region Legend");
-            TextShape firstText = new TextShape(x + 60, y + 30, "Northeast");
-            TextShape secondText = new TextShape(x + 60, y + 60, "Southeast");
-            TextShape thirdText = new TextShape(x + 60, y + 90, "US Other");
-            TextShape fourthText = new TextShape(x + 60, y + 120, "Outside US");
+            TextShape firstText = new TextShape(x + 40, y + 20, "Northeast");
+            TextShape secondText = new TextShape(x + 40, y + 35, "Southeast");
+            TextShape thirdText = new TextShape(x + 40, y + 50, "US Other");
+            TextShape fourthText = new TextShape(x + 40, y + 65, "Outside US");
 
             legendText.setBackgroundColor(Color.WHITE);
             firstText.setBackgroundColor(Color.WHITE);
@@ -328,10 +328,10 @@ public class GUIMusicWindow {
             throw new IllegalStateException();
         }
 
-        TextShape songTitle = new TextShape(x + 45, y + 110, "Song Title");
-        TextShape heardText = new TextShape(x + 30, y + 130, "Heard");
-        TextShape likedText = new TextShape(x + 100, y + 130, "Liked");
-        Shape legendDivider = new Shape(x + 80, y + 130, 5, 40, Color.BLACK);
+        TextShape songTitle = new TextShape(x + 45, y + 95, "Song Title");
+        TextShape heardText = new TextShape(x + 30, y + 110, "Heard");
+        TextShape likedText = new TextShape(x + 100, y + 110, "Liked");
+        Shape legendDivider = new Shape(x + 80, y + 110, 5, 40, Color.BLACK);
 
         songTitle.setBackgroundColor(Color.WHITE);
         heardText.setBackgroundColor(Color.WHITE);
