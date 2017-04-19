@@ -73,6 +73,14 @@ public class PersonTest extends student.TestCase {
     public void testToString() {
         assertEquals("[Major: Computer Science, Hobby: art, Region: Northeast]",
             person1.toString());
+        assertEquals("[Major: Math or CMDA, Hobby: music, Region: Southeast]",
+            person2.toString());
+        assertEquals(
+            "[Major: Other Engineering, Hobby: sports, Region: United States (other than Southeast or Northwest)]",
+            person3.toString());
+        assertEquals(
+            "[Major: Other, Hobby: reading, Region: Outside of United States]",
+            person4.toString());
     }
 
 
