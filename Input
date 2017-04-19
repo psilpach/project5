@@ -136,50 +136,57 @@ public class Input {
      */
     public static void main(String[] args) throws FileNotFoundException {
 
-        String arg0 = args[0];
-        String arg1 = args[1];
-        new Input(arg0, arg1);
-        newSong.sort("Genre");
-        // represent hobbies
-        for (int i = 0; i < newSong.getLength(); i++) {
-            int[] songHeard = newSong.getPercentHeard(i);
-            int[] songLiked = newSong.getPercentLike(i);
+        if (args.length == 2) {
+            String arg0 = args[0];
+            String arg1 = args[1];
+            new Input(arg0, arg1);
+            newSong.sort("Genre");
+            // represent hobbies
+            for (int i = 0; i < newSong.getLength(); i++) {
+                int[] songHeard = newSong.getPercentHeard(i);
+                int[] songLiked = newSong.getPercentLike(i);
 
-            System.out.println("Song Title: " + newSong.get(i).getTitle());
-            System.out.println("Song Artist: " + newSong.get(i).getArtist());
-            System.out.println("Song Genre: " + newSong.get(i).getGenre());
-            System.out.println("Song Year: " + newSong.get(i).getYear());
-            System.out.println("Heard");
-            System.out.println("reading:" + songHeard[0] + " art:"
-                + songHeard[1] + " sports:" + songHeard[2] + " music:"
-                + songHeard[3]);
-            System.out.println("Likes");
-            System.out.println("reading:" + songLiked[0] + " art:"
-                + songLiked[1] + " sports:" + songLiked[2] + " music:"
-                + songLiked[3]);
-            System.out.println();
+                System.out.println("Song Title: " + newSong.get(i).getTitle());
+                System.out.println("Song Artist: " + newSong.get(i)
+                    .getArtist());
+                System.out.println("Song Genre: " + newSong.get(i).getGenre());
+                System.out.println("Song Year: " + newSong.get(i).getYear());
+                System.out.println("Heard");
+                System.out.println("reading:" + songHeard[0] + " art:"
+                    + songHeard[1] + " sports:" + songHeard[2] + " music:"
+                    + songHeard[3]);
+                System.out.println("Likes");
+                System.out.println("reading:" + songLiked[0] + " art:"
+                    + songLiked[1] + " sports:" + songLiked[2] + " music:"
+                    + songLiked[3]);
+                System.out.println();
+            }
+
+            newSong.sort("Title");
+
+            // represent hobbies
+            for (int i = 0; i < newSong.getLength(); i++) {
+                int[] songHeard = newSong.getPercentHeard(i);
+                int[] songLiked = newSong.getPercentLike(i);
+
+                System.out.println("Song Title: " + newSong.get(i).getTitle());
+                System.out.println("Song Artist: " + newSong.get(i)
+                    .getArtist());
+                System.out.println("Song Genre: " + newSong.get(i).getGenre());
+                System.out.println("Song Year: " + newSong.get(i).getYear());
+                System.out.println("Heard");
+                System.out.println("reading:" + songHeard[0] + " art:"
+                    + songHeard[1] + " sports:" + songHeard[2] + " music:"
+                    + songHeard[3]);
+                System.out.println("Likes");
+                System.out.println("reading:" + songLiked[0] + " art:"
+                    + songLiked[1] + " sports:" + songLiked[2] + " music:"
+                    + songLiked[3]);
+                System.out.println("");
+            }
         }
-
-        newSong.sort("Title");
-
-        // represent hobbies
-        for (int i = 0; i < newSong.getLength(); i++) {
-            int[] songHeard = newSong.getPercentHeard(i);
-            int[] songLiked = newSong.getPercentLike(i);
-
-            System.out.println("Song Title: " + newSong.get(i).getTitle());
-            System.out.println("Song Artist: " + newSong.get(i).getArtist());
-            System.out.println("Song Genre: " + newSong.get(i).getGenre());
-            System.out.println("Song Year: " + newSong.get(i).getYear());
-            System.out.println("Heard");
-            System.out.println("reading:" + songHeard[0] + " art:"
-                + songHeard[1] + " sports:" + songHeard[2] + " music:"
-                + songHeard[3]);
-            System.out.println("Likes");
-            System.out.println("reading:" + songLiked[0] + " art:"
-                + songLiked[1] + " sports:" + songLiked[2] + " music:"
-                + songLiked[3]);
-            System.out.println("");
+        else {           
+            new Input("MusicSurveyData2017S.csv", "SongList2017S.csv");
         }
     }
 }
