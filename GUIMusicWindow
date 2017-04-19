@@ -46,7 +46,20 @@ public class GUIMusicWindow {
         addButton("Quit", "clickedQuit", WindowSide.SOUTH);
 
         makeLegend(RepresentationEnum.HOBBY);
+        
+        int eachGlyphHeight = myWindow.getGraphPanelHeight() / 4;
+        int eachGlyphWidth = myWindow.getGraphPanelWidth() / 4;
 
+        int padding = eachGlyphHeight / 5;
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++) {
+                int song = startingPosition + j + 3 * i;
+                if (song < songs.getLength())
+                    new GUISongGlyph(myWindow, padding + i * eachGlyphWidth, ((j + 1)
+                      * padding) + j * eachGlyphHeight, songs.getEntry(song), "G"  );
+            }
+
+    
     }
 
 
@@ -63,10 +76,10 @@ public class GUIMusicWindow {
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
                 int song = startingPosition + j + 3 * i;
-                if (song < songs.getLength())
-                    new GUISongGlyph(padding + i * eachGlyphWidth, ((j + 1)
-                        * padding) + j * eachGlyphHeight, songs.getEntry(song),
-                        eachGlyphWidth, eachGlyphHeight, breakdown, myWindow);
+//                if (song < songs.getLength())
+//                    new GUISongGlyph(padding + i * eachGlyphWidth, ((j + 1)
+//                        * padding) + j * eachGlyphHeight, songs.getEntry(song),
+//                        eachGlyphWidth, eachGlyphHeight, breakdown, myWindow);
             }
 
     }
