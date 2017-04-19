@@ -3,9 +3,10 @@ package prj5;
 import student.TestCase;
 
 /**
- * This test class tests all four comparator classes to 
- * ensure that they return the correct values for the 
+ * This test class tests all four comparator classes to
+ * ensure that they return the correct values for the
  * compare() methods.
+ * 
  * @author Pim Silpacharn
  * @version 4/19/17
  */
@@ -14,43 +15,48 @@ public class CompareTest extends TestCase {
     private Song song1;
     private Song song2;
 
+
     /**
      * Called upon before each test method is called.
      */
     public void setUp() {
-        song1 = new Song("Time", "Pink Floyd", "1974", "Rock", null);
-        song2 = new Song("Floats my Boat", "Aer", "2009", "Rap", null);
+        song1 = new Song("Time", "Pink Floyd", "Rock", "1974");
+        song2 = new Song("Floats my Boat", "Aer", "Rap", "2009");
     }
+
 
     /**
      * Tests compare by artist.
      */
     public void testCompareByArtist() {
-        CompareByArtist compare = new CompareByArtist();
-        assertEquals(compare.compare(song1, song2), 15);
+        ArtistComparator compare = new ArtistComparator();
+        assertEquals(compare.compare(song1, song2), 1);
     }
+
 
     /**
      * Tests compare by genre.
      */
     public void testCompareByGenre() {
-        CompareByGenre compare = new CompareByGenre();
-        assertEquals(compare.compare(song1, song2), 14);
+        GenreComparator compare = new GenreComparator();
+        assertEquals(compare.compare(song1, song2), 1);
     }
+
 
     /**
      * Tests compare by title.
      */
     public void testCompareByTitle() {
-        CompareByTitle compare = new CompareByTitle();
-        assertEquals(compare.compare(song1, song2), 14);
+        TitleComparator compare = new TitleComparator();
+        assertEquals(compare.compare(song1, song2), 1);
     }
+
 
     /**
      * Tests compare by year.
      */
     public void testCompareByYear() {
-        CompareByYear compare = new CompareByYear();
-        assertEquals(compare.compare(song1, song2), -35);
+        YearComparator compare = new YearComparator();
+        assertEquals(compare.compare(song1, song2), -1);
     }
 }
