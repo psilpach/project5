@@ -4,9 +4,7 @@
 package prj5;
 
 import java.awt.Color;
-import java.io.FileNotFoundException;
 import CS2114.Button;
-import CS2114.CircleShape;
 import CS2114.Shape;
 import CS2114.TextShape;
 import CS2114.Window;
@@ -265,7 +263,7 @@ public class GUIMusicWindow {
         Shape legend = new Shape(x, y, 150, 250, Color.WHITE);
         legend.setForegroundColor(Color.BLACK);
 
-        if (breakdown.equals(RepresentationEnum.HOBBY)) {
+        if (breakdown == RepresentationEnum.HOBBY) {
 
             TextShape legendText = new TextShape(x + 30, y + 5, "Hobby Legend");
             TextShape firstText = new TextShape(x + 60, y + 30, "Read");
@@ -289,7 +287,7 @@ public class GUIMusicWindow {
             myWindow.addShape(thirdText);
             myWindow.addShape(fourthText);
         }
-        else if (breakdown.equals(RepresentationEnum.MAJOR)) {
+        else if (breakdown == RepresentationEnum.MAJOR) {
 
             TextShape legendText = new TextShape(x + 30, y + 5, "Major Legend");
             TextShape firstText = new TextShape(x + 60, y + 30, "Comp Sci");
@@ -313,7 +311,7 @@ public class GUIMusicWindow {
             myWindow.addShape(thirdText);
             myWindow.addShape(fourthText);
         }
-        else if (breakdown.equals(RepresentationEnum.REGION)) {
+        else if (breakdown == RepresentationEnum.REGION) {
 
             TextShape legendText = new TextShape(x + 30, y + 5,
                 "Region Legend");
@@ -338,9 +336,9 @@ public class GUIMusicWindow {
             myWindow.addShape(thirdText);
             myWindow.addShape(fourthText);
         }
-        else {
-            throw new IllegalStateException();
-        }
+// else {
+// throw new IllegalStateException();
+// }
 
         TextShape songTitle = new TextShape(x + 45, y + 140, "Song Title");
         TextShape heardText = new TextShape(x + 20, y + 180, "Heard");
