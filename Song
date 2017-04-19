@@ -151,43 +151,41 @@ public class Song {
         if (add) {
             heardArray.add(p);
         }
-        String hob = p.getHobby();
-        String maj = p.getMajor();
-        String reg = p.getState();
-        if (hob.contains("read")) {
+
+        if (p.getHobby() == HobbyEnum.READING) {
             numHeardRead++;
         }
-        else if (hob.contains("art")) {
+        else if (p.getHobby() == HobbyEnum.ART) {
             numHeardArt++;
         }
-        else if (hob.contains("sport")) {
+        else if (p.getHobby() == HobbyEnum.SPORTS) {
             numHeardSports++;
         }
-        else if (hob.contains("music")) {
+        else if (p.getHobby() == HobbyEnum.MUSIC) {
             numHeardMusic++;
         }
-        if (maj.contains("Comp")) {
+        if (p.getMajor() == MajorEnum.COMPSCI) {
             numHeardComp++;
         }
-        else if (maj.contains("Eng")) {
+        else if (p.getMajor() == MajorEnum.ENGINEERING) {
             numHeardEng++;
         }
-        else if (maj.contains("Math")) {
+        else if (p.getMajor() == MajorEnum.MATH) {
             numHeardMath++;
         }
-        else if (maj.equals("Other")) {
+        else if (p.getMajor() == MajorEnum.OTHER) {
             numHeardOther++;
         }
-        if (reg.equals("Southeast")) {
+        if (p.getState() == RegionEnum.SOUTHEAST) {
             numHeardSouth++;
         }
-        else if (reg.equals("Northeast")) {
+        else if (p.getState() == RegionEnum.NORTHEAST) {
             numHeardNorth++;
         }
-        else if (reg.contains("other")) {
+        else if (p.getState() == RegionEnum.USOTHER) {
             numHeardUs++;
         }
-        else if (reg.contains("Outside")) {
+        else if (p.getState() == RegionEnum.OTHER) {
             numHeardNon++;
         }
     }
@@ -205,43 +203,41 @@ public class Song {
         if (add) {
             likeArray.add(p);
         }
-        String hob = p.getHobby();
-        String maj = p.getMajor();
-        String reg = p.getState();
-        if (hob.contains("read")) {
+
+        if (p.getHobby() == HobbyEnum.READING) {
             numLikeRead++;
         }
-        else if (hob.contains("art")) {
+        else if (p.getHobby() == HobbyEnum.ART) {
             numLikeArt++;
         }
-        else if (hob.contains("sport")) {
+        else if (p.getHobby() == HobbyEnum.SPORTS) {
             numLikeSports++;
         }
-        else if (hob.contains("music")) {
+        else if (p.getHobby() == HobbyEnum.MUSIC) {
             numLikeMusic++;
         }
-        if (maj.contains("Comp")) {
+        if (p.getMajor() == MajorEnum.COMPSCI) {
             numLikeComp++;
         }
-        else if (maj.contains("Eng")) {
+        else if (p.getMajor() == MajorEnum.ENGINEERING) {
             numLikeEng++;
         }
-        else if (maj.contains("Math")) {
+        else if (p.getMajor() == MajorEnum.MATH) {
             numLikeMath++;
         }
-        else if (maj.equals("Other")) {
+        else if (p.getMajor() == MajorEnum.OTHER) {
             numLikeOther++;
         }
-        if (reg.equals("Southeast")) {
+        if (p.getState() == RegionEnum.SOUTHEAST) {
             numLikeSouth++;
         }
-        else if (reg.equals("Northeast")) {
+        else if (p.getState() == RegionEnum.NORTHEAST) {
             numLikeNorth++;
         }
-        else if (reg.contains("other")) {
+        else if (p.getState() == RegionEnum.USOTHER) {
             numLikeUs++;
         }
-        else if (reg.contains("Outside")) {
+        else if (p.getState() == RegionEnum.OTHER) {
             numLikeNon++;
         }
     }
@@ -275,40 +271,40 @@ public class Song {
             out[i] = 0;
         }
         for (int i = 0; i < heardArray.size(); i++) {
-            if (heardArray.get(i).getHobby().contains("read")) {
+            if (heardArray.get(i).getHobby() == HobbyEnum.READING) {
                 out[0]++;
             }
-            else if (heardArray.get(i).getHobby().contains("art")) {
+            else if (heardArray.get(i).getHobby() == HobbyEnum.ART) {
                 out[1]++;
             }
-            else if (heardArray.get(i).getHobby().contains("sport")) {
+            else if (heardArray.get(i).getHobby() == HobbyEnum.SPORTS) {
                 out[2]++;
             }
-            else if (heardArray.get(i).getHobby().contains("music")) {
+            else if (heardArray.get(i).getHobby() == HobbyEnum.MUSIC) {
                 out[3]++;
             }
-            if (heardArray.get(i).getMajor().contains("Comp")) {
+            if (heardArray.get(i).getMajor() == MajorEnum.COMPSCI) {
                 out[4]++;
             }
-            else if (heardArray.get(i).getMajor().contains("Eng")) {
+            else if (heardArray.get(i).getMajor() == MajorEnum.ENGINEERING) {
                 out[5]++;
             }
-            else if (heardArray.get(i).getMajor().contains("Math")) {
+            else if (heardArray.get(i).getMajor() == MajorEnum.MATH) {
                 out[6]++;
             }
-            else if (heardArray.get(i).getMajor().equals("Other")) {
+            else if (heardArray.get(i).getMajor() == MajorEnum.OTHER) {
                 out[7]++;
             }
-            if (heardArray.get(i).getState().equals("Southeast")) {
+            if (heardArray.get(i).getState() == RegionEnum.SOUTHEAST) {
                 out[8]++;
             }
-            else if (heardArray.get(i).getState().equals("Northeast")) {
+            else if (heardArray.get(i).getState() == RegionEnum.NORTHEAST) {
                 out[9]++;
             }
-            else if (heardArray.get(i).getState().contains("other")) {
+            else if (heardArray.get(i).getState() == RegionEnum.USOTHER) {
                 out[10]++;
             }
-            else if (heardArray.get(i).getState().contains("Outside")) {
+            else if (heardArray.get(i).getState() == RegionEnum.OTHER) {
                 out[11]++;
             }
         }
@@ -326,40 +322,40 @@ public class Song {
             out[i] = 0;
         }
         for (int i = 0; i < likeArray.size(); i++) {
-            if (likeArray.get(i).getHobby().contains("read")) {
+            if (heardArray.get(i).getHobby() == HobbyEnum.READING) {
                 out[0]++;
             }
-            else if (likeArray.get(i).getHobby().contains("art")) {
+            else if (heardArray.get(i).getHobby() == HobbyEnum.ART) {
                 out[1]++;
             }
-            else if (likeArray.get(i).getHobby().contains("sport")) {
+            else if (heardArray.get(i).getHobby() == HobbyEnum.SPORTS) {
                 out[2]++;
             }
-            else if (likeArray.get(i).getHobby().contains("music")) {
+            else if (heardArray.get(i).getHobby() == HobbyEnum.MUSIC) {
                 out[3]++;
             }
-            if (likeArray.get(i).getMajor().contains("Comp")) {
+            if (heardArray.get(i).getMajor() == MajorEnum.COMPSCI) {
                 out[4]++;
             }
-            else if (likeArray.get(i).getMajor().contains("Eng")) {
+            else if (heardArray.get(i).getMajor() == MajorEnum.ENGINEERING) {
                 out[5]++;
             }
-            else if (likeArray.get(i).getMajor().contains("Math")) {
+            else if (heardArray.get(i).getMajor() == MajorEnum.MATH) {
                 out[6]++;
             }
-            else if (likeArray.get(i).getMajor().equals("Other")) {
+            else if (heardArray.get(i).getMajor() == MajorEnum.OTHER) {
                 out[7]++;
             }
-            if (likeArray.get(i).getState().equals("Southeast")) {
+            if (heardArray.get(i).getState() == RegionEnum.SOUTHEAST) {
                 out[8]++;
             }
-            else if (likeArray.get(i).getState().equals("Northeast")) {
+            else if (heardArray.get(i).getState() == RegionEnum.NORTHEAST) {
                 out[9]++;
             }
-            else if (likeArray.get(i).getState().contains("other")) {
+            else if (heardArray.get(i).getState() == RegionEnum.USOTHER) {
                 out[10]++;
             }
-            else if (likeArray.get(i).getState().contains("Outside")) {
+            else if (heardArray.get(i).getState() == RegionEnum.OTHER) {
                 out[11]++;
             }
         }
