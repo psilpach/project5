@@ -247,17 +247,17 @@ public class GUIMusicWindow {
      * Creates the legend for the window
      */
     public void makeLegend(RepresentationEnum breakdown) {
-        int x = (myWindow.getGraphPanelWidth() / 2) + 340;
-        int y = (myWindow.getGraphPanelHeight() / 2) + 70;
-        Shape legend = new Shape(x, y, 150, 250, Color.WHITE);
+        int x = (myWindow.getGraphPanelWidth() / 2) + 250;
+        int y = (myWindow.getGraphPanelHeight() / 2) + 20;
+        Shape legend = new Shape(x + 20, y, 130, 200, Color.WHITE);
         legend.setForegroundColor(Color.BLACK);
 
         if (breakdown == RepresentationEnum.HOBBY) {
-            TextShape legendText = new TextShape(x + 30, y + 5, "Hobby Legend");
-            TextShape firstText = new TextShape(x + 60, y + 30, "Read");
-            TextShape secondText = new TextShape(x + 60, y + 60, "Art");
-            TextShape thirdText = new TextShape(x + 60, y + 90, "Sports");
-            TextShape fourthText = new TextShape(x + 60, y + 120, "Music");
+            TextShape legendText = new TextShape(x + 40, y + 5, "Hobby Legend");
+            TextShape firstText = new TextShape(x + 40, y + 30, "Read");
+            TextShape secondText = new TextShape(x + 40, y + 50, "Art");
+            TextShape thirdText = new TextShape(x + 40, y + 70, "Sports");
+            TextShape fourthText = new TextShape(x + 40, y + 90, "Music");
 
             legendText.setBackgroundColor(Color.WHITE);
             firstText.setBackgroundColor(Color.WHITE);
@@ -328,10 +328,10 @@ public class GUIMusicWindow {
             throw new IllegalStateException();
         }
 
-        TextShape songTitle = new TextShape(x + 45, y + 140, "Song Title");
-        TextShape heardText = new TextShape(x + 20, y + 180, "Heard");
-        TextShape likedText = new TextShape(x + 100, y + 180, "Liked");
-        Shape legendDivider = new Shape(x + 80, y + 160, 5, 60, Color.BLACK);
+        TextShape songTitle = new TextShape(x + 45, y + 110, "Song Title");
+        TextShape heardText = new TextShape(x + 30, y + 130, "Heard");
+        TextShape likedText = new TextShape(x + 100, y + 130, "Liked");
+        Shape legendDivider = new Shape(x + 80, y + 130, 5, 40, Color.BLACK);
 
         songTitle.setBackgroundColor(Color.WHITE);
         heardText.setBackgroundColor(Color.WHITE);
