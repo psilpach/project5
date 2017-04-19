@@ -3,6 +3,14 @@ package prj5;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * tests SongList
+ * 
+ * @author kbenson8
+ * @author ndanni4
+ * @author pims617
+ * @version Apr 19, 2017
+ */
 public class SongListTest extends student.TestCase {
 
     private SongList list;
@@ -15,7 +23,7 @@ public class SongListTest extends student.TestCase {
 
     /**
      * setup a list with 4 songs inside
-     * setuo a iterator to iterate through the song list
+     * setup a iterator to iterate through the song list
      */
     public void setUp() {
         list = new SongList();
