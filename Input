@@ -25,6 +25,7 @@ public class Input {
         new GUIMusicWindow(musicList);
     }
 
+
     /**
      * Reads the data from two
      * 
@@ -46,6 +47,7 @@ public class Input {
 
         return dataFile;
     }
+
 
     /**
      * Reads the people in the file with the Person data
@@ -72,7 +74,7 @@ public class Input {
 
         while (fileScan.hasNextLine()) {
             String personLine = fileScan.nextLine();
-            String[] personData = personLine.split(" *, *",100);
+            String[] personData = personLine.split(" *, *", 100);
             if (personData.length > 2 && !personData[4].equals("")) {
 
                 MajorEnum major = findMajor(personData[2]);
@@ -89,13 +91,14 @@ public class Input {
                     liked[index] = personData[i + 1];
                     index++;
                 }
-                dataFile.addPerson(
-                        new Person(hobby, major, region, heard, liked));
+                dataFile.addPerson(new Person(hobby, major, region, heard,
+                    liked));
             }
         }
 
         fileScan.close();
     }
+
 
     /**
      * Reads the Songs in the file with all the Song data
@@ -123,18 +126,19 @@ public class Input {
 
         while (fileScan.hasNextLine()) {
             String songLine = fileScan.nextLine();
-            String[] songData = songLine.split(" *, *",100);
+            String[] songData = songLine.split(" *, *", 100);
             String title = songData[0];
             String artist = songData[1];
             String year = songData[2];
             String genre = songData[3];
 
-            dataFile.add(new Song(genre, artist, title, year));
+            dataFile.add(new Song(title, artist, genre, year));
             index++;
         }
 
         fileScan.close();
     }
+
 
     /**
      * Method finds the corresponding enum of the input String for the Person's
@@ -148,24 +152,25 @@ public class Input {
         MajorEnum majorEnum = null;
         switch (major) {
 
-        case "Computer Science":
-            majorEnum = MajorEnum.COMPSCI;
-            break;
+            case "Computer Science":
+                majorEnum = MajorEnum.COMPSCI;
+                break;
 
-        case "Math or CMDA":
-            majorEnum = MajorEnum.MATH;
-            break;
+            case "Math or CMDA":
+                majorEnum = MajorEnum.MATH;
+                break;
 
-        case "Other Engineering":
-            majorEnum = MajorEnum.ENGINEERING;
-            break;
+            case "Other Engineering":
+                majorEnum = MajorEnum.ENGINEERING;
+                break;
 
-        default:
-            majorEnum = MajorEnum.OTHER;
-            break;
+            default:
+                majorEnum = MajorEnum.OTHER;
+                break;
         }
         return majorEnum;
     }
+
 
     /**
      * Method finds the corresponding enum of the input String for the Person's
@@ -180,24 +185,25 @@ public class Input {
         RegionEnum regionEnum = null;
         switch (region) {
 
-        case "Southeast":
-            regionEnum = RegionEnum.SOUTHEAST;
-            break;
+            case "Southeast":
+                regionEnum = RegionEnum.SOUTHEAST;
+                break;
 
-        case "Northeast":
-            regionEnum = RegionEnum.NORTHEAST;
-            break;
+            case "Northeast":
+                regionEnum = RegionEnum.NORTHEAST;
+                break;
 
-        case "United States (other than Southeast or Northwest)":
-            regionEnum = RegionEnum.USOTHER;
-            break;
+            case "United States (other than Southeast or Northwest)":
+                regionEnum = RegionEnum.USOTHER;
+                break;
 
-        default:
-            regionEnum = RegionEnum.OTHER;
-            break;
+            default:
+                regionEnum = RegionEnum.OTHER;
+                break;
         }
         return regionEnum;
     }
+
 
     /**
      * Method finds the corresponding enum of the input String for the Person's
@@ -212,38 +218,41 @@ public class Input {
         HobbyEnum hobbyEnum = null;
         switch (hobby) {
 
-        case "sports":
-            hobbyEnum = HobbyEnum.SPORTS;
-            break;
+            case "sports":
+                hobbyEnum = HobbyEnum.SPORTS;
+                break;
 
-        case "music":
-            hobbyEnum = HobbyEnum.MUSIC;
-            break;
+            case "music":
+                hobbyEnum = HobbyEnum.MUSIC;
+                break;
 
-        case "reading":
-            hobbyEnum = HobbyEnum.READING;
-            break;
+            case "reading":
+                hobbyEnum = HobbyEnum.READING;
+                break;
 
-        default:
-            hobbyEnum = HobbyEnum.ART;
-            break;
+            default:
+                hobbyEnum = HobbyEnum.ART;
+                break;
         }
         return hobbyEnum;
     }
-    
+
+
     /**
      * main() method runs the program
-     * @param args    the supplied command-line arguments
-     *                as an array of String objects
+     * 
+     * @param args
+     *            the supplied command-line arguments
+     *            as an array of String objects
      */
     public static void main(String[] args) {
-        
+
         if (args.length == 2) {
-            
+
             new Input(args[0], args[1]);
         }
         else {
-            
+
             new Input("MusicSurveyData2017S.csv", "SongList2017S.csv");
         }
     }
