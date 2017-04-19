@@ -151,41 +151,43 @@ public class Song {
         if (add) {
             heardArray.add(p);
         }
-
-        if (p.getHobby() == HobbyEnum.READING) {
+        HobbyEnum hob = p.getHobby();
+        MajorEnum maj = p.getMajor();
+        RegionEnum reg = p.getState();
+        if (hob == HobbyEnum.READING) {
             numHeardRead++;
         }
-        else if (p.getHobby() == HobbyEnum.ART) {
+        else if (hob == HobbyEnum.ART) {
             numHeardArt++;
         }
-        else if (p.getHobby() == HobbyEnum.SPORTS) {
+        else if (hob == HobbyEnum.SPORTS) {
             numHeardSports++;
         }
-        else if (p.getHobby() == HobbyEnum.MUSIC) {
+        else if (hob == HobbyEnum.MUSIC) {
             numHeardMusic++;
         }
-        if (p.getMajor() == MajorEnum.COMPSCI) {
+        if (maj == MajorEnum.COMPSCI) {
             numHeardComp++;
         }
-        else if (p.getMajor() == MajorEnum.ENGINEERING) {
+        else if (maj == MajorEnum.ENGINEERING) {
             numHeardEng++;
         }
-        else if (p.getMajor() == MajorEnum.MATH) {
+        else if (maj == MajorEnum.MATH) {
             numHeardMath++;
         }
-        else if (p.getMajor() == MajorEnum.OTHER) {
+        else if (maj == MajorEnum.OTHER) {
             numHeardOther++;
         }
-        if (p.getState() == RegionEnum.SOUTHEAST) {
+        if (reg == RegionEnum.SOUTHEAST) {
             numHeardSouth++;
         }
-        else if (p.getState() == RegionEnum.NORTHEAST) {
+        else if (reg == RegionEnum.NORTHEAST) {
             numHeardNorth++;
         }
-        else if (p.getState() == RegionEnum.USOTHER) {
+        else if (reg == RegionEnum.USOTHER) {
             numHeardUs++;
         }
-        else if (p.getState() == RegionEnum.OTHER) {
+        else if (reg == RegionEnum.OTHER) {
             numHeardNon++;
         }
     }
@@ -203,41 +205,43 @@ public class Song {
         if (add) {
             likeArray.add(p);
         }
-
-        if (p.getHobby() == HobbyEnum.READING) {
+        HobbyEnum hob = p.getHobby(); // how to recognize the type from an enum
+        MajorEnum maj = p.getMajor();
+        RegionEnum reg = p.getState();
+        if (hob == HobbyEnum.READING) {
             numLikeRead++;
         }
-        else if (p.getHobby() == HobbyEnum.ART) {
+        else if (hob == HobbyEnum.ART) {
             numLikeArt++;
         }
-        else if (p.getHobby() == HobbyEnum.SPORTS) {
+        else if (hob == HobbyEnum.SPORTS) {
             numLikeSports++;
         }
-        else if (p.getHobby() == HobbyEnum.MUSIC) {
+        else if (hob == HobbyEnum.MUSIC) {
             numLikeMusic++;
         }
-        if (p.getMajor() == MajorEnum.COMPSCI) {
+        if (maj == MajorEnum.COMPSCI) {
             numLikeComp++;
         }
-        else if (p.getMajor() == MajorEnum.ENGINEERING) {
+        else if (maj == MajorEnum.ENGINEERING) {
             numLikeEng++;
         }
-        else if (p.getMajor() == MajorEnum.MATH) {
+        else if (maj == MajorEnum.MATH) {
             numLikeMath++;
         }
-        else if (p.getMajor() == MajorEnum.OTHER) {
+        else if (maj == MajorEnum.OTHER) {
             numLikeOther++;
         }
-        if (p.getState() == RegionEnum.SOUTHEAST) {
+        if (reg == RegionEnum.SOUTHEAST) {
             numLikeSouth++;
         }
-        else if (p.getState() == RegionEnum.NORTHEAST) {
+        else if (reg == RegionEnum.NORTHEAST) {
             numLikeNorth++;
         }
-        else if (p.getState() == RegionEnum.USOTHER) {
+        else if (reg == RegionEnum.USOTHER) {
             numLikeUs++;
         }
-        else if (p.getState() == RegionEnum.OTHER) {
+        else if (reg == RegionEnum.OTHER) {
             numLikeNon++;
         }
     }
@@ -271,7 +275,9 @@ public class Song {
             out[i] = 0;
         }
         for (int i = 0; i < heardArray.size(); i++) {
-            if (heardArray.get(i).getHobby() == HobbyEnum.READING) {
+            if (heardArray.get(i).getHobby() == HobbyEnum.READING) { // use
+                // .contains or
+                // .equals?
                 out[0]++;
             }
             else if (heardArray.get(i).getHobby() == HobbyEnum.ART) {
@@ -292,7 +298,7 @@ public class Song {
             else if (heardArray.get(i).getMajor() == MajorEnum.MATH) {
                 out[6]++;
             }
-            else if (heardArray.get(i).getMajor() == MajorEnum.OTHER) {
+            else if (heardArray.get(i).getMajor() == MajorEnum.COMPSCI) {
                 out[7]++;
             }
             if (heardArray.get(i).getState() == RegionEnum.SOUTHEAST) {
@@ -322,40 +328,40 @@ public class Song {
             out[i] = 0;
         }
         for (int i = 0; i < likeArray.size(); i++) {
-            if (heardArray.get(i).getHobby() == HobbyEnum.READING) {
+            if (likeArray.get(i).getHobby() == HobbyEnum.READING) {
                 out[0]++;
             }
-            else if (heardArray.get(i).getHobby() == HobbyEnum.ART) {
+            else if (likeArray.get(i).getHobby() == HobbyEnum.ART) {
                 out[1]++;
             }
-            else if (heardArray.get(i).getHobby() == HobbyEnum.SPORTS) {
+            else if (likeArray.get(i).getHobby() == HobbyEnum.SPORTS) {
                 out[2]++;
             }
-            else if (heardArray.get(i).getHobby() == HobbyEnum.MUSIC) {
+            else if (likeArray.get(i).getHobby() == HobbyEnum.MUSIC) {
                 out[3]++;
             }
-            if (heardArray.get(i).getMajor() == MajorEnum.COMPSCI) {
+            if (likeArray.get(i).getMajor() == MajorEnum.COMPSCI) {
                 out[4]++;
             }
-            else if (heardArray.get(i).getMajor() == MajorEnum.ENGINEERING) {
+            else if (likeArray.get(i).getMajor() == MajorEnum.ENGINEERING) {
                 out[5]++;
             }
-            else if (heardArray.get(i).getMajor() == MajorEnum.MATH) {
+            else if (likeArray.get(i).getMajor() == MajorEnum.MATH) {
                 out[6]++;
             }
-            else if (heardArray.get(i).getMajor() == MajorEnum.OTHER) {
+            else if (likeArray.get(i).getMajor() == MajorEnum.OTHER) {
                 out[7]++;
             }
-            if (heardArray.get(i).getState() == RegionEnum.SOUTHEAST) {
+            if (likeArray.get(i).getState() == RegionEnum.SOUTHEAST) {
                 out[8]++;
             }
-            else if (heardArray.get(i).getState() == RegionEnum.NORTHEAST) {
+            else if (likeArray.get(i).getState() == RegionEnum.NORTHEAST) {
                 out[9]++;
             }
-            else if (heardArray.get(i).getState() == RegionEnum.USOTHER) {
+            else if (likeArray.get(i).getState() == RegionEnum.USOTHER) {
                 out[10]++;
             }
-            else if (heardArray.get(i).getState() == RegionEnum.OTHER) {
+            else if (likeArray.get(i).getState() == RegionEnum.OTHER) {
                 out[11]++;
             }
         }
