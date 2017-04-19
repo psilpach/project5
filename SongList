@@ -2,7 +2,6 @@ package prj5;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
 import list.ListInterface;
 
 /**
@@ -18,12 +17,14 @@ public class SongList implements ListInterface<Song> {
     private SongNode head;
     private SongNode tail;
 
+
     /**
      * 
      */
     public SongList() {
         init();
     }
+
 
     /**
      * intialize two sentinal nodes for doubly linked list
@@ -36,6 +37,7 @@ public class SongList implements ListInterface<Song> {
         size = 0;
     }
 
+
     /**
      * 
      * @param p
@@ -44,26 +46,29 @@ public class SongList implements ListInterface<Song> {
     public void addPerson(Person p) {
         numPeople++;
     }
-    
+
+
     /**
      * 
      * @param index
-     *            index 
+     *            index
      * @return percent
      */
     public int[] getPercentLike(int index) {
         return get(index).getPercent(true);
     }
 
+
     /**
      * 
      * @param index
-     *            index 
+     *            index
      * @return percent
      */
     public int[] getPercentHeard(int index) {
         return get(index).getPercent(false);
     }
+
 
     /**
      * 
@@ -72,6 +77,7 @@ public class SongList implements ListInterface<Song> {
     public int getNumPeople() {
         return numPeople;
     }
+
 
     /**
      * 
@@ -83,15 +89,14 @@ public class SongList implements ListInterface<Song> {
 
         while (swapped) {
             SongNode temp = head.next();
-            
+
             swapped = false;
-            while (temp != null && temp.getSong() != null
-                    && temp.next().getSong() != null) {
+            while (temp != null && temp.getSong() != null && temp.next()
+                .getSong() != null) {
                 Song s = temp.getSong();
                 if (modifier.equals("Artist")) {
-                    if (s.getArtist()
-                            .compareTo(temp.next()
-                                    .getSong().getArtist()) > 0) {
+                    if (s.getArtist().compareTo(temp.next().getSong()
+                        .getArtist()) > 0) {
                         SongNode tempNext = temp.next();
                         SongNode tempPrev = temp.previous();
                         tempNext.next().setPrevious(temp);
@@ -107,9 +112,8 @@ public class SongList implements ListInterface<Song> {
                     }
                 }
                 if (modifier.equals("Title")) {
-                    if (s.getTitle()
-                            .compareTo(temp.next()
-                                    .getSong().getTitle()) > 0) {
+                    if (s.getTitle().compareTo(temp.next().getSong()
+                        .getTitle()) > 0) {
                         SongNode tempNext = temp.next();
                         SongNode tempPrev = temp.previous();
                         tempNext.next().setPrevious(temp);
@@ -124,11 +128,10 @@ public class SongList implements ListInterface<Song> {
                         temp = temp.next();
                     }
                 }
-                
+
                 if (modifier.equals("Genre")) {
-                    if (s.getGenre()
-                            .compareTo(temp.next()
-                                    .getSong().getGenre()) > 0) {
+                    if (s.getGenre().compareTo(temp.next().getSong()
+                        .getGenre()) > 0) {
                         SongNode tempNext = temp.next();
                         SongNode tempPrev = temp.previous();
                         tempNext.next().setPrevious(temp);
@@ -143,11 +146,10 @@ public class SongList implements ListInterface<Song> {
                         temp = temp.next();
                     }
                 }
-                
+
                 if (modifier.equals("Release")) {
-                    if (s.getDate().compareTo(temp
-                            .next().getSong()
-                            .getDate()) > 0) {
+                    if (s.getYear().compareTo(temp.next().getSong()
+                        .getYear()) > 0) {
                         SongNode tempNext = temp.next();
                         SongNode tempPrev = temp.previous();
                         tempNext.next().setPrevious(temp);
@@ -166,12 +168,14 @@ public class SongList implements ListInterface<Song> {
         }
     }
 
+
     /**
      * @return true if empty, false if not
      */
     public boolean isEmpty() {
         return size == 0;
     }
+
 
     /**
      * @return length
@@ -180,12 +184,14 @@ public class SongList implements ListInterface<Song> {
         return size;
     }
 
+
     /**
      * call init method to reset the list
      */
     public void clear() {
         init();
     }
+
 
     /**
      * 
@@ -197,6 +203,7 @@ public class SongList implements ListInterface<Song> {
         return getNodeAtIndex(index).getSong();
     }
 
+
     /**
      * @param newEntry
      *            song we're adding
@@ -205,6 +212,7 @@ public class SongList implements ListInterface<Song> {
         add(getLength(), newEntry);
     }
 
+
     /**
      * @param index
      *            index where we're adding
@@ -212,13 +220,13 @@ public class SongList implements ListInterface<Song> {
      *            song we want to add
      */
     public void add(int index, Song obj) {
-        
+
         if (index < 0 || size < index) {
             throw new IndexOutOfBoundsException();
         }
         if (obj == null) {
             throw new IllegalArgumentException("Cannot add null "
-                    + "objects to a list");
+                + "objects to a list");
         }
 
         SongNode nodeAfter;
@@ -235,6 +243,7 @@ public class SongList implements ListInterface<Song> {
         size++;
     }
 
+
     /**
      * 
      * @return iterator
@@ -243,6 +252,7 @@ public class SongList implements ListInterface<Song> {
         return new SongIterator();
     }
 
+
     /**
      * 
      * @param index
@@ -250,7 +260,7 @@ public class SongList implements ListInterface<Song> {
      * @return node at index
      */
     public SongNode getNodeAtIndex(int index) {
-        
+
         if (index < 0 || getLength() <= index) {
             throw new IndexOutOfBoundsException("No element exists");
         }
@@ -260,6 +270,7 @@ public class SongList implements ListInterface<Song> {
         }
         return current;
     }
+
 
     /**
      * @param obj
@@ -272,6 +283,7 @@ public class SongList implements ListInterface<Song> {
         return false;
     }
 
+
     /**
      * @param index
      *            index where the song is
@@ -281,6 +293,7 @@ public class SongList implements ListInterface<Song> {
     public Song getEntry(int index) {
         return getNodeAtIndex(index).getSong();
     }
+
 
     /**
      * @param index
@@ -295,14 +308,16 @@ public class SongList implements ListInterface<Song> {
         return null;
     }
 
+
     /**
      * @return array representation of the list
      */
     @Override
     public Object[] toArray() {
-        //unused method
+        // unused method
         return null;
     }
+
 
     /**
      * @param index
@@ -311,9 +326,10 @@ public class SongList implements ListInterface<Song> {
      */
     @Override
     public Song remove(int index) {
-        //unused method
+        // unused method
         return null;
     }
+
 
     /**
      * @author Daniel Medina, dmedina
@@ -325,6 +341,7 @@ public class SongList implements ListInterface<Song> {
         private Song song;
         private SongNode next;
         private SongNode prev;
+
 
         /**
          * 
@@ -341,6 +358,7 @@ public class SongList implements ListInterface<Song> {
             prev = prevNode;
         }
 
+
         /**
          * 
          * @param data
@@ -352,6 +370,7 @@ public class SongList implements ListInterface<Song> {
             prev = null;
         }
 
+
         /**
          * 
          * @param n
@@ -360,6 +379,7 @@ public class SongList implements ListInterface<Song> {
         public void setNext(SongNode n) {
             next = n;
         }
+
 
         /**
          * 
@@ -370,6 +390,7 @@ public class SongList implements ListInterface<Song> {
             prev = n;
         }
 
+
         /**
          * 
          * @return the next node
@@ -378,6 +399,7 @@ public class SongList implements ListInterface<Song> {
             return next;
         }
 
+
         /**
          * 
          * @return previous node
@@ -385,6 +407,7 @@ public class SongList implements ListInterface<Song> {
         public SongNode previous() {
             return prev;
         }
+
 
         /**
          * 
@@ -395,6 +418,7 @@ public class SongList implements ListInterface<Song> {
         }
     }
 
+
     /**
      * @author pim silpacharn
      * @version 4/17/17
@@ -402,12 +426,14 @@ public class SongList implements ListInterface<Song> {
     public class SongIterator implements Iterator<Song> {
         private SongNode currentNode;
 
+
         /**
          * 
          */
         public SongIterator() {
             currentNode = head;
         }
+
 
         /**
          * @return true if there's a next, false if not
@@ -417,12 +443,13 @@ public class SongList implements ListInterface<Song> {
             return currentNode.next().getSong() != null;
         }
 
+
         /**
          * @return next
          */
         @Override
         public Song next() {
-            
+
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
@@ -432,6 +459,11 @@ public class SongList implements ListInterface<Song> {
             System.out.println("\n\n\n");
             return currentNode.getSong();
         }
+    }
+
+
+    public int size() {
+        return size;
     }
 
 }
