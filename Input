@@ -180,6 +180,242 @@ public class Input {
     }
 
 
+
+
+
+*******************************************************************************
+
+
+
+
+
+/**
+ * 
+ */
+package prj5;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+import list.AList;
+
+/**
+ * Input class
+ * @author Christopher Jurgens
+ * @author Kevin Ryan
+ * @author Michael Han
+ * @version 4.18.2017
+ */
+public class Input {
+
+    private static String[] data;
+    private static LinkedList<Person> personList;
+    private static LinkedList<Song> songList;
+    
+    /**
+     * The Main Method
+     * @param args the arguments to be passed in
+     */
+    public static void main(String[] args) {
+        data = new String[2];
+        data[0] = args[0]; //The first argument is the music survey data
+        data[1] = args[1]; //The second argument is the song data
+        
+        personList = new LinkedList<>();
+        songList = new LinkedList<>();
+        readSongs(data[1]);
+        readSurvey(data[0]);
+        
+        new GUI(personList, songList);
+        
+        printOutput();
+    }
+    
+    /**
+     * Returns the LinkedList containing all of the people in the survey
+     * 
+     * @return the LinkedList containing all of the people in the survey
+     */
+    public LinkedList<Person> getPeopleList() {
+        return personList;
+    }
+
+
+    /**
+     * Returns the LinkedList containing all of the songs
+     * 
+     * @return the LinkedList containing all of the songs
+     */
+    public LinkedList<Song> getSongList() {
+        return songList;
+    }
+
+
+    /**
+     * Reads the data from the survey into the list, will create new Person
+     * objects and place them in personList
+     * 
+     * @param survey
+     *            the string containing the survey data.
+     */
+    public static void readSurvey(String surveyData) {
+        try {
+            @SuppressWarnings("resource")
+            Scanner survey = new Scanner(new File(surveyData));
+            survey.nextLine(); // skips the first line because it looks like that contains headers which we don't want
+            while (survey.hasNextLine()) {
+                // Stores each line in a String variable to be analyzed
+                String line = survey.nextLine();
+                if (line.split(",").length >= 5) {
+                    personList.add(new Person(line.split(","), songList));
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
+
+
+    /**
+     * Reads the songs into the list of songs, will create new Song objects and
+     * place them in songList
+     * 
+     * @param songs
+     *            the string containing the songs
+     */
+    public static void readSongs(String songs) {
+        try {
+            @SuppressWarnings("resource")
+            Scanner survey = new Scanner(new File(songs));
+            survey.nextLine(); // skips the first line because it looks like that contains headers which we don't want
+            while (survey.hasNextLine()) {
+                // Stores each line in a String variable to be analyzed
+                String line = survey.nextLine();
+                songList.add(new Song(line.split(",")));
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
+    
+    /**
+     * Sorts the songs according the the parameter
+     * @param sortBy the method to sort the songs list by.
+     */
+    public static void sortSongs(String sortBy) {
+        if ("Artist Name".equals(sortBy)) {
+            sortByArtist();
+        }
+        
+        if ("Song Title".equals(sortBy)) {
+            sortByTitle();
+        }
+        
+        if ("Release Year".equals(sortBy)) {
+            sortyByYear();
+        }
+        
+        if ("Genre".equals(sortBy)) {
+            sortByGenre();
+        }
+    }
+
+    /**
+     * Sorts by Genre
+     */
+    private static void sortByGenre() {
+        ArrayList<Song> list = new ArrayList<Song>();
+        for (int i = 0; i < songList.size(); i++) {
+            list.add(songList.get(i));
+        }
+        Collections.sort(list, new ComparatorGenre());
+        
+        songList.clear();
+        
+        for (int i = 0; i < list.size(); i++) {
+            songList.add(list.get(i));
+        }
+    }
+
+    /**
+     * Sorts by Year
+     */
+    private static void sortyByYear() {
+        // TODO Auto-generated method stub
+    }
+
+    /**
+     * Sorts by Title
+     */
+    private static void sortByTitle() {
+        ArrayList<Song> list = new ArrayList<Song>();
+        for (int i = 0; i < songList.size(); i++) {
+            list.add(songList.get(i));
+        }
+        Collections.sort(list, new ComparatorTitle());
+        
+        songList.clear();
+        
+        for (int i = 0; i < list.size(); i++) {
+            songList.add(list.get(i));
+        }
+    }
+
+    /**
+     * Sorts by Artist
+     */
+    private static void sortByArtist() {
+        // TODO Auto-generated method stub  
+    }
+    
+    /**
+     * Prints out the glyphs of songs
+     */
+    public static void printOutput() {
+        sortSongs("Genre");
+        for (Song song : songList) {
+            Glyph glyph = new Glyph(personList, "Hobby", song);
+            System.out.println(glyph.toString());
+        }
+        sortSongs("Song Title");
+        for (Song song : songList) {
+            Glyph glyph = new Glyph(personList, "Hobby", song);
+            System.out.println(glyph.toString());
+        }   
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Method finds the corresponding enum of the input String for the Person's
      * region
