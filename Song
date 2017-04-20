@@ -17,39 +17,40 @@ public class Song {
     private String genre;
     private String year;
 
-    private int numHeardRead;
-    private int numHeardArt;
-    private int numHeardSports;
-    private int numHeardMusic;
+    private int numHeardRead = 0;
+    private int numHeardArt = 0;
+    private int numHeardSports = 0;
+    private int numHeardMusic = 0;
 
-    private int numHeardComp;
-    private int numHeardEng;
-    private int numHeardMath;
-    private int numHeardOther;
+    private int numHeardComp = 0;
+    private int numHeardEng = 0;
+    private int numHeardMath = 0;
+    private int numHeardOther = 0;
 
-    private int numLikeSouth;
-    private int numLikeNorth;
-    private int numLikeUs;
-    private int numLikeNon;
+    private int numLikeSouth = 0;
+    private int numLikeNorth = 0;
+    private int numLikeUs = 0;
+    private int numLikeNon = 0;
 
-    private int numLikeRead;
-    private int numLikeArt;
-    private int numLikeSports;
-    private int numLikeMusic;
+    private int numLikeRead = 0;
+    private int numLikeArt = 0;
+    private int numLikeSports = 0;
+    private int numLikeMusic = 0;
 
-    private int numLikeComp;
-    private int numLikeEng;
-    private int numLikeMath;
-    private int numLikeOther;
+    private int numLikeComp = 0;
+    private int numLikeEng = 0;
+    private int numLikeMath = 0;
+    private int numLikeOther = 0;
 
-    private int numHeardSouth;
-    private int numHeardNorth;
-    private int numHeardUs;
-    private int numHeardNon;
+    private int numHeardSouth = 0;
+    private int numHeardNorth = 0;
+    private int numHeardUs = 0;
+    private int numHeardNon = 0;
 
     private ArrayList<Person> likeArray;
     private ArrayList<Person> heardArray;
 
+    private int count;
 
     /**
      * 
@@ -70,32 +71,6 @@ public class Song {
         artist = artist1;
         genre = genre1;
         year = year1;
-
-        numHeardRead = 0;
-        numHeardArt = 0;
-        numHeardSports = 0;
-        numHeardMusic = 0;
-        numHeardComp = 0;
-        numHeardEng = 0;
-        numHeardMath = 0;
-        numHeardOther = 0;
-        numHeardSouth = 0;
-        numHeardNorth = 0;
-        numHeardUs = 0;
-        numHeardNon = 0;
-
-        numLikeRead = 0;
-        numLikeArt = 0;
-        numLikeSports = 0;
-        numLikeMusic = 0;
-        numLikeComp = 0;
-        numLikeEng = 0;
-        numLikeMath = 0;
-        numLikeOther = 0;
-        numLikeSouth = 0;
-        numLikeNorth = 0;
-        numLikeUs = 0;
-        numLikeNon = 0;
     }
 
 
@@ -560,16 +535,31 @@ public class Song {
         sb.append("\nsong year ");
         sb.append(year);
         sb.append("\nheard\n");
-        sb.append("reading" + numHeardRead);
-        sb.append(" art" + numHeardArt);
-        sb.append(" sports" + numHeardSports);
-        sb.append(" music" + numHeardMusic);
+        sb.append("reading" + getPercent(true)[1]);
+        sb.append(" art" + getPercent(true)[2]);
+        sb.append(" sports" + getPercent(true)[3]);
+        sb.append(" music" + getPercent(true)[4]);
         sb.append("\nlikes\n");
-        sb.append("reading" + numLikeRead);
-        sb.append(" art" + numLikeArt);
-        sb.append(" sports" + numLikeSports);
-        sb.append(" music" + numLikeMusic + "\n");
+        sb.append("reading" + getPercent(false)[1]);
+        sb.append(" art" + getPercent(false)[2]);
+        sb.append(" sports" + getPercent(false)[3]);
+        sb.append(" music" + getPercent(false)[4] + "\n");
         return sb.toString();
+    }
+
+
+    /**
+     * Creates total numbers for people in each major
+     * 
+     * @param p
+     *            the person to add
+     * @param i
+     */
+    public int addPerson(Person p, int i) {
+        if (p.getHeard()[i].contains("no") || p.getHeard()[i].contains("yes")){
+            count++;
+        }
+        return count;
     }
 
 }
