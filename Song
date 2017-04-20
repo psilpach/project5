@@ -551,21 +551,24 @@ public class Song {
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Title: ");
+        sb.append("song title ");
         sb.append(title);
-        sb.append(", Artist: ");
+        sb.append("\nsong artist ");
         sb.append(artist);
-        sb.append(", Genre: ");
+        sb.append("\nsong genre ");
         sb.append(genre);
-        sb.append(", Release: ");
+        sb.append("\nsong year ");
         sb.append(year);
-        sb.append("\nHeard: ");
-        sb.append(heardArray.size());
-        sb.append(heardArray);
-        sb.append("\nLike: ");
-        sb.append(likeArray.size());
-        sb.append(likeArray);
-        sb.append("\n");
+        sb.append("\nheard\n");
+        sb.append("reading" + numHeardRead);
+        sb.append(" art" + numHeardArt);
+        sb.append(" sports" + numHeardSports);
+        sb.append(" music" + numHeardMusic);
+        sb.append("\nlikes\n");
+        sb.append("reading" + numLikeRead);
+        sb.append(" art" + numLikeArt);
+        sb.append(" sports" + numLikeSports);
+        sb.append(" music" + numLikeMusic + "\n");
         return sb.toString();
     }
 
