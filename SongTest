@@ -55,8 +55,6 @@ public class SongTest extends student.TestCase {
      */
     public void testAddLike() {
 
-        // song.addLike(person4, false);
-
         song.addLike(person, true);
         assertEquals(song.getLike().get(0), person);
 
@@ -68,6 +66,10 @@ public class SongTest extends student.TestCase {
 
         song.addLike(person3, true);
         assertEquals(song.getLike().get(3), person3);
+
+        assertEquals(4, song.getTotalLikes());
+        song.addLike(person, false);
+        assertEquals(4, song.getTotalLikes());
     }
 
 
@@ -242,9 +244,25 @@ public class SongTest extends student.TestCase {
      * check toString method's return format
      */
     public void testToString() {
-        assertEquals(song.toString(), "Title: All These"
-            + " Things I've Done, Artist: The Killers, Genre: "
-            + "alternative, Release: 2005" + "\n" + "Heard: 0[]" + "\n"
-            + "Like: 0[]" + "\n");
+        StringBuilder sb = new StringBuilder();
+        sb.append("song title ");
+        sb.append(song.getTitle());
+        sb.append("\nsong artist ");
+        sb.append(song.getArtist());
+        sb.append("\nsong genre ");
+        sb.append(song.getGenre());
+        sb.append("\nsong year ");
+        sb.append(song.getYear());
+        sb.append("\nheard\n");
+        sb.append("reading" + 0);
+        sb.append(" art" + 0);
+        sb.append(" sports" + 0);
+        sb.append(" music" + 0);
+        sb.append("\nlikes\n");
+        sb.append("reading" + 0);
+        sb.append(" art" + 0);
+        sb.append(" sports" + 0);
+        sb.append(" music" + 0 + "\n");
+        assertEquals(sb.toString(), song.toString());
     }
 }
