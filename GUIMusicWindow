@@ -77,7 +77,7 @@ public class GUIMusicWindow {
                 if (0 <= song && song < songs.getLength()) {
                     new GUISongGlyph(padding + i * (2 * eachGlyphWidth), ((j
                         + 1) * padding) + j * eachGlyphHeight, songs.getEntry(
-                            song), eachGlyphHeight, eachGlyphWidth, breakdown,
+                            song), eachGlyphWidth, eachGlyphHeight, breakdown,
                         myWindow);
                 }
             }
@@ -252,8 +252,8 @@ public class GUIMusicWindow {
      * Creates the legend for the window
      */
     public void makeLegend() {
-        int x = (myWindow.getGraphPanelWidth() / 2) + 340;
-        int y = (myWindow.getGraphPanelHeight() / 2) + 70;
+        int x = (myWindow.getGraphPanelWidth() / 2) + 200;
+        int y = (myWindow.getGraphPanelHeight() / 2) - 50;
         Shape legend = new Shape(x, y, 150, 250, Color.WHITE);
         legend.setForegroundColor(Color.BLACK);
 
