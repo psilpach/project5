@@ -254,16 +254,16 @@ public class GUIMusicWindow {
     public void makeLegend() {
         int x = (myWindow.getGraphPanelWidth() / 2) + 200;
         int y = (myWindow.getGraphPanelHeight() / 2) - 50;
-        Shape legend = new Shape(x, y, 150, 250, Color.WHITE);
+        Shape legend = new Shape(x, y, 150, 180, Color.WHITE);
         legend.setForegroundColor(Color.BLACK);
 
         if (breakdown == RepresentationEnum.HOBBY) {
 
             TextShape legendText = new TextShape(x + 30, y + 5, "Hobby Legend");
-            TextShape firstText = new TextShape(x + 60, y + 30, "Read");
-            TextShape secondText = new TextShape(x + 60, y + 60, "Art");
-            TextShape thirdText = new TextShape(x + 60, y + 90, "Sports");
-            TextShape fourthText = new TextShape(x + 60, y + 120, "Music");
+            TextShape firstText = new TextShape(x + 30, y + 20, "Read");
+            TextShape secondText = new TextShape(x + 30, y + 35, "Art");
+            TextShape thirdText = new TextShape(x + 30, y + 50, "Sports");
+            TextShape fourthText = new TextShape(x + 30, y + 65, "Music");
 
             legendText.setBackgroundColor(Color.WHITE);
             firstText.setBackgroundColor(Color.WHITE);
@@ -284,10 +284,10 @@ public class GUIMusicWindow {
         else if (breakdown == RepresentationEnum.MAJOR) {
 
             TextShape legendText = new TextShape(x + 30, y + 5, "Major Legend");
-            TextShape firstText = new TextShape(x + 60, y + 30, "Comp Sci");
-            TextShape secondText = new TextShape(x + 60, y + 60, "Other Eng");
-            TextShape thirdText = new TextShape(x + 60, y + 90, "Math/CMDA");
-            TextShape fourthText = new TextShape(x + 60, y + 120, "Other");
+            TextShape firstText = new TextShape(x + 30, y + 20, "Comp Sci");
+            TextShape secondText = new TextShape(x + 30, y + 35, "Other Eng");
+            TextShape thirdText = new TextShape(x + 30, y + 50, "Math/CMDA");
+            TextShape fourthText = new TextShape(x + 30, y + 65, "Other");
 
             legendText.setBackgroundColor(Color.WHITE);
             firstText.setBackgroundColor(Color.WHITE);
@@ -309,10 +309,10 @@ public class GUIMusicWindow {
 
             TextShape legendText = new TextShape(x + 30, y + 5,
                 "Region Legend");
-            TextShape firstText = new TextShape(x + 60, y + 30, "Northeast");
-            TextShape secondText = new TextShape(x + 60, y + 60, "Southeast");
-            TextShape thirdText = new TextShape(x + 60, y + 90, "US Other");
-            TextShape fourthText = new TextShape(x + 60, y + 120, "Outside US");
+            TextShape firstText = new TextShape(x + 30, y + 20, "Northeast");
+            TextShape secondText = new TextShape(x + 30, y + 35, "Southeast");
+            TextShape thirdText = new TextShape(x + 30, y + 50, "US Other");
+            TextShape fourthText = new TextShape(x + 30, y + 65, "Outside US");
 
             legendText.setBackgroundColor(Color.WHITE);
             firstText.setBackgroundColor(Color.WHITE);
@@ -334,10 +334,10 @@ public class GUIMusicWindow {
 // throw new IllegalStateException();
 // }
 
-        TextShape songTitle = new TextShape(x + 45, y + 140, "Song Title");
-        TextShape heardText = new TextShape(x + 20, y + 180, "Heard");
-        TextShape likedText = new TextShape(x + 100, y + 180, "Liked");
-        Shape legendDivider = new Shape(x + 80, y + 160, 5, 60, Color.BLACK);
+        TextShape songTitle = new TextShape(x + 45, y + 80, "Song Title");
+        TextShape heardText = new TextShape(x + 20, y + 100, "Heard");
+        TextShape likedText = new TextShape(x + 100, y + 100, "Liked");
+        Shape legendDivider = new Shape(x + 80, y + 100, 5, 40, Color.BLACK);
 
         songTitle.setBackgroundColor(Color.WHITE);
         heardText.setBackgroundColor(Color.WHITE);
