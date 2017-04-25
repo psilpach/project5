@@ -52,6 +52,7 @@ public class Song {
 
     private int count;
 
+
     /**
      * 
      * @param title1
@@ -535,15 +536,15 @@ public class Song {
         sb.append("\nsong year ");
         sb.append(year);
         sb.append("\nheard\n");
-        sb.append("reading" + getPercent(true)[1]);
-        sb.append(" art" + getPercent(true)[2]);
-        sb.append(" sports" + getPercent(true)[3]);
-        sb.append(" music" + getPercent(true)[4]);
+        sb.append("reading" + numLikeRead);
+        sb.append(" art" + numLikeArt);
+        sb.append(" sports" + numLikeSports);
+        sb.append(" music" + numLikeMusic);
         sb.append("\nlikes\n");
-        sb.append("reading" + getPercent(false)[1]);
-        sb.append(" art" + getPercent(false)[2]);
-        sb.append(" sports" + getPercent(false)[3]);
-        sb.append(" music" + getPercent(false)[4] + "\n");
+        sb.append("reading" + numHeardRead);
+        sb.append(" art" + numHeardArt);
+        sb.append(" sports" + numHeardSports);
+        sb.append(" music" + numHeardMusic + "\n");
         return sb.toString();
     }
 
@@ -555,11 +556,9 @@ public class Song {
      *            the person to add
      * @param i
      */
-    public int addPerson(Person p, int i) {
-        if (p.getHeard()[i].contains("no") || p.getHeard()[i].contains("yes")){
-            count++;
-        }
-        return count;
+    public void addPerson(Person p, int i) {
+        addLike(p, p.getLiked()[i].contains("yes"));
+        addHeard(p, p.getHeard()[i].contains("yes"));
     }
 
 }
