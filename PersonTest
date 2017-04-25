@@ -1,12 +1,11 @@
 package prj5;
 
-// import static org.junit.Assert.*;
-
 /**
  * Test class for the Person class
  * 
  * @author ndanni4
  * @author kbenson8
+ * @author pims617
  * @version 4.10.2017
  *
  */
