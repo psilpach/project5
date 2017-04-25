@@ -130,6 +130,24 @@ public class Song {
 
 
     /**
+     * 
+     * @return ArrayList of people who like the song
+     */
+    public ArrayList<Person> getLike() {
+        return likeArray;
+    }
+
+
+    /**
+     * 
+     * @return ArrayList of people who have heard the song
+     */
+    public ArrayList<Person> getHeard() {
+        return heardArray;
+    }
+
+
+    /**
      * Adds the number of heards to an array
      * 
      * @param p
