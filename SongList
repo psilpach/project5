@@ -45,6 +45,16 @@ public class SongList implements ListInterface<Song> {
      */
     public void addPerson(Person p) {
         numPeople++;
+        // go through all songs
+        // update songs for that person
+
+        SongNode currentNode = head.next;
+        for (int i = 0; i < getLength(); i++) {
+            Song song = currentNode.getSong();
+            song.addPerson(p, i);
+
+            currentNode = currentNode.next;
+        }
     }
 
 
