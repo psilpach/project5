@@ -47,11 +47,13 @@ public class Input {
 
         SongList dataFile = new SongList();
 
-        // scans person file
-        readPeople(personFile, dataFile);
 
         // scans song file
         readSongs(songFile, dataFile);
+        
+        // scans person file
+        readPeople(personFile, dataFile);
+
 
         return dataFile;
     }
@@ -178,6 +180,7 @@ public class Input {
         }
         return majorEnum;
     }
+
 
     /**
      * Method finds the corresponding enum of the input String for the Person's
