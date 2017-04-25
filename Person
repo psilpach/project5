@@ -4,6 +4,8 @@ package prj5;
  * Person class to create for hobby major and their state
  * 
  * @author ndanni4
+ * @author kbenson8
+ * @author pims617
  * @version 4.10.2017
  *
  */
@@ -23,7 +25,7 @@ public class Person {
      *            hobby of person
      * @param major
      *            major of person
-     * @param state
+     * @param region
      *            state lived in
      *            * @param heard
      *            The array of whether or not the Person has heard certain songs
