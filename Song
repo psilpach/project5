@@ -1,7 +1,7 @@
 package prj5;
 
 import java.util.ArrayList;
-
+//don't need likeArray and heardArray. Sports stuff is correct
 /**
  * 
  * @author Pim Silpacharn pims617
@@ -11,6 +11,7 @@ import java.util.ArrayList;
  *
  */
 public class Song {
+    private int totalSports = 0;
 
     private String title;
     private String artist;
@@ -132,7 +133,10 @@ public class Song {
             numHeardArt++;
         }
         else if (hob == HobbyEnum.SPORTS) {
-            numHeardSports++;
+            if (add){
+                numHeardSports++;
+            }
+            totalSports++;
         }
         else if (hob == HobbyEnum.MUSIC) {
             numHeardMusic++;
@@ -186,7 +190,9 @@ public class Song {
             numLikeArt++;
         }
         else if (hob == HobbyEnum.SPORTS) {
-            numLikeSports++;
+            if(add){
+                numLikeSports++;
+            }
         }
         else if (hob == HobbyEnum.MUSIC) {
             numLikeMusic++;
@@ -246,9 +252,7 @@ public class Song {
             out[i] = 0;
         }
         for (int i = 0; i < heardArray.size(); i++) {
-            if (heardArray.get(i).getHobby() == HobbyEnum.READING) { // use
-                // .contains or
-                // .equals?
+            if (heardArray.get(i).getHobby() == HobbyEnum.READING) { 
                 out[0]++;
             }
             else if (heardArray.get(i).getHobby() == HobbyEnum.ART) {
@@ -370,73 +374,73 @@ public class Song {
         if (like) {
             out = getNumLike();
             if (numLikeRead != 0) {
-                out[0] = (int)(out[0] * 1.0 / numLikeRead * 100);
+                out[0] = (int)(out[0] * 1.0 / numLikeRead * 100.0);
             }
             else {
                 out[0] = 0;
             }
             if (numLikeArt != 0) {
-                out[1] = (int)(out[1] * 1.0 / numLikeArt * 100);
+                out[1] = (int)(out[1] * 1.0 / numLikeArt * 100.0);
             }
             else {
                 out[1] = 0;
             }
             if (numLikeSports != 0) {
-                out[2] = (int)(out[2] * 1.0 / numLikeSports * 100);
+                out[2] = (int)(numLikeSports * 1.0 / totalSports * 100.0);
             }
             else {
                 out[2] = 0;
             }
             if (numLikeMusic != 0) {
-                out[3] = (int)(out[3] * 1.0 / numLikeMusic * 100);
+                out[3] = (int)(out[3] * 1.0 / numLikeMusic * 100.0);
             }
             else {
                 out[3] = 0;
             }
             if (numLikeComp != 0) {
-                out[4] = (int)(out[4] * 1.0 / numLikeComp * 100);
+                out[4] = (int)(out[4] * 1.0 / numLikeComp * 100.0);
             }
             else {
                 out[4] = 0;
             }
             if (numLikeEng != 0) {
-                out[5] = (int)(out[5] * 1.0 / numLikeEng * 100);
+                out[5] = (int)(out[5] * 1.0 / numLikeEng * 100.0);
             }
             else {
                 out[5] = 0;
             }
             if (numLikeMath != 0) {
-                out[6] = (int)(out[6] * 1.0 / numLikeMath * 100);
+                out[6] = (int)(out[6] * 1.0 / numLikeMath * 100.0);
             }
             else {
                 out[6] = 0;
             }
             if (numLikeOther != 0) {
-                out[7] = (int)(out[7] * 1.0 / numLikeOther * 100);
+                out[7] = (int)(out[7] * 1.0 / numLikeOther * 100.0);
             }
             else {
                 out[7] = 0;
             }
             if (numLikeSouth != 0) {
-                out[8] = (int)(out[8] * 1.0 / numLikeSouth * 100);
+                out[8] = (int)(out[8] * 1.0 / numLikeSouth * 100.0);
             }
             else {
                 out[8] = 0;
             }
             if (numLikeNorth != 0) {
-                out[9] = (int)(out[9] * 1.0 / numLikeNorth * 100);
+                out[9] = (int)(out[9] * 1.0 / numLikeNorth * 100.0);
             }
             else {
                 out[9] = 0;
             }
             if (numLikeUs != 0) {
-                out[10] = (int)(out[10] * 1.0 / numLikeUs * 100);
+                out[10] = (int)(out[10] * 1.0 / numLikeUs * 100.0);
             }
             else {
                 out[10] = 0;
             }
             if (numLikeNon != 0) {
-                out[11] = (int)(out[11] * 1.0 / numLikeNon * 100);
+                out[11] = (int)(out[11] * 1.0 / numLikeNon * 100.0);
             }
             else {
                 out[11] = 0;
@@ -445,73 +449,73 @@ public class Song {
         else {
             out = getNumHeard();
             if (numHeardRead != 0) {
-                out[0] = (int)(out[0] * 1.0 / numHeardRead * 100);
+                out[0] = (int)(out[0] * 1.0 / numHeardRead * 100.0);
             }
             else {
                 out[0] = 0;
             }
             if (numHeardArt != 0) {
-                out[1] = (int)(out[1] * 1.0 / numHeardArt * 100);
+                out[1] = (int)(out[1] * 1.0 / numHeardArt * 100.0);
             }
             else {
                 out[1] = 0;
             }
-            if (numHeardSports != 0) {
-                out[2] = (int)(out[2] * 1.0 / numHeardSports * 100);
+            if (totalSports != 0) {
+                out[2] = (int)(numHeardSports * 1.0 / totalSports * 100.0);
             }
             else {
                 out[2] = 0;
             }
             if (numHeardMusic != 0) {
-                out[3] = (int)(out[3] * 1.0 / numHeardMusic * 100);
+                out[3] = (int)(out[3] * 1.0 / numHeardMusic * 100.0);
             }
             else {
                 out[3] = 0;
             }
             if (numHeardComp != 0) {
-                out[4] = (int)(out[4] * 1.0 / numHeardComp * 100);
+                out[4] = (int)(out[4] * 1.0 / numHeardComp * 100.0);
             }
             else {
                 out[4] = 0;
             }
             if (numHeardEng != 0) {
-                out[5] = (int)(out[5] * 1.0 / numHeardEng * 100);
+                out[5] = (int)(out[5] * 1.0 / numHeardEng * 100.0);
             }
             else {
                 out[5] = 0;
             }
             if (numHeardMath != 0) {
-                out[6] = (int)(out[6] * 1.0 / numHeardMath * 100);
+                out[6] = (int)(out[6] * 1.0 / numHeardMath * 100.0);
             }
             else {
                 out[6] = 0;
             }
             if (numHeardOther != 0) {
-                out[7] = (int)(out[7] * 1.0 / numHeardOther * 100);
+                out[7] = (int)(out[7] * 1.0 / numHeardOther * 100.0);
             }
             else {
                 out[7] = 0;
             }
             if (numHeardSouth != 0) {
-                out[8] = (int)(out[8] * 1.0 / numHeardSouth * 100);
+                out[8] = (int)(out[8] * 1.0 / numHeardSouth * 100.0);
             }
             else {
                 out[8] = 0;
             }
             if (numHeardNorth != 0) {
-                out[9] = (int)(out[9] * 1.0 / numHeardNorth * 100);
+                out[9] = (int)(out[9] * 1.0 / numHeardNorth * 100.0);
             }
             else {
                 out[9] = 0;
             }
             if (numHeardUs != 0) {
-                out[10] = (int)(out[10] * 1.0 / numHeardUs * 100);
+                out[10] = (int)(out[10] * 1.0 / numHeardUs * 100.0);
             }
             else {
                 out[10] = 0;
             }
             if (numHeardNon != 0) {
-                out[11] = (int)(out[11] * 1.0 / numHeardNon * 100);
+                out[11] = (int)(out[11] * 1.0 / numHeardNon * 100.0);
             }
             else {
                 out[11] = 0;
@@ -536,15 +540,15 @@ public class Song {
         sb.append("\nsong year ");
         sb.append(year);
         sb.append("\nheard\n");
-        sb.append("reading" + numLikeRead);
-        sb.append(" art" + numLikeArt);
-        sb.append(" sports" + numLikeSports);
-        sb.append(" music" + numLikeMusic);
-        sb.append("\nlikes\n");
         sb.append("reading" + numHeardRead);
         sb.append(" art" + numHeardArt);
-        sb.append(" sports" + numHeardSports);
-        sb.append(" music" + numHeardMusic + "\n");
+        sb.append(" sports" + totalSports);
+        sb.append(" music" + numHeardMusic);
+        sb.append("\nlikes\n");
+        sb.append("reading" + numLikeRead);
+        sb.append(" art" + numLikeArt);
+        sb.append(" sports" + getPercent(true)[2]);
+        sb.append(" music" + numLikeMusic + "\n");
         return sb.toString();
     }
 
@@ -557,8 +561,8 @@ public class Song {
      * @param i
      */
     public void addPerson(Person p, int i) {
-        addLike(p, p.getLiked()[i].contains("yes"));
-        addHeard(p, p.getHeard()[i].contains("yes"));
+        addLike(p, p.getLiked()[i].contains("Yes"));
+        addHeard(p, p.getHeard()[i].contains("Yes"));
     }
 
 }
