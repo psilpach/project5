@@ -629,8 +629,10 @@ public class Song {
      * @param i
      */
     public void addPerson(Person p, int i) {
-        addLike(p, p.getLiked()[i].contains("Yes"));
-        addHeard(p, p.getHeard()[i].contains("Yes"));
+       // addLike(p, p.getLiked()[i].contains("Yes"));
+       // addHeard(p, p.getHeard()[i].contains("Yes"));
+       addLike(p, true);
+       addHeard(p, true);
     }
 
 }
