@@ -2,8 +2,8 @@ package prj5;
 
 import java.util.ArrayList;
 
-// don't need likeArray and heardArray. Sports stuff is correct
 /**
+ * Song class for the music visualization
  * 
  * @author Pim Silpacharn pims617
  * @author Danni Nicholls ndanni4
@@ -67,6 +67,7 @@ public class Song {
 
 
     /**
+     * Constructor for sogn that takes 4 parameters
      * 
      * @param title1
      *            title
@@ -89,6 +90,7 @@ public class Song {
 
 
     /**
+     * Getter for title
      * 
      * @return song's title
      */
@@ -98,6 +100,7 @@ public class Song {
 
 
     /**
+     * Getter for artist
      * 
      * @return song's artist
      */
@@ -107,6 +110,7 @@ public class Song {
 
 
     /**
+     * Getter for genre
      * 
      * @return song's genre
      */
@@ -116,6 +120,7 @@ public class Song {
 
 
     /**
+     * Getter for year
      * 
      * @return song's release date
      */
@@ -125,6 +130,7 @@ public class Song {
 
 
     /**
+     * Adds the number of heards to an array
      * 
      * @param p
      *            person that has heard the song
@@ -214,6 +220,7 @@ public class Song {
 
 
     /**
+     * Add the number of likes to an array
      * 
      * @param p
      *            person that likes the song
@@ -292,24 +299,7 @@ public class Song {
 
 
     /**
-     * 
-     * @return ArrayList of people who like the song
-     */
-    public ArrayList<Person> getLike() {
-        return likeArray;
-    }
-
-
-    /**
-     * 
-     * @return ArrayList of people who have heard the song
-     */
-    public ArrayList<Person> getHeard() {
-        return heardArray;
-    }
-
-
-    /**
+     * Gets number of heard and puts into an array
      * 
      * @return int array of number of people who heard the song
      */
@@ -361,6 +351,7 @@ public class Song {
 
 
     /**
+     * Gets the number of likes and puts into an array
      * 
      * @return int array of number of people who like the song
      */
@@ -412,6 +403,7 @@ public class Song {
 
 
     /**
+     * Gets the total number of heards in the song
      * 
      * @return int people who heard it
      */
@@ -421,6 +413,7 @@ public class Song {
 
 
     /**
+     * Gets the total number of likes in the song
      * 
      * @return int people who like it
      */
@@ -430,6 +423,7 @@ public class Song {
 
 
     /**
+     * Gets the percent of each sorting type
      * 
      * @param like
      *            true if like, false if heard
@@ -594,6 +588,8 @@ public class Song {
 
 
     /**
+     * Outputs a to string for song
+     * 
      * @return String representation of the song
      */
     public String toString() {
@@ -620,19 +616,15 @@ public class Song {
     }
 
 
- /**
+    /**
      * Creates total numbers for people in each major
      * 
      * @param p
      *            the person to add
      * @param i
-     * @return 
+     *            the count in the for loop
      */
     public void addPerson(Person p, int i) {
-//        if (p.getHeard()[i].contains("no") || p.getHeard()[i].contains("yes")) {
-//            count++;
-//        }
-//        return count;
         addLike(p, true);
         addHeard(p, true);
     }
