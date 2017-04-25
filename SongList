@@ -11,6 +11,7 @@ import list.ListInterface;
  * 
  */
 public class SongList implements ListInterface<Song> {
+    // fields
     private int size;
     private int numPeople;
 
@@ -19,7 +20,7 @@ public class SongList implements ListInterface<Song> {
 
 
     /**
-     * 
+     * default constructor
      */
     public SongList() {
         init();
@@ -27,7 +28,7 @@ public class SongList implements ListInterface<Song> {
 
 
     /**
-     * intialize two sentinal nodes for doubly linked list
+     * intializes two sentinal nodes for doubly linked list
      */
     private void init() {
         head = new SongList.SongNode(null);
@@ -41,11 +42,11 @@ public class SongList implements ListInterface<Song> {
     /**
      * 
      * @param p
-     *            person added
+     *            person to be added
      */
     public void addPerson(Person p) {
         numPeople++;
-        // go through all songs
+        // goes through all of the songs
         // update songs for that person
 
         SongNode currentNode = head.next;
@@ -62,7 +63,7 @@ public class SongList implements ListInterface<Song> {
      * 
      * @param index
      *            index
-     * @return percent
+     * @return percent that liked the song
      */
     public int[] getPercentLike(int index) {
         return get(index).getPercent(true);
@@ -73,7 +74,7 @@ public class SongList implements ListInterface<Song> {
      * 
      * @param index
      *            index
-     * @return percent
+     * @return percent that heard the song
      */
     public int[] getPercentHeard(int index) {
         return get(index).getPercent(false);
@@ -90,6 +91,7 @@ public class SongList implements ListInterface<Song> {
 
 
     /**
+     * method that sorts all of the data into the modifier categories
      * 
      * @param modifier
      *            region, hobby, or major
@@ -314,10 +316,17 @@ public class SongList implements ListInterface<Song> {
      */
     @Override
     public Song replace(int index, Song song) {
-        // will not use this method
+        // unused method
         return null;
     }
 
+    /**
+     * 
+     * @return size
+     */
+    public int size() {
+        return size;
+    }
 
     /**
      * @return array representation of the list
@@ -436,7 +445,7 @@ public class SongList implements ListInterface<Song> {
 
 
         /**
-         * 
+         * default constructor
          */
         public SongIterator() {
             currentNode = head;
@@ -470,8 +479,6 @@ public class SongList implements ListInterface<Song> {
     }
 
 
-    public int size() {
-        return size;
-    }
+    
 
 }
