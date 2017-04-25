@@ -82,6 +82,22 @@ public class PersonTest extends student.TestCase {
         assertEquals(
             "[Major: Other, Hobby: reading, Region: Outside of United States]",
             person4.toString());
+
+        Person person5 = new Person(HobbyEnum.READING, MajorEnum.MATH,
+            RegionEnum.SOUTHEAST, likedTest, heardTest);
+        assertEquals("[Major: Math or CMDA, Hobby: reading, Region: Southeast]",
+            person5.toString());
+
+        Person person6 = new Person(HobbyEnum.SPORTS, MajorEnum.ENGINEERING,
+            RegionEnum.USOTHER, likedTest, heardTest);
+        assertEquals(
+            "[Major: Other Engineering, Hobby: sports, Region: United States "
+                + "(other than Southeast or Northwest)]", person6.toString());
+
+        Person person7 = new Person(HobbyEnum.MUSIC, MajorEnum.OTHER,
+            RegionEnum.OTHER, likedTest, heardTest);
+        assertEquals("[Major: Other, Hobby: music, Region: Outside of "
+            + "United States]", person7.toString());
     }
 
 
