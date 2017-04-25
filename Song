@@ -132,9 +132,9 @@ public class Song {
      *            true if person has heard it, false if not
      */
     public void addHeard(Person p, boolean add) {
-// if (add) {
-// heardArray.add(p);
-// }
+
+        heardArray.add(p);
+
         HobbyEnum hob = p.getHobby();
         MajorEnum maj = p.getMajor();
         RegionEnum reg = p.getState();
@@ -222,10 +222,10 @@ public class Song {
      * 
      */
     public void addLike(Person p, boolean add) {
-// if (add) {
-// likeArray.add(p);
-// }
-        HobbyEnum hob = p.getHobby(); // how to recognize the type from an enum
+
+        likeArray.add(p);
+
+        HobbyEnum hob = p.getHobby();
         MajorEnum maj = p.getMajor();
         RegionEnum reg = p.getState();
         if (hob == HobbyEnum.READING) {
@@ -291,22 +291,23 @@ public class Song {
     }
 
 
-// /**
-// *
-// * @return ArrayList of people who like the song
-// */
-// public ArrayList<Person> getLike() {
-// return likeArray;
-// }
-//
-//
-// /**
-// *
-// * @return ArrayList of people who have heard the song
-// */
-// public ArrayList<Person> getHeard() {
-// return heardArray;
-// }
+    /**
+     * 
+     * @return ArrayList of people who like the song
+     */
+    public ArrayList<Person> getLike() {
+        return likeArray;
+    }
+
+
+    /**
+     * 
+     * @return ArrayList of people who have heard the song
+     */
+    public ArrayList<Person> getHeard() {
+        return heardArray;
+    }
+
 
     /**
      * 
@@ -627,10 +628,8 @@ public class Song {
      * @param i
      */
     public void addPerson(Person p, int i) {
-        // addLike(p, p.getLiked()[i].contains("Yes"));
-        // addHeard(p, p.getHeard()[i].contains("Yes"));
-        addLike(p, true);
-        addHeard(p, true);
+        addLike(p, p.getLiked()[i].contains("Yes"));
+        addHeard(p, p.getHeard()[i].contains("Yes"));
     }
 
 }
