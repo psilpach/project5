@@ -620,16 +620,20 @@ public class Song {
     }
 
 
-    /**
+ /**
      * Creates total numbers for people in each major
      * 
      * @param p
      *            the person to add
      * @param i
+     * @return 
      */
     public void addPerson(Person p, int i) {
-        addLike(p, p.getLiked()[i].contains("Yes"));
-        addHeard(p, p.getHeard()[i].contains("Yes"));
+//        if (p.getHeard()[i].contains("no") || p.getHeard()[i].contains("yes")) {
+//            count++;
+//        }
+//        return count;
+        addLike(p, true);
+        addHeard(p, true);
     }
-
 }
