@@ -156,8 +156,9 @@ public class Song {
      *            true if person has heard it, false if not
      */
     public void addHeard(Person p, boolean add) {
-
-        heardArray.add(p);
+        if (add) {
+            heardArray.add(p);
+        }
 
         HobbyEnum hob = p.getHobby();
         MajorEnum maj = p.getMajor();
@@ -247,8 +248,9 @@ public class Song {
      * 
      */
     public void addLike(Person p, boolean add) {
-
-        likeArray.add(p);
+        if (add) {
+            likeArray.add(p);
+        }
 
         HobbyEnum hob = p.getHobby();
         MajorEnum maj = p.getMajor();
@@ -645,5 +647,8 @@ public class Song {
     public void addPerson(Person p, int i) {
         addLike(p, true);
         addHeard(p, true);
+
+        // addLike(p, p.getLiked()[i].contains("Yes"));
+        // addHeard(p, p.getHeard()[i].contains("Yes"));
     }
 }
