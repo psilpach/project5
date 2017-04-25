@@ -75,8 +75,10 @@ public class GUISongGlyph {
             Shape likedBar = new Shape(x + middle, y + (2 + i) * availableSpace,
                 middle, availableSpace, colors[i]);
             addTo.addShape(likedBar);
-
-            Shape heardBar = new Shape(middle - x, y + (2 + i) * availableSpace,
+        }
+        
+        for (int i = 0; i <= 3; i++) {
+            Shape heardBar = new Shape(x, y + (2 + i) * availableSpace,
                 middle, availableSpace, colors[i]);
             addTo.addShape(heardBar);
         }
