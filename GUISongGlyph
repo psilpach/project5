@@ -12,6 +12,8 @@ import CS2114.Shape;
  * Creates the glyph for the GUIWindow
  * 
  * @author ndanni4
+ * @author kbenson8
+ * @author pims617
  * @version 4.16.2017
  *
  */
@@ -73,13 +75,13 @@ public class GUISongGlyph {
 
         for (int i = 0; i <= 3; i++) {
             Shape likedBar = new Shape(x + middle, y + (2 + i) * availableSpace,
-                middle, availableSpace, colors[i]);
+                song.getPercent(true)[i], availableSpace, colors[i]);
             addTo.addShape(likedBar);
         }
         
         for (int i = 0; i <= 3; i++) {
             Shape heardBar = new Shape(x, y + (2 + i) * availableSpace,
-                middle, availableSpace, colors[i]);
+                song.getPercent(false)[i], availableSpace, colors[i]);
             addTo.addShape(heardBar);
         }
 
