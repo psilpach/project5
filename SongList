@@ -5,10 +5,11 @@ import java.util.NoSuchElementException;
 import list.ListInterface;
 
 /**
+ * this creates a list of songs
  * @author Pim Silpacharn pims617
  * @author Kevin Benson kbenson8
  * @author Danni Nicholls ndanni4
- * 
+ * @version 4/25/17
  */
 public class SongList implements ListInterface<Song> {
     // fields
