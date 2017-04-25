@@ -47,13 +47,11 @@ public class Input {
 
         SongList dataFile = new SongList();
 
-
         // scans song file
         readSongs(songFile, dataFile);
-        
+
         // scans person file
         readPeople(personFile, dataFile);
-
 
         return dataFile;
     }
@@ -80,17 +78,16 @@ public class Input {
             System.exit(0);
         }
 
-        fileScan.nextLine(); // advances past the first line
-
+        String firstLine = fileScan.nextLine(); // advances past the first line
+        int numSongs = (firstLine.split(",", 100).length - 5);
         while (fileScan.hasNextLine()) {
             String personLine = fileScan.nextLine();
-            String[] personData = personLine.split(" *, *", 100);
+            String[] personData = personLine.split(",", 100);
             if (personData.length > 2 && !personData[4].equals("")) {
 
                 MajorEnum major = findMajor(personData[2]);
                 RegionEnum region = findRegion(personData[3]);
                 HobbyEnum hobby = findHobby(personData[4]);
-                int numSongs = (personData.length - 5) / 2;
                 String[] heard = new String[numSongs];
                 String[] liked = new String[numSongs];
                 int index = 0;
