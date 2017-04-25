@@ -65,7 +65,6 @@ public class Song {
     private ArrayList<Person> likeArray;
     private ArrayList<Person> heardArray;
 
-    private int count;
 
 
     /**
