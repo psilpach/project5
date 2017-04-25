@@ -1,74 +1,59 @@
 package prj5;
 
-import student.TestCase;
-
 /**
- * This test class tests all four comparator classes to
- * ensure that they return the correct values for the
- * compare() methods.
+ * test class for artist, genre, title and year comparator classes
  * 
- * @author Pim Silpacharn
- * @version 4/19/17
+ * @author pims617 Pim Silpacharn, ndanni4 Danni Nicholls, kbenson8 Kevin BEnson
+ * @version 4/25/17
+ *
  */
-public class ComparatorTest extends TestCase {
+public class ComparatorTest extends student.TestCase {
 
     private Song song1;
     private Song song2;
-    private Song song3;
-    private Song equalSong;
 
 
     /**
      * Called upon before each test method is called.
      */
     public void setUp() {
-        song1 = new Song("bbb", "bbb", "bbb", "2000");
-        song2 = new Song("aaa", "aaa", "aaa", "2001");
-        song3 = new Song("ccc", "ccc", "ccc", "1999");
-        equalSong = new Song("bbb", "bbb", "bbb", "2000");
+        song1 = new Song("Time", "Pink Floyd", "Rock", "1974");
+        song2 = new Song("Floats my Boat", "Aer", "Rap", "2009");
     }
 
 
     /**
      * Tests compare by artist.
      */
-    public void testCompareByArtist() {
+    public void testArtistComparator() {
         ArtistComparator compare = new ArtistComparator();
-        assertEquals(compare.compare(song1, song2), 1);
-        assertEquals(compare.compare(song1, song3), -1);
-        assertEquals(compare.compare(song1, equalSong), 0);
+        assertEquals(compare.compare(song1, song2), 15);
     }
 
 
     /**
      * Tests compare by genre.
      */
-    public void testCompareByGenre() {
+    public void testGenreComparator() {
         GenreComparator compare = new GenreComparator();
-        assertEquals(compare.compare(song1, song2), 1);
-        assertEquals(compare.compare(song1, song3), -1);
-        assertEquals(compare.compare(song1, equalSong), 0);
+        assertEquals(compare.compare(song1, song2), 14);
     }
 
 
     /**
      * Tests compare by title.
      */
-    public void testCompareByTitle() {
+    public void testTitleComparator() {
         TitleComparator compare = new TitleComparator();
-        assertEquals(compare.compare(song1, song2), 1);
-        assertEquals(compare.compare(song1, song3), -1);
-        assertEquals(compare.compare(song1, equalSong), 0);
+        assertEquals(compare.compare(song1, song2), 14);
     }
 
 
     /**
      * Tests compare by year.
      */
-    public void testCompareByYear() {
+    public void testYearComparator() {
         YearComparator compare = new YearComparator();
-        assertEquals(compare.compare(song1, song2), 1);
-        assertEquals(compare.compare(song1, song3), -1);
-        assertEquals(compare.compare(song1, equalSong), 0);
+        assertEquals(compare.compare(song1, song2), -1);
     }
 }
