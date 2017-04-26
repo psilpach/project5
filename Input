@@ -81,27 +81,40 @@ public class Input {
         }
 
         String firstLine = fileScan.nextLine(); // advances past the first line
-        int numSongs = (firstLine.split(",", 100).length - 5);
+        int numSongs = (firstLine.split(",", 100).length - 5); // get numSongs
+                                                               // from header
         while (fileScan.hasNextLine()) {
             String personLine = fileScan.nextLine();
             String[] personData = personLine.split(",", 100);
+
             if (personData.length > 2 && !personData[4].equals("")) {
 
-                MajorEnum major = findMajor(personData[2]);
-                RegionEnum region = findRegion(personData[3]);
-                HobbyEnum hobby = findHobby(personData[4]);
-                String[] heard = new String[numSongs];
-                String[] liked = new String[numSongs];
-                int index = 0;
-
-                for (int i = 5; i < personData.length - 1; i += 2) {
-
-                    heard[index] = personData[i];
-                    liked[index] = personData[i + 1];
-                    index++;
+                boolean answeredAttributes = true;
+                for (int q = 2; q <= 4; q++) { // sees if they answered all the
+                                               // attributes
+                    if (personData[q] == null) {
+                        answeredAttributes = false;
+                    }
                 }
-                dataFile.addPerson(new Person(hobby, major, region, heard,
-                    liked));
+
+                if (answeredAttributes) { // only add if they answered
+                                          // attributes
+                    MajorEnum major = findMajor(personData[2]);
+                    RegionEnum region = findRegion(personData[3]);
+                    HobbyEnum hobby = findHobby(personData[4]);
+                    String[] heard = new String[numSongs];
+                    String[] liked = new String[numSongs];
+                    int index = 0;
+
+                    for (int i = 5; i < personData.length - 1; i += 2) {
+
+                        heard[index] = personData[i];
+                        liked[index] = personData[i + 1];
+                        index++;
+                    }
+                    dataFile.addPerson(new Person(hobby, major, region, heard,
+                        liked));
+                }
             }
         }
 
