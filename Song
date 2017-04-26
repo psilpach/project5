@@ -635,6 +635,7 @@ public class Song {
         return sb.toString();
     }
 
+
     /**
      * Creates total numbers for people in each major
      * 
@@ -644,8 +645,12 @@ public class Song {
      *            the count in the for loop
      */
     public void addPerson(Person p, int i) {
-        addLike(p, p.getLiked()[i].contains("Yes"));
-        addHeard(p, p.getHeard()[i].contains("Yes"));
+        if (p.getLiked()[i] != null) {
+            addLike(p, p.getLiked()[i].contains("Yes"));
+        }
+        if (p.getHeard()[i] != null) {
+            addHeard(p, p.getHeard()[i].contains("Yes"));
+        }
 
         // addLike(p, p.getLiked()[i].contains("Yes"));
         // addHeard(p, p.getHeard()[i].contains("Yes"));
