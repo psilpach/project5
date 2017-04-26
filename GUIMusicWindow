@@ -31,7 +31,7 @@ public class GUIMusicWindow {
 
         myWindow = new Window();
         myWindow.setSize(900, 500);
-        myWindow.setTitle("Project 5");
+        myWindow.setTitle("Project 5, ndanni4 kbenson8 pims617");
 
         addButton("<- Prev", "clickedPrev", WindowSide.NORTH);
         addButton("Sort by Artist Name", "clickedSortArtist", WindowSide.NORTH);
@@ -125,11 +125,10 @@ public class GUIMusicWindow {
      * @param in
      *            - Clicked Previous button
      */
-    public void clickedPrev(Button in) {
+    public void clickedPrev(Button previous) {
         if (startingPosition == 0) {
             return;
         }
-
         if (startingPosition >= 9) {
             startingPosition -= 9;
         }
@@ -146,6 +145,7 @@ public class GUIMusicWindow {
      */
     public void clickedSortArtist(Button in) {
         songs.sort("Artist");
+        startingPosition = 0;
         displaySongs();
 
     }
@@ -160,6 +160,7 @@ public class GUIMusicWindow {
      */
     public void clickedSortTitle(Button in) {
         songs.sort("Title");
+        startingPosition = 0;
         displaySongs();
     }
 
@@ -173,6 +174,7 @@ public class GUIMusicWindow {
      */
     public void clickedSortRelease(Button in) {
         songs.sort("Release");
+        startingPosition = 0;
         displaySongs();
     }
 
@@ -186,6 +188,7 @@ public class GUIMusicWindow {
      */
     public void clickedSortGenre(Button in) {
         songs.sort("Genre");
+        startingPosition = 0;
         displaySongs();
     }
 
