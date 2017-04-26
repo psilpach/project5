@@ -11,6 +11,7 @@ package prj5;
 public class SongTest extends student.TestCase {
 
     private Song song;
+    private Song song2;
     private Person person;
     private Person person1;
     private Person person2;
@@ -36,6 +37,9 @@ public class SongTest extends student.TestCase {
             RegionEnum.USOTHER, likedTest, heardTest);
         person3 = new Person(HobbyEnum.ART, MajorEnum.OTHER, RegionEnum.OTHER,
             likedTest, heardTest);
+        
+        song2 = new Song("Somebody Told Me", "The Killers",
+            "alternative", "2004");
     }
 
 
@@ -57,15 +61,39 @@ public class SongTest extends student.TestCase {
 
         song.addLike(person, true);
         assertEquals(song.getLike().get(0), person);
-
+        
+        song2.addLike(person, false);
+        assertEquals(0, song2.getNumLike()[3]);
+        assertEquals(0, song2.getNumLike()[4]);
+        assertEquals(0, song2.getNumLike()[8]);
+        assertEquals(0, song2.getLike().size());
+        
         song.addLike(person1, true);
         assertEquals(song.getLike().get(1), person1);
+        
+        song2.addLike(person1, false);
+        assertEquals(0, song2.getNumLike()[0]);
+        assertEquals(0, song2.getNumLike()[5]);
+        assertEquals(0, song2.getNumLike()[9]);
+        assertEquals(0, song2.getLike().size());
 
         song.addLike(person2, true);
         assertEquals(song.getLike().get(2), person2);
+        
+        song2.addLike(person2, false);
+        assertEquals(0, song2.getNumLike()[2]);
+        assertEquals(0, song2.getNumLike()[6]);
+        assertEquals(0, song2.getNumLike()[10]);
+        assertEquals(0, song2.getLike().size());
 
         song.addLike(person3, true);
         assertEquals(song.getLike().get(3), person3);
+        
+        song2.addLike(person3, false);
+        assertEquals(0, song2.getNumLike()[1]);
+        assertEquals(0, song2.getNumLike()[7]);
+        assertEquals(0, song2.getNumLike()[11]);
+        assertEquals(0, song2.getLike().size());
 
         assertEquals(4, song.getTotalLikes());
         song.addLike(person, false);
@@ -82,15 +110,41 @@ public class SongTest extends student.TestCase {
 
         song.addHeard(person, true);
         assertEquals(song.getHeard().get(0), person);
+        
+        song2.addHeard(person, false);
+        assertEquals(0, song2.getNumHeard()[3]);
+        assertEquals(0, song2.getNumHeard()[4]);
+        assertEquals(0, song2.getNumHeard()[8]);
+        assertEquals(0, song2.getHeard().size());
 
         song.addHeard(person1, true);
         assertEquals(song.getHeard().get(1), person1);
+        
+        song2.addHeard(person1, false);
+        assertEquals(0, song2.getNumHeard()[0]);
+        assertEquals(0, song2.getNumHeard()[5]);
+        assertEquals(0, song2.getNumHeard()[9]);
+        assertEquals(0, song2.getHeard().size());
+
 
         song.addHeard(person2, true);
         assertEquals(song.getHeard().get(2), person2);
+        
+        song2.addHeard(person2, false);
+        assertEquals(0, song2.getNumHeard()[2]);
+        assertEquals(0, song2.getNumHeard()[6]);
+        assertEquals(0, song2.getNumHeard()[10]);
+        assertEquals(0, song2.getHeard().size());
+
 
         song.addHeard(person3, true);
         assertEquals(song.getHeard().get(3), person3);
+        
+        song2.addHeard(person3, false);
+        assertEquals(0, song2.getNumLike()[1]);
+        assertEquals(0, song2.getNumLike()[7]);
+        assertEquals(0, song2.getNumLike()[11]);
+        assertEquals(0, song2.getHeard().size());
 
     }
 
