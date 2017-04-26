@@ -19,6 +19,7 @@ public class SongListTest extends student.TestCase {
     private Song song3;
     private Song song4;
     private Iterator<Song> iter;
+    private Person person;
 
 
     /**
@@ -38,12 +39,24 @@ public class SongListTest extends student.TestCase {
 
 
     /**
+     * test size() method
+     */
+    public void testSize() {
+        list.add(song);
+        list.add(song2);
+        list.add(song3);
+        list.add(song4);
+        assertEquals(list.size(), 4);
+    }
+
+
+    /**
      * test sort method
      * sort title, genre, artist,release
      */
     public void testSort() {
         list.sort("Title");
-
+        //assertNotNull(list);
         list.add(song3);
         list.add(song2);
         list.add(song4);
@@ -278,4 +291,15 @@ public class SongListTest extends student.TestCase {
         list.add(song);
         assertEquals(list.getPercentHeard(0)[0], 0);
     }
+    
+    /**
+     * test addPerson
+     */
+    public void testAddPerson() {
+        list.addPerson(person);
+        assertEquals(list.size(), 1);
+        
+    }
+    
+    
 }
