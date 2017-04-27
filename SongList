@@ -5,7 +5,8 @@ import java.util.NoSuchElementException;
 import list.ListInterface;
 
 /**
- * this creates a list of songs
+ * creates a list of songs
+ * 
  * @author Pim Silpacharn pims617
  * @author Kevin Benson kbenson8
  * @author Danni Nicholls ndanni4
@@ -95,9 +96,9 @@ public class SongList implements ListInterface<Song> {
      * method that sorts all of the data into the modifier categories
      * 
      * @param modifier
-     *            region, hobby, or major
+     *            artist, title, genre, year
      */
-    public void sort(String modifier) {
+    public void sortArtist(String modifier) {
         boolean swapped = (head != null);
 
         while (swapped) {
@@ -119,11 +120,27 @@ public class SongList implements ListInterface<Song> {
                         tempNext.setPrevious(tempPrev);
                         tempNext.setNext(temp);
                         swapped = true;
-                    }
+                    } // end if
                     else {
                         temp = temp.next();
-                    }
-                }
+                    } // end else
+
+                } // end outer if
+            } // end while
+        } // end while
+    } // end class
+
+
+    public void sortTitle(String modifier) {
+        boolean swapped = (head != null);
+
+        while (swapped) {
+            SongNode temp = head.next();
+
+            swapped = false;
+            while (temp != null && temp.getSong() != null && temp.next()
+                .getSong() != null) {
+                Song s = temp.getSong();
                 if (modifier.equals("Title")) {
                     if (s.getTitle().compareTo(temp.next().getSong()
                         .getTitle()) > 0) {
@@ -141,7 +158,20 @@ public class SongList implements ListInterface<Song> {
                         temp = temp.next();
                     }
                 }
+            }
+        }
+    }
+    
+    public void sortGenre(String modifier) {
+        boolean swapped = (head != null);
 
+        while (swapped) {
+            SongNode temp = head.next();
+
+            swapped = false;
+            while (temp != null && temp.getSong() != null && temp.next()
+                .getSong() != null) {
+                Song s = temp.getSong();
                 if (modifier.equals("Genre")) {
                     if (s.getGenre().compareTo(temp.next().getSong()
                         .getGenre()) > 0) {
@@ -159,8 +189,22 @@ public class SongList implements ListInterface<Song> {
                         temp = temp.next();
                     }
                 }
+            }
+        }
+    }
 
-                if (modifier.equals("Release")) {
+
+    public void sortDate(String modifier) {
+        boolean swapped = (head != null);
+
+        while (swapped) {
+            SongNode temp = head.next();
+
+            swapped = false;
+            while (temp != null && temp.getSong() != null && temp.next()
+                .getSong() != null) {
+                Song s = temp.getSong();
+                if (modifier.equals("Release Date")) {
                     if (s.getYear().compareTo(temp.next().getSong()
                         .getYear()) > 0) {
                         SongNode tempNext = temp.next();
@@ -321,6 +365,7 @@ public class SongList implements ListInterface<Song> {
         return null;
     }
 
+
     /**
      * 
      * @return size
@@ -328,6 +373,7 @@ public class SongList implements ListInterface<Song> {
     public int size() {
         return size;
     }
+
 
     /**
      * @return array representation of the list
@@ -478,8 +524,5 @@ public class SongList implements ListInterface<Song> {
             return currentNode.getSong();
         }
     }
-
-
-    
 
 }
