@@ -95,8 +95,6 @@ public class SongList implements ListInterface<Song> {
     /**
      * method that sorts all of the data into the modifier categories
      * 
-     * @param modifier
-     *            artist, title, genre, year
      */
     public void sortArtist() {
         boolean swapped = (head != null);
@@ -130,6 +128,9 @@ public class SongList implements ListInterface<Song> {
     } // end class
 
 
+    /**
+     * Sort title
+     */
     public void sortTitle() {
         boolean swapped = (head != null);
 
@@ -161,6 +162,9 @@ public class SongList implements ListInterface<Song> {
     }
 
 
+    /**
+     * Sort genre
+     */
     public void sortGenre() {
         boolean swapped = (head != null);
 
@@ -192,6 +196,9 @@ public class SongList implements ListInterface<Song> {
     }
 
 
+    /**
+     * Sort date
+     */
     public void sortDate() {
         boolean swapped = (head != null);
 
