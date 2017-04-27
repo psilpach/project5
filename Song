@@ -1,7 +1,5 @@
 package prj5;
 
-import java.util.ArrayList;
-
 /**
  * Song class for the music visualization
  * 
