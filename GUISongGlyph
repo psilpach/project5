@@ -76,47 +76,47 @@ public class GUISongGlyph {
         if (breakdown == RepresentationEnum.HOBBY) {
             for (int i = 0; i <= 3; i++) {
                 Shape likedBar = new Shape(x + middle, y + (2 + i)
-                    * availableSpace, (int)song.getPercent(true)[i] / 100
-                        * width, availableSpace, colors[i]);
+                    * availableSpace, (int)song.getPercent(true)[i],
+                    availableSpace, colors[i]);
                 addTo.addShape(likedBar);
             }
 
             for (int i = 0; i <= 3; i++) {
-                Shape heardBar = new Shape(x, y + (2 + i) * availableSpace,
-                    (int)song.getPercent(false)[i] / 100 * width,
+                Shape heardBar = new Shape(x + middle - (int)song.getPercent(false)[i], y
+                    + (2 + i) * availableSpace, (int)song.getPercent(false)[i],
                     availableSpace, colors[i]);
                 addTo.addShape(heardBar);
             }
         }
-        
+
         if (breakdown == RepresentationEnum.MAJOR) {
             for (int i = 0; i <= 3; i++) {
                 Shape likedBar = new Shape(x + middle, y + (2 + i)
-                    * availableSpace, (int)song.getPercent(true)[i + 4] / 100
-                        * width, availableSpace, colors[i]);
+                    * availableSpace, (int)song.getPercent(true)[i + 4],
+                    availableSpace, colors[i]);
                 addTo.addShape(likedBar);
             }
 
             for (int i = 0; i <= 3; i++) {
                 Shape heardBar = new Shape(x, y + (2 + i) * availableSpace,
-                    (int)song.getPercent(false)[i + 4] / 100 * width,
-                    availableSpace, colors[i]);
+                    (int)song.getPercent(false)[i + 4], availableSpace,
+                    colors[i]);
                 addTo.addShape(heardBar);
             }
         }
-        
+
         if (breakdown == RepresentationEnum.REGION) {
             for (int i = 0; i <= 3; i++) {
                 Shape likedBar = new Shape(x + middle, y + (2 + i)
-                    * availableSpace, (int)song.getPercent(true)[i + 8] / 100
-                        * width, availableSpace, colors[i]);
+                    * availableSpace, (int)song.getPercent(true)[i + 8],
+                    availableSpace, colors[i]);
                 addTo.addShape(likedBar);
             }
 
             for (int i = 0; i <= 3; i++) {
                 Shape heardBar = new Shape(x, y + (2 + i) * availableSpace,
-                    (int)song.getPercent(false)[i + 8] / 100 * width,
-                    availableSpace, colors[i]);
+                    (int)song.getPercent(false)[i + 8], availableSpace,
+                    colors[i]);
                 addTo.addShape(heardBar);
             }
         }
