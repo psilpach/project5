@@ -21,6 +21,7 @@ public class GUIMusicWindow {
     private SongList songs;
     private int startingPosition = 0;
     RepresentationEnum breakdown;
+    private int num;
 
 
     /**
@@ -46,6 +47,7 @@ public class GUIMusicWindow {
         addButton("Represent Region", "clickedRegion", WindowSide.SOUTH);
         addButton("Quit", "clickedQuit", WindowSide.SOUTH);
 
+        num = 0;
     }
 
 
@@ -57,14 +59,15 @@ public class GUIMusicWindow {
      */
     public void setBreakdown(RepresentationEnum breakdown) {
         this.breakdown = breakdown;
-        displaySongs();
+        displaySongs(num);
     }
 
 
     /**
      * Method that displays the song information on the window
+     * @param p the number value to pass
      */
-    public void displaySongs() {
+    public void displaySongs(int p) {
         myWindow.removeAllShapes();
 
         int eachGlyphHeight = myWindow.getGraphPanelHeight() / 4;
@@ -78,7 +81,7 @@ public class GUIMusicWindow {
                     new GUISongGlyph(padding + j * (2 * eachGlyphWidth), ((i
                         + 1) * padding) + i * eachGlyphHeight, songs.getEntry(
                             song), eachGlyphWidth, eachGlyphHeight, breakdown,
-                        myWindow);
+                        myWindow, p);
                 }
             }
         }
@@ -132,7 +135,7 @@ public class GUIMusicWindow {
         if (startingPosition >= 9) {
             startingPosition -= 9;
         }
-        displaySongs();
+        displaySongs(num);
     }
 
 
@@ -146,7 +149,8 @@ public class GUIMusicWindow {
     public void clickedSortArtist(Button in) {
         songs.sort("Artist");
         startingPosition = 0;
-        displaySongs();
+        num = 0;
+        displaySongs(num);
 
     }
 
@@ -161,7 +165,8 @@ public class GUIMusicWindow {
     public void clickedSortTitle(Button in) {
         songs.sort("Title");
         startingPosition = 0;
-        displaySongs();
+        num = 0;
+        displaySongs(num);
     }
 
 
@@ -175,7 +180,8 @@ public class GUIMusicWindow {
     public void clickedSortRelease(Button in) {
         songs.sort("Release");
         startingPosition = 0;
-        displaySongs();
+        num = 2;
+        displaySongs(num);
     }
 
 
@@ -189,7 +195,8 @@ public class GUIMusicWindow {
     public void clickedSortGenre(Button in) {
         songs.sort("Genre");
         startingPosition = 0;
-        displaySongs();
+        num = 1;
+        displaySongs(num);
     }
 
 
@@ -203,7 +210,7 @@ public class GUIMusicWindow {
         if (startingPosition < songs.getLength() - 9) {
             startingPosition += 9;
         }
-        displaySongs();
+        displaySongs(num);
     }
 
 
