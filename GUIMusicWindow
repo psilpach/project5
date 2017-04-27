@@ -147,7 +147,7 @@ public class GUIMusicWindow {
      *            - Sort Artist button
      */
     public void clickedSortArtist(Button in) {
-        songs.sort("Artist");
+        songs.sortArtist();
         startingPosition = 0;
         num = 0;
         displaySongs(num);
@@ -163,7 +163,7 @@ public class GUIMusicWindow {
      *            - Sort Title button
      */
     public void clickedSortTitle(Button in) {
-        songs.sort("Title");
+        songs.sortTitle();
         startingPosition = 0;
         num = 0;
         displaySongs(num);
@@ -178,7 +178,7 @@ public class GUIMusicWindow {
      *            - Sort by Date button
      */
     public void clickedSortRelease(Button in) {
-        songs.sort("Release");
+        songs.sortDate();
         startingPosition = 0;
         num = 2;
         displaySongs(num);
@@ -193,7 +193,7 @@ public class GUIMusicWindow {
      *            - Sort Genre button
      */
     public void clickedSortGenre(Button in) {
-        songs.sort("Genre");
+        songs.sortGenre();
         startingPosition = 0;
         num = 1;
         displaySongs(num);
