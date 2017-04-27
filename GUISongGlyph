@@ -20,6 +20,7 @@ import CS2114.Shape;
 public class GUISongGlyph {
     public static final Color[] colors = new Color[] { Color.magenta,
         Color.blue, Color.orange, Color.green };
+    private String artist;
 
 
     /**
@@ -47,12 +48,21 @@ public class GUISongGlyph {
         int width,
         int height,
         RepresentationEnum breakdown,
-        Window addTo) {
+        Window addTo,
+        int sortType) {
 
         int availableSpace = height / 6;
         int middle = width / 2;
 
-        String artist = "by :" + song.getArtist();
+        if (sortType == 0) {
+            artist = "by: " + song.getArtist();
+        }
+        else if (sortType == 1) {
+            artist = "genre: " + song.getGenre();
+        }
+        else if (sortType == 2) {
+            artist = "In: " + song.getYear();
+        }
         String title = song.getTitle();
 
         System.out.println(title);
