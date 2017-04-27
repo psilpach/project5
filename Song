@@ -557,13 +557,13 @@ public class Song {
         else {
             out = getNumHeard();
             if (numHeardRead != 0) {
-                out[0] = (int)(numHeardRead * 1.0 / totalLikeRead * 100.0);
+                out[0] = (int)(numHeardRead * 1.0 / totalHeardRead * 100.0);
             }
             else {
                 out[0] = 0;
             }
             if (numHeardArt != 0) {
-                out[1] = (int)(numHeardArt * 1.0 / totalLikeArt * 100.0);
+                out[1] = (int)(numHeardArt * 1.0 / totalHeardArt * 100.0);
             }
             else {
                 out[1] = 0;
@@ -575,55 +575,55 @@ public class Song {
                 out[2] = 0;
             }
             if (numHeardMusic != 0) {
-                out[3] = (int)(numHeardMusic * 1.0 / totalLikeMusic * 100.0);
+                out[3] = (int)(numHeardMusic * 1.0 / totalHeardMusic * 100.0);
             }
             else {
                 out[3] = 0;
             }
             if (numHeardComp != 0) {
-                out[4] = (int)(numHeardComp * 1.0 / totalLikeComp * 100.0);
+                out[4] = (int)(numHeardComp * 1.0 / totalHeardComp * 100.0);
             }
             else {
                 out[4] = 0;
             }
             if (numHeardEng != 0) {
-                out[5] = (int)(numHeardEng * 1.0 / totalLikeEng * 100.0);
+                out[5] = (int)(numHeardEng * 1.0 / totalHeardEng * 100.0);
             }
             else {
                 out[5] = 0;
             }
             if (numHeardMath != 0) {
-                out[6] = (int)(numHeardMath * 1.0 / totalLikeMath * 100.0);
+                out[6] = (int)(numHeardMath * 1.0 / totalHeardMath * 100.0);
             }
             else {
                 out[6] = 0;
             }
             if (numHeardOther != 0) {
-                out[7] = (int)(numHeardOther * 1.0 / totalLikeOther * 100.0);
+                out[7] = (int)(numHeardOther * 1.0 / totalHeardOther * 100.0);
             }
             else {
                 out[7] = 0;
             }
             if (numHeardSouth != 0) {
-                out[8] = (int)(numHeardSouth * 1.0 / totalLikeSouth * 100.0);
+                out[8] = (int)(numHeardSouth * 1.0 / totalHeardSouth * 100.0);
             }
             else {
                 out[8] = 0;
             }
             if (numHeardNorth != 0) {
-                out[9] = (int)(numHeardNorth * 1.0 / totalLikeNorth * 100.0);
+                out[9] = (int)(numHeardNorth * 1.0 / totalHeardNorth * 100.0);
             }
             else {
                 out[9] = 0;
             }
             if (numHeardUs != 0) {
-                out[10] = (int)(numHeardUs * 1.0 / totalLikeUs * 100.0);
+                out[10] = (int)(numHeardUs * 1.0 / totalHeardUs * 100.0);
             }
             else {
                 out[10] = 0;
             }
             if (numHeardNon != 0) {
-                out[11] = (int)(numHeardNon * 1.0 / totalLikeNon * 100.0);
+                out[11] = (int)(numHeardNon * 1.0 / totalHeardNon * 100.0);
             }
             else {
                 out[11] = 0;
