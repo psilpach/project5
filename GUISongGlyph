@@ -82,9 +82,9 @@ public class GUISongGlyph {
             }
 
             for (int i = 0; i <= 3; i++) {
-                Shape heardBar = new Shape(x + middle - (int)song.getPercent(false)[i], y
-                    + (2 + i) * availableSpace, (int)song.getPercent(false)[i],
-                    availableSpace, colors[i]);
+                Shape heardBar = new Shape(x + middle - (int)song.getPercent(
+                    false)[i], y + (2 + i) * availableSpace, (int)song
+                        .getPercent(false)[i], availableSpace, colors[i]);
                 addTo.addShape(heardBar);
             }
         }
@@ -98,9 +98,9 @@ public class GUISongGlyph {
             }
 
             for (int i = 0; i <= 3; i++) {
-                Shape heardBar = new Shape(x, y + (2 + i) * availableSpace,
-                    (int)song.getPercent(false)[i + 4], availableSpace,
-                    colors[i]);
+                Shape heardBar = new Shape(x + middle - (int)song.getPercent(
+                    false)[i + 4], y + (2 + i) * availableSpace, (int)song
+                        .getPercent(false)[i + 4], availableSpace, colors[i]);
                 addTo.addShape(heardBar);
             }
         }
@@ -114,9 +114,9 @@ public class GUISongGlyph {
             }
 
             for (int i = 0; i <= 3; i++) {
-                Shape heardBar = new Shape(x, y + (2 + i) * availableSpace,
-                    (int)song.getPercent(false)[i + 8], availableSpace,
-                    colors[i]);
+                Shape heardBar = new Shape(x + middle - (int)song.getPercent(
+                    false)[i + 8], y + (2 + i) * availableSpace, (int)song
+                        .getPercent(false)[i + 8], availableSpace, colors[i]);
                 addTo.addShape(heardBar);
             }
         }
