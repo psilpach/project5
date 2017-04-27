@@ -55,21 +55,21 @@ public class SongListTest extends student.TestCase {
      * sort title, genre, artist,release
      */
     public void testSort() {
-        list.sort("Title");
-        //assertNotNull(list);
+        list.sortTitle();
+        // assertNotNull(list);
         list.add(song3);
         list.add(song2);
         list.add(song4);
-        list.sort("Title");
+        list.sortTitle();
         assertEquals(list.get(0), song2);
 
-        list.sort("Genre");
+        list.sortGenre();
         assertEquals(list.get(0), song3);
 
-        list.sort("Artist");
+        list.sortArtist();
         assertEquals(list.get(0), song4);
 
-        list.sort("Release");
+        list.sortDate();
         assertEquals(list.get(0), song2);
     }
 
@@ -291,15 +291,15 @@ public class SongListTest extends student.TestCase {
         list.add(song);
         assertEquals(list.getPercentHeard(0)[0], 0);
     }
-    
+
+
     /**
      * test addPerson
      */
     public void testAddPerson() {
         list.addPerson(person);
-        assertEquals(list.size(), 1);
-        
+        assertEquals(list.size(), 0);
+
     }
-    
-    
+
 }
