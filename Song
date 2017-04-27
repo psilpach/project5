@@ -12,6 +12,7 @@ import java.util.ArrayList;
  *
  */
 public class Song {
+    // number that responded to "have you heard" question
     private int totalHeardRead = 0;
     private int totalHeardArt = 0;
     private int totalHeardSports = 0;
@@ -27,6 +28,7 @@ public class Song {
     private int totalHeardUs = 0;
     private int totalHeardNon = 0;
 
+    // number that responded to the "did you like" question
     private int totalLikeRead = 0;
     private int totalLikeArt = 0;
     private int totalLikeSports = 0;
@@ -42,11 +44,7 @@ public class Song {
     private int totalLikeUs = 0;
     private int totalLikeNon = 0;
 
-    private String title;
-    private String artist;
-    private String genre;
-    private String year;
-
+    // total responded "Yes" to "have you heard"
     private int numHeardRead = 0;
     private int numHeardArt = 0;
     private int numHeardSports = 0;
@@ -57,6 +55,12 @@ public class Song {
     private int numHeardMath = 0;
     private int numHeardOther = 0;
 
+    private int numHeardSouth = 0;
+    private int numHeardNorth = 0;
+    private int numHeardUs = 0;
+    private int numHeardNon = 0;
+
+    // total responded "Yes" to "Did you like"
     private int numLikeSouth = 0;
     private int numLikeNorth = 0;
     private int numLikeUs = 0;
@@ -72,17 +76,15 @@ public class Song {
     private int numLikeMath = 0;
     private int numLikeOther = 0;
 
-    private int numHeardSouth = 0;
-    private int numHeardNorth = 0;
-    private int numHeardUs = 0;
-    private int numHeardNon = 0;
-
-    private ArrayList<Person> likeArray;
-    private ArrayList<Person> heardArray;
+    // info about the song
+    private String title;
+    private String artist;
+    private String genre;
+    private String year;
 
 
     /**
-     * Constructor for sogn that takes 4 parameters
+     * Constructor for song that takes 4 parameters
      * 
      * @param title1
      *            title
@@ -94,9 +96,6 @@ public class Song {
      *            genre
      */
     public Song(String title1, String artist1, String genre1, String year1) {
-
-        likeArray = new ArrayList<Person>();
-        heardArray = new ArrayList<Person>();
         title = title1;
         artist = artist1;
         genre = genre1;
@@ -145,25 +144,7 @@ public class Song {
 
 
     /**
-     * 
-     * @return ArrayList of people who like the song
-     */
-    public ArrayList<Person> getLike() {
-        return likeArray;
-    }
-
-
-    /**
-     * 
-     * @return ArrayList of people who have heard the song
-     */
-    public ArrayList<Person> getHeard() {
-        return heardArray;
-    }
-
-
-    /**
-     * Adds the number of heards to an array
+     * Increments the totalHeard and numHeard 
      * 
      * @param p
      *            person that has heard the song
@@ -171,9 +152,6 @@ public class Song {
      *            true if person has heard it, false if not
      */
     public void addHeard(Person p, boolean add) {
-        if (add) {
-            heardArray.add(p);
-        }
 
         HobbyEnum hob = p.getHobby();
         MajorEnum maj = p.getMajor();
@@ -254,7 +232,7 @@ public class Song {
 
 
     /**
-     * Add the number of likes to an array
+     * Increments the totalLike and totalHeard
      * 
      * @param p
      *            person that likes the song
@@ -263,9 +241,6 @@ public class Song {
      * 
      */
     public void addLike(Person p, boolean add) {
-        if (add) {
-            likeArray.add(p);
-        }
 
         HobbyEnum hob = p.getHobby();
         MajorEnum maj = p.getMajor();
@@ -346,130 +321,6 @@ public class Song {
 
 
     /**
-     * Gets number of heard and puts into an array
-     * 
-     * @return int array of number of people who heard the song
-     */
-    public int[] getNumHeard() {
-        int[] out = new int[12];
-        for (int i = 0; i < 12; i++) {
-            out[i] = 0;
-        }
-        for (int i = 0; i < heardArray.size(); i++) {
-            if (heardArray.get(i).getHobby() == HobbyEnum.READING) {
-                out[0]++;
-            }
-            else if (heardArray.get(i).getHobby() == HobbyEnum.ART) {
-                out[1]++;
-            }
-            else if (heardArray.get(i).getHobby() == HobbyEnum.SPORTS) {
-                out[2]++;
-            }
-            else if (heardArray.get(i).getHobby() == HobbyEnum.MUSIC) {
-                out[3]++;
-            }
-            if (heardArray.get(i).getMajor() == MajorEnum.COMPSCI) {
-                out[4]++;
-            }
-            else if (heardArray.get(i).getMajor() == MajorEnum.ENGINEERING) {
-                out[5]++;
-            }
-            else if (heardArray.get(i).getMajor() == MajorEnum.MATH) {
-                out[6]++;
-            }
-            else if (heardArray.get(i).getMajor() == MajorEnum.OTHER) {
-                out[7]++;
-            }
-            if (heardArray.get(i).getState() == RegionEnum.SOUTHEAST) {
-                out[8]++;
-            }
-            else if (heardArray.get(i).getState() == RegionEnum.NORTHEAST) {
-                out[9]++;
-            }
-            else if (heardArray.get(i).getState() == RegionEnum.USOTHER) {
-                out[10]++;
-            }
-            else if (heardArray.get(i).getState() == RegionEnum.OTHER) {
-                out[11]++;
-            }
-        }
-        return out;
-    }
-
-
-    /**
-     * Gets the number of likes and puts into an array
-     * 
-     * @return int array of number of people who like the song
-     */
-    public int[] getNumLike() {
-        int[] out = new int[12];
-        for (int i = 0; i < 12; i++) {
-            out[i] = 0;
-        }
-        for (int i = 0; i < likeArray.size(); i++) {
-            if (likeArray.get(i).getHobby() == HobbyEnum.READING) {
-                out[0]++;
-            }
-            else if (likeArray.get(i).getHobby() == HobbyEnum.ART) {
-                out[1]++;
-            }
-            else if (likeArray.get(i).getHobby() == HobbyEnum.SPORTS) {
-                out[2]++;
-            }
-            else if (likeArray.get(i).getHobby() == HobbyEnum.MUSIC) {
-                out[3]++;
-            }
-            if (likeArray.get(i).getMajor() == MajorEnum.COMPSCI) {
-                out[4]++;
-            }
-            else if (likeArray.get(i).getMajor() == MajorEnum.ENGINEERING) {
-                out[5]++;
-            }
-            else if (likeArray.get(i).getMajor() == MajorEnum.MATH) {
-                out[6]++;
-            }
-            else if (likeArray.get(i).getMajor() == MajorEnum.OTHER) {
-                out[7]++;
-            }
-            if (likeArray.get(i).getState() == RegionEnum.SOUTHEAST) {
-                out[8]++;
-            }
-            else if (likeArray.get(i).getState() == RegionEnum.NORTHEAST) {
-                out[9]++;
-            }
-            else if (likeArray.get(i).getState() == RegionEnum.USOTHER) {
-                out[10]++;
-            }
-            else if (likeArray.get(i).getState() == RegionEnum.OTHER) {
-                out[11]++;
-            }
-        }
-        return out;
-    }
-
-
-    /**
-     * Gets the total number of heards in the song
-     * 
-     * @return int people who heard it
-     */
-    public int getTotalHeard() {
-        return heardArray.size();
-    }
-
-
-    /**
-     * Gets the total number of likes in the song
-     * 
-     * @return int people who like it
-     */
-    public int getTotalLikes() {
-        return likeArray.size();
-    }
-
-
-    /**
      * Gets the percent of each sorting type
      * 
      * @param like
@@ -478,9 +329,8 @@ public class Song {
      *         the song
      */
     public int[] getPercent(boolean like) {
-        int[] out;
+        int[] out = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         if (like) {
-            out = getNumLike();
             if (numLikeRead != 0) {
                 out[0] = (int)(numLikeRead * 1.0 / totalLikeRead * 100.0);
             }
@@ -555,7 +405,6 @@ public class Song {
             }
         }
         else {
-            out = getNumHeard();
             if (numHeardRead != 0) {
                 out[0] = (int)(numHeardRead * 1.0 / totalHeardRead * 100.0);
             }
