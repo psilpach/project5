@@ -3,7 +3,7 @@ package prj5;
 import java.util.Comparator;
 
 /**
- * Compare the song artist
+ * Compares the song artists
  * 
  * @author ndanni4
  * @version 4.18.2017
@@ -32,6 +32,43 @@ public class ArtistComparator implements Comparator<Song> {
             return 0;
         }
 
+    }package prj5;
+
+import java.util.Comparator;
+
+/**
+ * Compares the song artists
+ * 
+ * @author ndanni4
+ * @version 4.18.2017
+ *
+ */
+public class ArtistComparator implements Comparator<Song> {
+
+    /**
+     * Compares the artist of the songs
+     * 
+     * @param song1
+     *            the first song to be compared
+     * @param song2
+     *            second song compared to
+     * @return -1 if smaller, 0 if same, 1 if larger
+     */
+    @Override
+    public int compare(Song song1, Song song2) {
+
+        if (song1.getArtist().compareTo(song2.getArtist()) > 0) {
+            return 1;
+        }
+        else if (song1.getArtist().compareTo(song2.getArtist()) < 0) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
     }
+
+}
+
 
 }
