@@ -4,8 +4,6 @@ package prj5;
  * Person class to create for hobby major and their state
  * 
  * @author ndanni4
- * @author kbenson8
- * @author pims617
  * @version 4.10.2017
  *
  */
@@ -27,7 +25,7 @@ public class Person {
      *            major of person
      * @param region
      *            state lived in
-     *            * @param heard
+     * @param heard
      *            The array of whether or not the Person has heard certain songs
      * @param liked
      *            The array of whether or not the Person has liked certain songs
@@ -192,5 +190,15 @@ public class Person {
         Person other = (Person)obj;
         return getHobby().equals(other.getHobby()) && getMajor().equals(other
             .getMajor()) && getState().equals(other.getState());
+    }
+
+
+    /**
+     * Returns the region of the Student.
+     * 
+     * @return region of the Student
+     */
+    public RegionEnum getRegion() {
+        return region;
     }
 }
